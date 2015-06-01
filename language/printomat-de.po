@@ -1,0 +1,309 @@
+# Translation of Print-O-Matic in German
+# This file is distributed under the same license as the Print-O-Matic package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2014-04-14 11:07+0100\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Poedit 1.6.4\n"
+"Project-Id-Version: Print-O-Matic\n"
+"POT-Creation-Date: \n"
+"Last-Translator: \n"
+"Language-Team: Twinpictures <info@twinpictures>\n"
+"Language: de\n"
+
+#: print-o-matic.php:389
+msgid ""
+"%sPrint-Pro-Matic%s is our premium plugin that offers a few additional "
+"attributes and features for <i>ultimate</i> flexibility."
+msgstr ""
+"%sPrint-Pro-Matic%s ist unser Premium Plugin das einige Zusatzoptionen und -"
+"features für <i>ultimative</i> Flexibilität bietet."
+
+#: print-o-matic.php:251
+msgid "Default Target Attribute"
+msgstr "Standard Zielattribut"
+
+#: print-o-matic.php:257
+msgid "Use Print Icon"
+msgstr "Druck-Icon verwenden"
+
+#: print-o-matic.php:277
+msgid "Printer Icon"
+msgstr "Druck-Icon"
+
+#: print-o-matic.php:328
+msgid "Do Not Print Elements"
+msgstr "Diese Elemente nicht drucken"
+
+#: print-o-matic.php:330
+msgid ""
+"Content elements to exclude from the print page. See %sDo Not Print Attribute"
+"%s in the documentation for more info."
+msgstr ""
+"Inhaltselemente, die vom Druck ausgeschlossen werden sollen. Siehe %sDo Not "
+"Print Attribute%s in der Dokumentation für mehr Informationen."
+
+#: print-o-matic.php:334
+msgid "Print Page Only Elements"
+msgstr "Elemente nur auf Druckseite anzeigen"
+
+#: print-o-matic.php:336
+msgid ""
+"Content elements to display only on the print page. See %sPrint Only "
+"Attribute%s in the documentation for more info."
+msgstr ""
+"Inhaltselemente, die nur auf der Druckseite angezeigt werden. Siehe %sPrint "
+"Only Attribute%s in der Dokumentation für mehr Informationen."
+
+#: print-o-matic.php:340
+msgid "Print Page Top HTML"
+msgstr "Druckseite HTML (oben)"
+
+#: print-o-matic.php:342
+msgid ""
+"HTML to be inserted at the top of the print page. See %HTML Top Attribute%s "
+"in the documentation for more info."
+msgstr ""
+"HTML das oben auf der Druckseite eingefügt wird. Siehe %HTML Top Attribute%s "
+"in der Dokumentation für weitere Informationen."
+
+#: print-o-matic.php:346
+msgid "Print Page Bottom HTML"
+msgstr "Druckseite HTML (unten)"
+
+#: print-o-matic.php:348
+msgid ""
+"HTML to be inserted at the bottom of the print page. See %HTML Bottom "
+"Attribute%s in the documentation for more info."
+msgstr ""
+"HTML das unten auf der Druckseite eingefügt wird. Siehe %HTML Bottom "
+"Attribute%s in der Dokumentation für weitere Informationen."
+
+#: print-o-matic.php:387
+msgid "Level Up!"
+msgstr "Level Up!"
+
+#: print-o-matic.php:390
+msgid "Reasons to go Pro"
+msgstr "Gründe, für die Pro-Version"
+
+#: print-o-matic.php:392
+msgid "You are an advanced user and want/need additional features"
+msgstr ""
+"Sie sind ein fortgeschrittener Benutzer und wollen/brauchen zusätzliche "
+"Funktionen"
+
+#: print-o-matic.php:393
+msgid "Print-O-Matic was just what I needed. Here, have some money."
+msgstr ""
+"Print-O-Matic war genau das was ich brauchte. Hier, nimm ein wenig Geld von "
+"mir."
+
+#: print-o-matic.php:312
+msgid ""
+"Custom CSS Style for <em>Ultimate Flexibility</em>. Here are some helpful "
+"%scustom CSS samples%s"
+msgstr ""
+"Individueller CSS Stil für <em>Größte Flexibilität</em>. Hier sind einige "
+"hilfreiche %scustom CSS samples%s"
+
+#: print-o-matic.php:316
+msgid "Use Theme CSS For Print Page"
+msgstr "Theme CSS für Druckseite verwenden"
+
+#: print-o-matic.php:318
+msgid "Use the CSS style of the active theme for print page."
+msgstr "Verwende das CSS des aktiven Themes für die Druckseite"
+
+#: print-o-matic.php:322
+msgid "Custom Print Page Style"
+msgstr "Eigener Druckseitenstil"
+
+#: print-o-matic.php:324
+msgid "Custom print page CSS style for <em>Ultimate Flexibility</em>"
+msgstr "Eigene Druckseiten CSS Stile für <em>Größtmögliche Flexibilität</em>"
+
+#: print-o-matic.php:212
+msgid "made you feel all warm and fuzzy on the inside"
+msgstr "für ein warmes, kuscheliges Gefühl in deinem Inneren gesorgt hat "
+
+#: print-o-matic.php:213
+msgid "restored your faith in humanity... even if only for a fleeting second"
+msgstr ""
+"dein Vertrauen in die Menschheit wieder hergestellt hat... wenn auch nur für "
+"eine Sekunde"
+
+#: print-o-matic.php:214
+msgid "rocked your world"
+msgstr "hat Deine Welt erschüttert"
+
+#: print-o-matic.php:215
+msgid "inspired you to commit a random act of kindness"
+msgstr "hat dich inspiriert, einen wahllosen Akt der Güte zu vollbringen"
+
+#: print-o-matic.php:216
+msgid "encouraged more regular flossing of the teeth"
+msgstr ""
+"hat dich motiviert, dir regelmäßig die Zähne mit Zahnseide zu bearbeiten"
+
+#: print-o-matic.php:217
+msgid "helped organize your life in the small ways that matter"
+msgstr ""
+"hat dir geholfen dein Leben in den Kleinigkeiten die zählen besser zu "
+"organisieren"
+
+#: print-o-matic.php:218
+msgid "saved your minutes--if not tens of minutes--writing your own solution"
+msgstr ""
+"hat dir Minuten -- wenn nicht Dutzende von Minuten -- gespart, die du "
+"gebraucht hättest um deine eigene Lösung zu programmieren."
+
+#: print-o-matic.php:219
+msgid "brightened your day... or darkened if if you are trying to sleep in"
+msgstr ""
+"hat deinen Tag erhellt... oder ihn verdunkelt, wenn du versuchst "
+"auszuschlafen."
+
+#: print-o-matic.php:220
+msgid "caused you to dance a little jig of joy and joyousness"
+msgstr ""
+"hat dich veranlasst einen kleinen Tanz der Freude und Begeisterung zu tanzen"
+
+#: print-o-matic.php:221
+msgid "inspired you to tweet a little @twinpictues social love"
+msgstr "hat dich inspiriert @twinpictues etwas liebe zu twittern"
+
+#: print-o-matic.php:222
+msgid "tasted great, while also being less filling"
+msgstr "hat toll geschmeckt und nicht gestopft"
+
+#: print-o-matic.php:223
+msgid "caused you to shout: \"everybody spread love, give me some mo!\""
+msgstr ""
+"hat dich veranlasst \"Verteilt die Liebe, gebt mir noch mehr!\" zu schreien"
+
+#: print-o-matic.php:224
+msgid "helped you keep the funk alive"
+msgstr "hat geholfen, den groove am Leben zu halten"
+
+#: print-o-matic.php:225
+msgid ""
+"<a href=\"http://www.youtube.com/watch?v=dvQ28F5fOdU\" target=\"_blank"
+"\">soften hands while you do dishes</a>"
+msgstr ""
+"<a href=\"http://www.youtube.com/watch?v=dvQ28F5fOdU\" target=\"_blank"
+"\">macht die Hände schon beim Spülen zart</a>"
+
+#: print-o-matic.php:226
+msgid ""
+"helped that little old lady <a href=\"http://www.youtube.com/watch?"
+"v=Ug75diEyiA0\" target=\"_blank\">find the beef</a>"
+msgstr ""
+"Hat der alten Dame geholfen <a href=\"http://www.youtube.com/watch?"
+"v=Ug75diEyiA0\" target=\"_blank\">das Fleisch zu finden</a>"
+
+#: print-o-matic.php:239 print-o-matic.php:366 print-o-matic.php:386
+msgid "Click to toggle"
+msgstr "Klicken zum aufklappen"
+
+#: print-o-matic.php:240
+msgid "Print-O-Matic Settings"
+msgstr "Print-O-Matic Einstellungen"
+
+#: print-o-matic.php:253
+msgid ""
+"Print target. See %sTarget Attribute%s in the documentation for more info."
+msgstr ""
+"Druckziel. Siehe %sTarget Attribute%s in der Dokumentation für weitere "
+"Informationen."
+
+#: print-o-matic.php:261
+msgid "Yes"
+msgstr "Ja"
+
+#: print-o-matic.php:262
+msgid "No"
+msgstr "Nein"
+
+#: print-o-matic.php:273
+msgid ""
+"Use printer icon. See %sPrinticon Attribute%s in the documentation for more "
+"info."
+msgstr ""
+"Druck-Icon verwenden. Siehe %sPrinticon Attribute%s in der Dokumentation für "
+"weitere Informationen."
+
+#: print-o-matic.php:281
+msgid "Default"
+msgstr "Standard"
+
+#: print-o-matic.php:282
+msgid "Small"
+msgstr "Klein"
+
+#: print-o-matic.php:283
+msgid "Small Black"
+msgstr "Klein und schwarz"
+
+#: print-o-matic.php:284
+msgid "Small Grey"
+msgstr "Klein und grau"
+
+#: print-o-matic.php:285
+msgid "Small White"
+msgstr "klein und weiß"
+
+#: print-o-matic.php:306
+msgid ""
+"If using a printer icon, which printer icon should be used? See %sPrintstlye "
+"Attribute%s in the documentation for more info."
+msgstr ""
+"Wenn du ein Drucker-Icon verwendest, welches soll es sein? Siehe "
+"%sPrintstlye Attribute%s in der Dokumentation für weitere Informationen."
+
+#: print-o-matic.php:317
+msgid "Yes, Use Theme CSS"
+msgstr "Ja, verwende das Theme CSS"
+
+#: print-o-matic.php:310
+msgid "Custom Style"
+msgstr "Eigener Style"
+
+#: print-o-matic.php:355
+msgid "Save Changes"
+msgstr "Änderungen speichern"
+
+#: print-o-matic.php:367
+msgid "About"
+msgstr "Über"
+
+#: print-o-matic.php:370
+msgid ""
+"Shortcode that adds a printer icon, allowing the user to print the post or a "
+"specified HTML element in the post."
+msgstr ""
+"Shortcode der ein Drucker-Icon hinzufügt das es dem Benutzer erlaubt, den "
+"Beitrag oder ein spezifisches HTML Element im Beitrag zu drucken."
+
+#: print-o-matic.php:372
+msgid ""
+"%sDetailed documentation%s, complete with working demonstrations of all "
+"shortcode attributes, is available for your instructional enjoyment."
+msgstr ""
+"%sDetailed documentation%s, mit funktionierenden Demonstrationen aller "
+"Shortcode Attribute steht für dein Vergnügen bereit."
+
+#: print-o-matic.php:373
+msgid "Free, Open Source %sSupport%s"
+msgstr "Kostenloser Open Source %sSupport%s"
+
+#: print-o-matic.php:374
+msgid ""
+"If Print-O-Matic %s, please consider %sreviewing it at WordPress.org%s to "
+"better help others make informed plugin choices."
+msgstr ""
+"Wenn Print-O-Matic %s, bitte ziehe in Betracht, es bei WordPress.org%s  zu "
+"%sreviewing  um anderen zu helfen, die bessere Wahl zu treffen."

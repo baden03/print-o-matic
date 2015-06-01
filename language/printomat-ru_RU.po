@@ -1,0 +1,387 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: printomat\n"
+"POT-Creation-Date: 2014-06-09 11:39+0400\n"
+"PO-Revision-Date: 2014-06-09 14:11+0400\n"
+"Last-Translator: Vadim Bogaiskov <vadim.bogaiskov@gmail.com>\n"
+"Language-Team: Vadim Bogaiskov <vadim.bogaiskov@gmail.com>\n"
+"Language: ru_RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.5\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../print-pro-matic.php:295
+msgid "made you feel all warm and fuzzy on the inside"
+msgstr "заставил вас чувствовать тепло  и уютно внутри"
+
+#: ../print-pro-matic.php:296
+msgid "restored your faith in humanity... even if only for a fleeting second"
+msgstr "восстановил веру в человечество ... даже если только на мгновение"
+
+#: ../print-pro-matic.php:297
+msgid "rocked your world"
+msgstr "перевернул Ваш мир"
+
+#: ../print-pro-matic.php:298
+msgid "inspired you to commit a random act of kindness"
+msgstr "вдохновил Вас совершить доброе дело"
+
+#: ../print-pro-matic.php:299
+msgid "encouraged more regular flossing of the teeth"
+msgstr "воодушевил более регулярно чистить зубы"
+
+#: ../print-pro-matic.php:300
+msgid "helped organize your life in the small ways that matter"
+msgstr "помог организовать Вашу жизнь в мелочах, которые имеют значение"
+
+#: ../print-pro-matic.php:301
+msgid "saved your minutes--if not tens of minutes--writing your own solution"
+msgstr ""
+"сохранил минуты - если не последние минуты - напишите свое собственное "
+"решение"
+
+#: ../print-pro-matic.php:302
+msgid "brightened your day... or darkened if if you are trying to sleep in"
+msgstr "сделал ярче Ваш день ... или темнее, если Вы пытаетесь уснуть"
+
+#: ../print-pro-matic.php:303
+msgid "caused you to dance a little jig of joy and joyousness"
+msgstr "заставил Вас танцевать джигу радости и счастья"
+
+#: ../print-pro-matic.php:304
+msgid "inspired you to tweet a little @twinpictues social love"
+msgstr "вдохновил Вас чирикнуть немного социальной любови @twinpictues "
+
+#: ../print-pro-matic.php:305
+msgid "tasted great, while also being less filling"
+msgstr "предал прекрасный вкус, в то же время будучи менее насыщенным"
+
+#: ../print-pro-matic.php:306
+msgid "caused you to shout: \"everybody spread love, give me some mo!\""
+msgstr "заставил Вас кричать: \"Все пышет любовью, дайте мне еще немного!\""
+
+#: ../print-pro-matic.php:307
+msgid "helped you keep the funk alive"
+msgstr "помог Вам сохранить фанк живым"
+
+#: ../print-pro-matic.php:308
+msgid ""
+"<a href=\"http://www.youtube.com/watch?v=dvQ28F5fOdU\" target=\"_blank"
+"\">soften hands while you do dishes</a>"
+msgstr ""
+"<a href=\"http://www.youtube.com/watch?v=dvQ28F5fOdU\" target=\"_blank"
+"\">смягчить руки, пока Вы готовите</a>"
+
+#: ../print-pro-matic.php:309
+msgid ""
+"helped that little old lady <a href=\"http://www.youtube.com/watch?"
+"v=Ug75diEyiA0\" target=\"_blank\">find the beef</a>"
+msgstr ""
+"помог старушке <a href=\"http://www.youtube.com/watch?v=Ug75diEyiA0\" target="
+"\"_blank\">найти кусочек мяса</a>"
+
+#: ../print-pro-matic.php:317
+msgid "Upload image"
+msgstr "Добавить изображение"
+
+#: ../print-pro-matic.php:338 ../print-pro-matic.php:497
+#: ../print-pro-matic.php:517
+msgid "Click to toggle"
+msgstr "Click to toggle"
+
+#: ../print-pro-matic.php:339
+msgid "Print-Pro-Matic Settings"
+msgstr "Настройки Print-Pro-Matic"
+
+#: ../print-pro-matic.php:350
+msgid "Default Target Attribute"
+msgstr "Атрибут Target по умолчанию"
+
+#: ../print-pro-matic.php:352
+#, php-format
+msgid ""
+"Print target. See %sTarget Attribute%s in the documentation for more info."
+msgstr ""
+"Печатать объект. См. %sTarget Attribute%s в документации для получения "
+"дополнительной информации."
+
+#: ../print-pro-matic.php:356
+msgid "Use Print Icon"
+msgstr "Использовать иконку Печатать"
+
+#: ../print-pro-matic.php:360
+msgid "Yes"
+msgstr "Да"
+
+#: ../print-pro-matic.php:361
+msgid "No"
+msgstr "Нет"
+
+#: ../print-pro-matic.php:372
+#, php-format
+msgid ""
+"Use printer icon. See %sPrinticon Attribute%s in the documentation for more "
+"info."
+msgstr ""
+"Использовать иконку принтера. См. %sPrinticon Attribute%s  в документации "
+"для получения дополнительной информации."
+
+#: ../print-pro-matic.php:376
+msgid "Printer Icon"
+msgstr "Иконка принтера"
+
+#: ../print-pro-matic.php:380
+msgid "Default"
+msgstr "По умолчанию"
+
+#: ../print-pro-matic.php:381
+msgid "Small"
+msgstr "Маленькая"
+
+#: ../print-pro-matic.php:382
+msgid "Small Black"
+msgstr "Маленькая Черная"
+
+#: ../print-pro-matic.php:383
+msgid "Small Grey"
+msgstr "Маленькая Серая"
+
+#: ../print-pro-matic.php:384
+msgid "Small White"
+msgstr "Маленькая Белая"
+
+#: ../print-pro-matic.php:385
+msgid "Custom"
+msgstr "Пользовательская"
+
+#: ../print-pro-matic.php:407
+msgid "<em style=\"\">Custom Printer Icon not defined.</em>"
+msgstr "<em style=\"\">Настраиваемая иконка принтера не определена.</em>"
+
+#: ../print-pro-matic.php:414
+#, php-format
+msgid ""
+"If using a printer icon, which printer icon should be used? See %sPrintstlye "
+"Attribute%s in the documentation for more info."
+msgstr ""
+"Если используется иконка принтера, какую иконку принтера следует "
+"использовать? См. %sPrintstlye Attribute%s в документации для получения "
+"дополнительной информации."
+
+#: ../print-pro-matic.php:418
+msgid "Custom Printer Icon"
+msgstr "Пользовательская иконка мпринтера"
+
+#: ../print-pro-matic.php:419
+msgid "Upload Icon"
+msgstr "Загрузить иконку"
+
+#: ../print-pro-matic.php:420
+msgid "Image URL for the user defined printer icon"
+msgstr "URL изображения для иконки принтера, заданной пользователем"
+
+#: ../print-pro-matic.php:424
+msgid "Use in Admin Area"
+msgstr "Использовать в админке"
+
+#: ../print-pro-matic.php:425
+msgid "Yes, Use in Admin"
+msgstr "Да, использовать в админке"
+
+#: ../print-pro-matic.php:426
+msgid "Use Print-Pro-Matic in WordPress dashboard admin pages."
+msgstr ""
+"Использовать Print-Pro-Matic в панели администратора страниц WordPress."
+
+#: ../print-pro-matic.php:430
+msgid "Custom Style"
+msgstr "Пользовательский стиль"
+
+#: ../print-pro-matic.php:432
+#, php-format
+msgid ""
+"Custom CSS Style for <em>Ultimate Flexibility</em>. Here are some helpful "
+"%scustom CSS samples%s"
+msgstr ""
+"Пользовательские стили CSS для <em>максимальной гибкости</em>. Вот некоторые "
+"полезные %sпримеры пользовательских CSS%s"
+
+#: ../print-pro-matic.php:436
+msgid "Use Theme CSS In Print Page"
+msgstr "Использовать CSS темы на странице печати"
+
+#: ../print-pro-matic.php:437
+msgid "Yes, Use Theme CSS"
+msgstr "Да, использовать CSS темы"
+
+#: ../print-pro-matic.php:438
+msgid "Use the CSS style of the active theme for print page."
+msgstr "Использовать CSS-стили активной темы для страницы печати."
+
+#: ../print-pro-matic.php:442
+msgid "Custom Print Page Style"
+msgstr "Пользовательский стиль страницы печати "
+
+#: ../print-pro-matic.php:444
+msgid "Custom print page CSS style for <em>Ultimate Flexibility</em>"
+msgstr ""
+"Пользовательский стиль страницы печати для <em>максимальной гибкости</em>"
+
+#: ../print-pro-matic.php:448
+msgid "Do Not Print Elements"
+msgstr "Не печатать элементы"
+
+#: ../print-pro-matic.php:450
+#, php-format
+msgid ""
+"Content elements to exclude from the print page. See %sDo Not Print Attribute"
+"%s in the documentation for more info."
+msgstr ""
+"Элементы содержимого, которые следует исключить со страницы печати. См. %sDo "
+"Not Print Attribute%s в документации для получения дополнительной информации."
+
+#: ../print-pro-matic.php:454
+msgid "Print Page Only Elements"
+msgstr "Элементы только для страницы печати"
+
+#: ../print-pro-matic.php:456
+#, php-format
+msgid ""
+"Content elements to display only on the print page. See %sPrint Only "
+"Attribute%s in the documentation for more info."
+msgstr ""
+"Элементы содержимого для отображения только на странице печати.  См. %sPrint "
+"Only Attribute%s в документации для получения дополнительной информации."
+
+#: ../print-pro-matic.php:460
+msgid "Force Visible Elements"
+msgstr "Принудительно отображаемые элементы"
+
+#: ../print-pro-matic.php:462
+#, php-format
+msgid ""
+"Content elements that will be forced to display and be printed, even if "
+"hidden. See %sForce Visible Attribute%s in the documentation for more info."
+msgstr ""
+"Элементы содержимого, которые будут принудительно отображаться, даже если "
+"они скрыты. См. %sForce Visible Attribute%s в документации для получения "
+"дополнительной информации."
+
+#: ../print-pro-matic.php:466
+msgid "Print Page Top HTML"
+msgstr "HTML вверху страницы печати"
+
+#: ../print-pro-matic.php:468
+#, php-format
+msgid ""
+"HTML to be inserted at the top of the print page. See %sHTML Top Attribute%s "
+"in the documentation for more info."
+msgstr ""
+"HTML для вставки в верхней части страницы печати. См. %sHTML Top Attribute%s "
+"в документации для получения дополнительной информации."
+
+#: ../print-pro-matic.php:472
+msgid "Print Page Bottom HTML"
+msgstr "HTML внизу страницы печати"
+
+#: ../print-pro-matic.php:474
+#, php-format
+msgid ""
+"HTML to be inserted at the bottom of the print page. See %sHTML Bottom "
+"Attribute%s in the documentation for more info."
+msgstr ""
+"HTML для вставки в нижней части страницы печати. См. %sHTML Bottom Attribute"
+"%s в документации для получения дополнительной информации."
+
+#: ../print-pro-matic.php:478
+msgid "Shortcode Loads Scripts"
+msgstr "Шорткод загружает скрипты"
+
+#: ../print-pro-matic.php:479
+msgid "Only load scripts with shortcode."
+msgstr "Только загрузка скриптов с помощью шорткода."
+
+#: ../print-pro-matic.php:480
+msgid "Only load  Print-Pro-Matic scripts if [print-me] shortcode is used."
+msgstr ""
+"Только  загрузка скриптов  Print-Pro-Matic, если используется шорткод [print-"
+"me]."
+
+#: ../print-pro-matic.php:487
+msgid "Save Changes"
+msgstr "Сохранить изменения"
+
+#: ../print-pro-matic.php:498
+msgid "About"
+msgstr "О плагине"
+
+#: ../print-pro-matic.php:501
+msgid ""
+"Shortcode that adds a printer icon, allowing the user to print the post or a "
+"specified HTML element in the post."
+msgstr ""
+"Шорткод, который добавляет иконку принтера, что  позволяет пользователю "
+"печатать запись или указанный HTML элемент в записи."
+
+#: ../print-pro-matic.php:503
+#, php-format
+msgid ""
+"%sDetailed documentation%s, complete with working demonstrations of all "
+"shortcode attributes, is available for your instructional enjoyment."
+msgstr ""
+"%sПодробная документация%s, в комплекте с рабочими демонстрациями всех "
+"атрибутов шорткода, доступна для Вашего собственного удовольствия."
+
+#: ../print-pro-matic.php:504
+#, php-format
+msgid "Free, Open Source %sSupport%s"
+msgstr "Бесплатно, Открытый код %sПоддержка%s"
+
+#: ../print-pro-matic.php:505
+#, php-format
+msgid ""
+"If Print-Pro-Matic %s, please consider %sreviewing it at WordPress.org%s to "
+"better help others make informed plugin choices."
+msgstr ""
+"Если Print-Pro-Matic %s, пожалуйста, напишите %sотзыв на WordPress.org%s, "
+"чтобы помочь другим сделать осознанный выбор плагина."
+
+#: ../print-pro-matic.php:518
+msgid "Register Plugin"
+msgstr "Зарегистрировать плагин"
+
+#: ../print-pro-matic.php:520
+msgid ""
+"To receive plugin updates you must register your plugin. Enter your Receipt "
+"ID and email address used to purchase the plugin below."
+msgstr ""
+"Чтобы получать обновления плагина необходимо зарегистрировать плагин. "
+"Введите ниже Ваш ID квитанции и адрес электронной почты, который "
+"использовался для покупки плагина."
+
+#: ../print-pro-matic.php:524
+msgid "Receipt ID"
+msgstr "ID квитанции"
+
+#: ../print-pro-matic.php:526
+msgid "Receipt ID is found in the Purchase Receipt"
+msgstr "ID квитанции находится в товарном чеке"
+
+#: ../print-pro-matic.php:531
+msgid "Email"
+msgstr "Email"
+
+#: ../print-pro-matic.php:533
+msgid "Email address used to purchase plugin"
+msgstr "Адрес электронной почты, который использовался для покупки плагина"
+
+#: ../print-pro-matic.php:539
+msgid "Register"
+msgstr "Зарегистрировать"
