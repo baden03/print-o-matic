@@ -1,5 +1,5 @@
 /*!
- * Print-O-Matic JavaScript v1.6.1
+ * Print-O-Matic JavaScript v1.6.2
  * http://plugins.twinpictures.de/plugins/print-o-matic/
  *
  * Copyright 2015, Twinpictures
@@ -75,7 +75,6 @@ jQuery(document).ready(function() {
 			w.document.title = "PrintOMatic";
 		}
 		else{
-
 			jQuery(w.document.head).append("<title>"+ document.title +"</title>");
 		}
 
@@ -103,15 +102,31 @@ jQuery(document).ready(function() {
 		//rot in hell, Internet Explorer
 		if ( detectIE() ){
 			//jQuery(w.document.body).append( jQuery( target ).clone().html() );
+			//input text area workaound
+			/*
+			jQuery( target  + ' input[type=text]').each(function() {
+				//it knows the value here...
+				console.log( jQuery(this).val() );
+			});
+			*/
+
 			jQuery(w.document.body).append( function() {
 				var ieID = target.substr(1);
 				var ieOutput = jQuery( w.document.createElement( 'div' ) );
 				if ( target.substr(0,1) == '#' ){
 					ieOutput.attr('id', ieID);
-				} else{
-					ieOutput.addClass(ieID);
+				} else if ( target.substr(0,1) == '.' ){
+					ieOutput.addClass( ieID );
 				}
-				return ieOutput.append( jQuery( target ).clone().html() );
+				var clony = jQuery( target ).clone();
+				return ieOutput.append( clony.html() );
+			});
+
+			//update the print version with the user entered values because IE is hacky like that
+			jQuery( target  + ' input[type=text]').each(function() {
+				var user_val = jQuery(this).val();
+				var elem_id = jQuery(this).attr('id');
+				w.document.getElementById(elem_id).value = user_val;
 			});
 		}
 		else{
