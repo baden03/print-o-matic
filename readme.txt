@@ -4,7 +4,7 @@ Donate link: http://plugins.twinpictures.de/flying-houseboat/
 Tags: print, print element, print shortcode, send to print, print button, print me, jQuery, print page, javascript, twinpictures, plugin oven
 Requires at least: 3.9
 Tested up to: 4.2.2
-Stable tag: 1.6.4b
+Stable tag: 1.6.4c
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -50,7 +50,8 @@ We like to rock the party.
 == Changelog ==
 
 = 1.6.4 =
-* addressed more IE issues
+* addressed lovely IE issues
+* mega hack-o-riffic workaround for IE input text elements loosing user input values
 
 = 1.6.3 =
 * fixed bug with title not passing target correctly when displaying both icon and title
