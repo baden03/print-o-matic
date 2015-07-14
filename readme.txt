@@ -131,7 +131,8 @@ We like to rock the party.
 == Upgrade Notice ==
 
 = 1.6.4 =
-* addressed more IE issues
+* addressed lovely IE issues
+* mega hack-o-riffic workaround for IE input text elements loosing user input values
 
 = 1.6.3 =
 * fixed bug with title not passing target correctly when displaying both icon and title
