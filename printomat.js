@@ -1,5 +1,5 @@
 /*!
- * Print-O-Matic JavaScript v1.6.2
+ * Print-O-Matic JavaScript v1.6.3
  * http://plugins.twinpictures.de/plugins/print-o-matic/
  *
  * Copyright 2015, Twinpictures
@@ -78,25 +78,22 @@ jQuery(document).ready(function() {
 			jQuery(w.document.head).append("<title>"+ document.title +"</title>");
 		}
 
-		//stylesheet
-		//if ( typeof pom_site_css != 'undefined' && pom_site_css ){
-		if ( typeof print_data[id]['pom_site_css'] != 'undefined' && print_data[id]['pom_site_css'] ){
-			jQuery(w.document.body).append('<link rel="stylesheet" type="text/css" href="' + print_data[id]['pom_site_css'] + '" />');
-		}
+		if ( typeof print_data[id] != 'undefined'){
+			if ( 'pom_site_css' in print_data[id] ){
+				jQuery(w.document.body).append('<link rel="stylesheet" type="text/css" href="' + print_data[id]['pom_site_css'] + '" />');
+			}
 
-		//if ( typeof pom_custom_css != 'undefined' && pom_custom_css ){
-		if ( typeof print_data[id]['pom_custom_css'] != 'undefined' && print_data[id]['pom_custom_css'] ){
-			jQuery(w.document.body).append("<style>"+ print_data[id]['pom_custom_css'] +"</style>");
-		}
+			if ( 'pom_custom_css' in print_data[id] ){
+				jQuery(w.document.body).append("<style>"+ print_data[id]['pom_custom_css'] +"</style>");
+			}
 
-		//if ( typeof pom_do_not_print != 'undefined' && pom_do_not_print ) {
-		if ( typeof print_data[id]['pom_do_not_print'] != 'undefined' && print_data[id]['pom_do_not_print'] ){
-			jQuery(print_data[id]['pom_do_not_print']).hide();
-		}
+			if ( 'pom_do_not_print' in print_data[id] ){
+				jQuery(print_data[id]['pom_do_not_print']).hide();
+			}
 
-		//if ( typeof pom_html_top != 'undefined' && pom_html_top ){
-		if ( typeof print_data[id]['pom_html_top'] != 'undefined' && print_data[id]['pom_html_top'] ){
-			jQuery(w.document.body).append( print_data[id]['pom_html_top'] );
+			if ( 'pom_html_top' in print_data[id] ){
+				jQuery(w.document.body).append( print_data[id]['pom_html_top'] );
+			}
 		}
 
 		//rot in hell, Internet Explorer
