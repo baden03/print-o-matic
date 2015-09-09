@@ -81,7 +81,7 @@ jQuery(document).ready(function() {
 			jQuery(w.document.head).append("<title>"+ document.title +"</title>");
 		}
 
-		if ( typeof print_data[id] != 'undefined'){
+		if ( typeof print_data != 'undefined' && typeof print_data[id] != 'undefined'){
 			if ( 'pom_site_css' in print_data[id] ){
 				jQuery(w.document.body).append('<link rel="stylesheet" type="text/css" href="' + print_data[id]['pom_site_css'] + '" />');
 			}
@@ -134,13 +134,15 @@ jQuery(document).ready(function() {
 		}
 
 		//if ( typeof pom_do_not_print != 'undefined' && pom_do_not_print ) {
-		if ( typeof print_data[id]['pom_do_not_print'] != 'undefined' && print_data[id]['pom_do_not_print'] ){
-			jQuery(print_data[id]['pom_do_not_print']).show();
-		}
+		if( typeof print_data != 'undefined' ){
+			if ( typeof print_data[id]['pom_do_not_print'] != 'undefined' && print_data[id]['pom_do_not_print'] ){
+				jQuery(print_data[id]['pom_do_not_print']).show();
+			}
 
-		//if ( typeof pom_html_bottom != 'undefined' && pom_html_bottom ){
-		if ( typeof print_data[id]['pom_html_bottom'] != 'undefined' && print_data[id]['pom_html_bottom'] ){
-			jQuery(w.document.body).append( print_data[id]['pom_html_bottom'] );
+			//if ( typeof pom_html_bottom != 'undefined' && pom_html_bottom ){
+			if ( typeof print_data[id]['pom_html_bottom'] != 'undefined' && print_data[id]['pom_html_bottom'] ){
+				jQuery(w.document.body).append( print_data[id]['pom_html_bottom'] );
+			}
 		}
 
 		/* hardcodeed iframe and if so, force a pause... pro version offers more options */
