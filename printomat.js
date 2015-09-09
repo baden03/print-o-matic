@@ -1,5 +1,5 @@
 /*!
- * Print-O-Matic JavaScript v1.6.3
+ * Print-O-Matic JavaScript v1.6.4
  * http://plugins.twinpictures.de/plugins/print-o-matic/
  *
  * Copyright 2015, Twinpictures
@@ -59,6 +59,9 @@ jQuery(document).ready(function() {
 		var id = jQuery(this).attr('id');
 		//var target = jQuery('#target-' + id).val();
 		var target = jQuery(this).attr('data-print_target');
+		if(!target){
+			target = jQuery('#target-' + id).val();
+		}
 		if (target == '%prev%') {
 			target = jQuery(this).prev();
 		}
