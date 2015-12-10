@@ -2,9 +2,9 @@
 Contributors: twinpictures, baden03
 Donate link: http://plugins.twinpictures.de/flying-houseboat/
 Tags: print, print element, print shortcode, send to print, print button, print me, jQuery, print page, javascript, twinpictures, plugin oven
-Requires at least: 3.9
-Tested up to: 4.3.1
-Stable tag: 1.6.5
+Requires at least: 4.0
+Tested up to: 4.4.0
+Stable tag: 1.6.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,6 +48,9 @@ We like to rock the party.
 1. Print-O-Matic Options screen for Ultimate Flexibility
 
 == Changelog ==
+
+= 1.6.6 =
+* plugin fully tested with WordPress 4.4.0
 
 = 1.6.5 =
 * adjusted method of determining if the print_data object exists and has property
@@ -133,79 +136,4 @@ We like to rock the party.
 * The plug-in was forked and completely rewritten from Print Button Shortcode by MyWebsiteAdvisor.
 
 == Upgrade Notice ==
-
-= 1.6.4 =
-* addressed lovely IE issues
-* mega hack-o-riffic workaround for IE input text elements loosing user input values
-
-= 1.6.3 =
-* fixed bug with title not passing target correctly when displaying both icon and title
-
-= 1.6.2 =
-* fixed issue with printstyle default value not saving
-* deactivating plugin no longer clears all settings
-
-= 1.6.1 =
-* corrected typo in printstyle attribute
-
-= 1.6.0 =
-* added tag and class attributes
-* target now passed using data attribute rather than hidden input field
-
-= 1.5.7 =
-* added pause_before_print attribute and option to manually pause the print dialogue box to let the page fully load.
-
-= 1.5.6 =
-* typo correction
-* replaced inline scripts with print_data object in footer
-
-= 1.5.5 =
-* Added some more workarounds for Internet Explorer
-* Added optional jQuery clone.fix to address issues with cloning textarea elements
-* Added %prev% and %next% target placeholders to print elements immediately preceding or following the print button
-* Added delay if iframe is detected
-* Added Russian language translation
-
-= 1.5.4 =
-* small bug fixe with css not loading on roll-your-own POM elements
-
-= 1.5.3 =
-* work-around for IE 11 bugs
-* now waits for print page to fully load before firing print command
-* added option to load scrips only on pages where shortcode is used
-
-= 1.5.2 =
-* fixed bug with do_not_print
-* added alt attribute
-* works again in horrid IE browsers
-
-= 1.5.1 =
-* added the do_not_print attribute 
-
-= 1.5 =
-* added print page top and bottom HTML section
-* added option to select alternate print icons
-* can now show icon, text and icon & text print button
-* form values now include radio and checkbox selections
-* removed php4 constructors
-* added I18n localization support
-* bug fixes
-* added custom css for display page as well as print page
-
-= 1.4 =
-* %ID% may now be used in the target a placeholder for the post ID
-
-= 1.3 =
-* Print dialog will now display in IE (the non-standards browser)
-
-= 1.2 =
-* New text only print link using printicon attribute
-
-= 1.1 =
-* New Options page where target attribute and css style settings can be set.
-
-= 1.0.1 =
-IE8 Bug work-around added.
-
-= 1.0 =
-Where once there was not, there now is.
+plugin is fully tested with WordPress 4.4.0. Notice of print-pro-magic price increase for 2016.

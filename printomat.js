@@ -1,5 +1,5 @@
 /*!
- * Print-O-Matic JavaScript v1.6.4
+ * Print-O-Matic JavaScript v1.6.5
  * http://plugins.twinpictures.de/plugins/print-o-matic/
  *
  * Copyright 2015, Twinpictures
@@ -152,7 +152,6 @@ jQuery(document).ready(function() {
 		}
 
 		if ( typeof print_data[id]['pom_pause_time'] != 'undefined' && print_data[id]['pom_pause_time'] > 0 ){
-			//console.log( print_data[id]['pom_pause_time'] );
 			pause_time = w.setTimeout(printIt, print_data[id]['pom_pause_time']);
 		}
 		else{
@@ -160,8 +159,9 @@ jQuery(document).ready(function() {
 		}
 
 		function printIt(){
+			w.focus();
 			w.print();
-			w.document.close();
+			w.close();
 		}
 
 	});
