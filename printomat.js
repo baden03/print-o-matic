@@ -71,7 +71,7 @@ jQuery(document).ready(function() {
 
 		//title
 		//rot in hell, Internet Explorer
-		if ( detectIE() ){
+		if ( detectIE() < 12 ){
 			w.document.title = "PrintOMatic";
 		}
 		else{
