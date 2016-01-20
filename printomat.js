@@ -1,5 +1,5 @@
 /*!
- * Print-O-Matic JavaScript v1.6.6
+ * Print-O-Matic JavaScript v1.6.7
  * http://plugins.twinpictures.de/plugins/print-o-matic/
  *
  * Copyright 2016, Twinpictures
@@ -28,30 +28,26 @@
 * detect IE
 * returns version of IE or false, if browser is not Internet Explorer
 */
-function detectIE() {
-	var ua = window.navigator.userAgent;
+function detectIE(){
+    var rv = -1; // Return value assumes failure.
 
-	var msie = ua.indexOf('MSIE ');
-	if (msie > 0) {
-		// IE 10 or older => return version number
-		return parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
-	}
+    if (navigator.appName == 'Microsoft Internet Explorer'){
 
-	var trident = ua.indexOf('Trident/');
-	if (trident > 0) {
-		// IE 11 => return version number
-		var rv = ua.indexOf('rv:');
-		return parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10);
-	}
+       var ua = navigator.userAgent,
+           re  = new RegExp("MSIE ([0-9]{1,}[\\.0-9]{0,})");
 
-	var edge = ua.indexOf('Edge/');
-	if (edge > 0) {
-	// IE 12 => return version number
-	return parseInt(ua.substring(edge + 5, ua.indexOf('.', edge)), 10);
-	}
+       if (re.exec(ua) !== null){
+         rv = parseFloat( RegExp.$1 );
+       }
+    }
+    else if(navigator.appName == "Netscape"){
+       /// in IE 11 the navigator.appVersion says 'trident'
+       /// in Edge the navigator.appVersion does not say trident
+       if(navigator.appVersion.indexOf('Trident') === -1) rv = 12;
+       else rv = 11;
+    }
 
-	// other browser
-	return false;
+    return rv;
 }
 
 jQuery(document).ready(function() {
@@ -101,16 +97,7 @@ jQuery(document).ready(function() {
 		}
 
 		//rot in hell, Internet Explorer
-		if ( detectIE() ){
-			//jQuery(w.document.body).append( jQuery( target ).clone().html() );
-			//input text area workaound
-			/*
-			jQuery( target  + ' input[type=text]').each(function() {
-				//it knows the value here...
-				console.log( jQuery(this).val() );
-			});
-			*/
-
+		if ( detectIE() < 12 ){
 			jQuery(w.document.body).append( function() {
 				var ieID = target.substr(1);
 				var ieOutput = jQuery( w.document.createElement( 'div' ) );
