@@ -5,7 +5,7 @@ Text Domain: print-o-matic
 Domain Path: /language
 Plugin URI: http://plugins.twinpictures.de/plugins/print-o-matic/
 Description: Shortcode that adds a printer icon, allowing the user to print the post or a specified HTML element in the post.
-Version: 1.6.6
+Version: 1.6.7a
 Author: twinpictures
 Author URI: http://twinpictuers.de
 License: GPL2
@@ -21,7 +21,7 @@ class WP_Print_O_Matic {
 	 * Current version
 	 * @var string
 	 */
-	var $version = '1.6.6';
+	var $version = '1.6.7a';
 
 	/**
 	 * Used as prefix for options entry
@@ -94,7 +94,7 @@ class WP_Print_O_Matic {
 	 */
 	function printMaticInit() {
 		//script
-		wp_register_script('printomatic-js', plugins_url('/printomat.js', __FILE__), array('jquery'), '1.6.5');
+		wp_register_script('printomatic-js', plugins_url('/printomat.js', __FILE__), array('jquery'), '1.6.6');
 		if( empty($this->options['script_check']) ){
 			wp_enqueue_script('printomatic-js');
 		}
@@ -443,12 +443,12 @@ class WP_Print_O_Matic {
 					<h3 class="handle"><?php _e( 'Level Up!' ) ?></h3>
 					<div class="inside">
 						<p><?php printf(__( '%sPrint-Pro-Matic%s is our premium plugin that offers a few additional attributes and features for <i>ultimate</i> flexibility.', 'print-o-mat' ), '<a href="http://plugins.twinpictures.de/premium-plugins/print-pro-matic/?utm_source=print-o-matic&utm_medium=plugin-settings-page&utm_content=print-pro-matic&utm_campaign=print-pro-level-up">', '</a>'); ?></p>
-						<p style="padding: 5px; border: 1px dashed #cccc66; background: #EEE;"><strong>Last Chance for 2015 Prices:</strong> <a href="http://plugins.twinpictures.de/premium-plugins/print-pro-matic/?utm_source=print-o-matic&utm_medium=plugin-settings-page&utm_content=print-pro-matic&utm_campaign=print-pro-year-end">Update to Print-Pro-Matic</a> before January 2016 to take advantage of 2015 pricing.</p>
+						<!--<p style="padding: 5px; border: 1px dashed #cccc66; background: #EEE;"><strong>Last Chance for 2015 Prices:</strong> <a href="http://plugins.twinpictures.de/premium-plugins/print-pro-matic/?utm_source=print-o-matic&utm_medium=plugin-settings-page&utm_content=print-pro-matic&utm_campaign=print-pro-year-end">Update to Print-Pro-Matic</a> before January 2016 to take advantage of 2015 pricing.</p>-->
 						<h4><?php _e('Reasons To Go Pro', 'print-o-matic'); ?></h4>
 						<ol>
 							<li><?php _e("You are an advanced user with advanced needs and want those tasty advanced features", "print-o-matic"); ?></li>
 							<li><?php _e("Print-Pro-Matic was just what you needed and you'd like to put a bit of bread in our jar", "print-o-matic"); ?></li>
-							<li><?php _e("You'd like to take advantage of 2015 pricing while it's still 2015", "print-o-matic"); ?></li>
+							<!--<li><?php _e("You'd like to take advantage of 2015 pricing while it's still 2015", "print-o-matic"); ?></li>-->
 						</ol>
 					</div>
 				</div>

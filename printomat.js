@@ -1,8 +1,8 @@
 /*!
- * Print-O-Matic JavaScript v1.6.5
+ * Print-O-Matic JavaScript v1.6.6
  * http://plugins.twinpictures.de/plugins/print-o-matic/
  *
- * Copyright 2015, Twinpictures
+ * Copyright 2016, Twinpictures
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -58,7 +58,8 @@ jQuery(document).ready(function() {
 	jQuery('.printomatic, .printomatictext').click(function() {
 		var id = jQuery(this).attr('id');
 		//var target = jQuery('#target-' + id).val();
-		var target = jQuery(this).attr('data-print_target');
+		//var target = jQuery(this).attr('data-print_target');
+		var target = jQuery(this).data('print_target');
 		if(!target){
 			target = jQuery('#target-' + id).val();
 		}
