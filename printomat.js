@@ -121,27 +121,29 @@ jQuery(document).ready(function() {
 			jQuery(w.document.body).append( jQuery( target ).clone() );
 		}
 
-		//if ( typeof pom_do_not_print != 'undefined' && pom_do_not_print ) {
-		if( typeof print_data != 'undefined' ){
-			if ( typeof print_data[id]['pom_do_not_print'] != 'undefined' && print_data[id]['pom_do_not_print'] ){
-				jQuery(print_data[id]['pom_do_not_print']).show();
-			}
-
-			//if ( typeof pom_html_bottom != 'undefined' && pom_html_bottom ){
-			if ( typeof print_data[id]['pom_html_bottom'] != 'undefined' && print_data[id]['pom_html_bottom'] ){
+		if ( typeof print_data != 'undefined' && typeof print_data[id] != 'undefined'){
+            if ( 'pom_do_not_print' in print_data[id] ){
+                jQuery( print_data[id]['pom_do_not_print']).show();
+            }
+            if ( 'pom_html_bottom' in print_data[id] ){
 				jQuery(w.document.body).append( print_data[id]['pom_html_bottom'] );
 			}
 		}
 
 		/* hardcodeed iframe and if so, force a pause... pro version offers more options */
 		iframe = jQuery(w.document).find('iframe');
-		if (iframe.length && print_data[id]['pom_pause_time'] < 3000 ) {
-			print_data[id]['pom_pause_time'] = 3000;
+		if (iframe.length && typeof print_data != 'undefined' && typeof print_data[id] != 'undefined') {
+            if('pom_pause_time' in print_data[id] && print_data[id]['pom_pause_time'] < 3000){
+                print_data[id]['pom_pause_time'] = 3000;
+            }
+            else if(print_data[id]['pom_pause_time'] === 'undefined'){
+                print_data[id]['pom_pause_time'] = 3000;
+            }
 		}
 
-		if ( typeof print_data[id]['pom_pause_time'] != 'undefined' && print_data[id]['pom_pause_time'] > 0 ){
-			pause_time = w.setTimeout(printIt, print_data[id]['pom_pause_time']);
-		}
+        if(typeof print_data != 'undefined' && typeof print_data[id] != 'undefined' && 'pom_pause_time' in print_data[id] && print_data[id]['pom_pause_time'] > 0){
+            pause_time = w.setTimeout(printIt, print_data[id]['pom_pause_time']);
+        }
 		else{
 			printIt();
 		}
