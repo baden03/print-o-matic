@@ -5,7 +5,7 @@ Text Domain: print-o-matic
 Domain Path: /language
 Plugin URI: http://plugins.twinpictures.de/plugins/print-o-matic/
 Description: Shortcode that adds a printer icon, allowing the user to print the post or a specified HTML element in the post.
-Version: 1.6.7b
+Version: 1.6.7c
 Author: twinpictures
 Author URI: http://twinpictuers.de
 License: GPL2
@@ -21,7 +21,7 @@ class WP_Print_O_Matic {
 	 * Current version
 	 * @var string
 	 */
-	var $version = '1.6.7a';
+	var $version = '1.6.7c';
 
 	/**
 	 * Used as prefix for options entry
@@ -203,6 +203,11 @@ class WP_Print_O_Matic {
 							'pom_pause_time' => $pause_before_print
 						);
 
+		//return nothing if usign an external button
+		if($printstyle == "external"){
+			return;
+		}
+
 		if($printicon == "false"){
 			$printicon = 0;
 		}
@@ -226,7 +231,6 @@ class WP_Print_O_Matic {
 		else if($title){
 			$output = "<".$tag." class='printomatictext ".$class."'' id='".$id."' ".$alt_tag." data-print_target='".$target."'>".$title."</".$tag.">";
 		}
-
 		return  $output;
 	}
 
