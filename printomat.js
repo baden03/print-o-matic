@@ -1,5 +1,5 @@
 /*!
- * Print-O-Matic JavaScript v1.7
+ * Print-O-Matic JavaScript v1.7.1
  * http://plugins.twinpictures.de/plugins/print-o-matic/
  *
  * Copyright 2016, Twinpictures
@@ -61,10 +61,20 @@ jQuery(document).ready(function() {
 
 		var ua = window.navigator.userAgent;
 		//rot in hell IE
-		if (ua.indexOf("MSIE ") || ua.indexOf("Trident/") || ua.indexOf("Edge/")) {
+		if ( ua.indexOf("MSIE ") != -1) {
+			//console.log('MSIE - Craptastic');
+			jQuery(w.document.body).append( jQuery( target ).clone( true ).html() );
+		}
+		else if ( ua.indexOf("Trident/") != -1) {
+			//console.log('IE 11 - Trident');
+			jQuery(w.document.body).append( jQuery( target ).clone( true ).html() );
+		}
+		else if ( ua.indexOf("Edge/") != -1 ){
+			//console.log('IE 12 - Edge');
 			jQuery(w.document.body).append( jQuery( target ).clone( true ).html() );
 		}
 		else{
+			//console.log('good browser');
 			jQuery(w.document.body).append( jQuery( target ).clone( true ) );
 		}
 
