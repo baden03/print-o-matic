@@ -149,4 +149,4 @@ We like to rock the party.
 * The plug-in was forked and completely rewritten from Print Button Shortcode by MyWebsiteAdvisor.
 
 == Upgrade Notice ==
-proper checks for older IE MSIE, IE 11 Trident & IE 12 Edge
+fills in missing text values for hack-tastic IE browsers
