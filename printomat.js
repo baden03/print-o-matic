@@ -1,5 +1,5 @@
 /*!
- * Print-O-Matic JavaScript v1.7.1
+ * Print-O-Matic JavaScript v1.7.2
  * http://plugins.twinpictures.de/plugins/print-o-matic/
  *
  * Copyright 2016, Twinpictures
@@ -60,13 +60,14 @@ jQuery(document).ready(function() {
 		}
 
 		var ua = window.navigator.userAgent;
+		var ie = true;
 		//rot in hell IE
 		if ( ua.indexOf("MSIE ") != -1) {
-			//console.log('MSIE - Craptastic');
+			//alert('MSIE - Craptastic');
 			jQuery(w.document.body).append( jQuery( target ).clone( true ).html() );
 		}
 		else if ( ua.indexOf("Trident/") != -1) {
-			//console.log('IE 11 - Trident');
+			//alert('IE 11 - Trident');
 			jQuery(w.document.body).append( jQuery( target ).clone( true ).html() );
 		}
 		else if ( ua.indexOf("Edge/") != -1 ){
@@ -76,6 +77,7 @@ jQuery(document).ready(function() {
 		else{
 			//console.log('good browser');
 			jQuery(w.document.body).append( jQuery( target ).clone( true ) );
+			ie = false;
 		}
 
 		if ( typeof print_data != 'undefined' && typeof print_data[id] != 'undefined'){
@@ -85,6 +87,15 @@ jQuery(document).ready(function() {
             if ( 'pom_html_bottom' in print_data[id] ){
 				jQuery(w.document.body).append( print_data[id]['pom_html_bottom'] );
 			}
+		}
+
+		//for IE cycle through and fill in any text input values... rot in hell IE
+		if(ie){
+			jQuery( target  + ' input[type=text]').each(function() {
+				var user_val = jQuery(this).val();
+				var elem_id = jQuery(this).attr('id');
+				w.document.getElementById(elem_id).value = user_val;
+			});
 		}
 
 		/* hardcodeed iframe and if so, force a pause... pro version offers more options */
