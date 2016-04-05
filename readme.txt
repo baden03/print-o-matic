@@ -3,8 +3,8 @@ Contributors: twinpictures, baden03
 Donate link: http://plugins.twinpictures.de/flying-houseboat/
 Tags: print, print element, print shortcode, send to print, print button, print me, jQuery, print page, javascript, twinpictures, plugin oven
 Requires at least: 4.0
-Tested up to: 4.4.2
-Stable tag: 1.6.7d
+Tested up to: 4.5
+Stable tag: 1.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -49,11 +49,12 @@ We like to rock the party.
 
 == Changelog ==
 
-= 1.6.7 =
-* tweaks that address Microsoft Edge issues (no surprise there, really)
-* plugin fully tested with WordPress 4.4.2
+= 1.7 =
+* checks for IE (MSIE, Trident & Edge)
+* plugin fully tested with WordPress 4.5
 * added external printstyle for external triggers
 * print window no longer auto-closes
+* removed language files in favour of WordPress Language Packs
 
 = 1.6.6 =
 * plugin fully tested with WordPress 4.4.0

@@ -1,5 +1,5 @@
 /*!
- * Print-O-Matic JavaScript v1.6.8
+ * Print-O-Matic JavaScript v1.7
  * http://plugins.twinpictures.de/plugins/print-o-matic/
  *
  * Copyright 2016, Twinpictures
@@ -24,37 +24,9 @@
  * THE SOFTWARE.
  */
 
-/**
-* detect IE
-* returns version of IE or false, if browser is not Internet Explorer
-*/
-function detectIE(){
-    var rv = -1; // Return value assumes failure.
-
-    if (navigator.appName == 'Microsoft Internet Explorer'){
-
-       var ua = navigator.userAgent,
-           re  = new RegExp("MSIE ([0-9]{1,}[\\.0-9]{0,})");
-
-       if (re.exec(ua) !== null){
-         rv = parseFloat( RegExp.$1 );
-       }
-    }
-    else if(navigator.appName == "Netscape"){
-       /// in IE 11 the navigator.appVersion says 'trident'
-       /// in Edge the navigator.appVersion does not say trident
-       if(navigator.appVersion.indexOf('Trident') === -1) rv = 12;
-       else rv = 11;
-    }
-
-    return rv;
-}
-
 jQuery(document).ready(function() {
 	jQuery('.printomatic, .printomatictext').click(function() {
 		var id = jQuery(this).attr('id');
-		//var target = jQuery('#target-' + id).val();
-		//var target = jQuery(this).attr('data-print_target');
 		var target = jQuery(this).data('print_target');
 		if(!target){
 			target = jQuery('#target-' + id).val();
@@ -66,18 +38,9 @@ jQuery(document).ready(function() {
 			target = jQuery(this).next();
 		}
 
-		var w = window.open( "", "printomatic", "scrollbars=yes");
-		w.document.write("<!DOCTYPE html><html><head></head><body></body></html>");
+		var w = window.open( "", "printomatic print page", "scrollbars=yes", "menubar=no", "location=no");
 
-		//title
-		//rot in hell, Internet Explorer
-		if ( detectIE() < 12 ){
-			w.document.title = "PrintOMatic";
-		}
-		else{
-			jQuery(w.document.head).append("<title>"+ document.title +"</title>");
-		}
-
+        //deal with print_date variable
 		if ( typeof print_data != 'undefined' && typeof print_data[id] != 'undefined'){
 			if ( 'pom_site_css' in print_data[id] ){
 				jQuery(w.document.body).append('<link rel="stylesheet" type="text/css" href="' + print_data[id]['pom_site_css'] + '" />');
@@ -96,29 +59,13 @@ jQuery(document).ready(function() {
 			}
 		}
 
-		//rot in hell, Internet Explorer
-		if ( detectIE() < 12 ){
-			jQuery(w.document.body).append( function() {
-				var ieID = target.substr(1);
-				var ieOutput = jQuery( w.document.createElement( 'div' ) );
-				if ( target.substr(0,1) == '#' ){
-					ieOutput.attr('id', ieID);
-				} else if ( target.substr(0,1) == '.' ){
-					ieOutput.addClass( ieID );
-				}
-				var clony = jQuery( target ).clone();
-				return ieOutput.append( clony.html() );
-			});
-
-			//update the print version with the user entered values because IE is hacky like that
-			jQuery( target  + ' input[type=text]').each(function() {
-				var user_val = jQuery(this).val();
-				var elem_id = jQuery(this).attr('id');
-				w.document.getElementById(elem_id).value = user_val;
-			});
+		var ua = window.navigator.userAgent;
+		//rot in hell IE
+		if (ua.indexOf("MSIE ") || ua.indexOf("Trident/") || ua.indexOf("Edge/")) {
+			jQuery(w.document.body).append( jQuery( target ).clone( true ).html() );
 		}
 		else{
-			jQuery(w.document.body).append( jQuery( target ).clone() );
+			jQuery(w.document.body).append( jQuery( target ).clone( true ) );
 		}
 
 		if ( typeof print_data != 'undefined' && typeof print_data[id] != 'undefined'){
