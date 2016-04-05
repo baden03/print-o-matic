@@ -353,7 +353,7 @@ class WP_Print_O_Matic {
 								<tr>
 									<th><?php _e( 'Custom Style', 'print-o-matic' ) ?></th>
 									<td><label><textarea id="<?php echo $this->options_name ?>[custom_page_css]" name="<?php echo $this->options_name ?>[custom_page_css]" style="width: 100%; height: 150px;"><?php echo $options['custom_page_css']; ?></textarea>
-										<br /><span class="description"><?php printf(__('Custom <strong>display page</strong> CSS Style for for <em>Ultimate Flexibility</em>. Here are some helpful %scustom CSS samples%s', 'print-o-matic' ), '<a href="http://plugins.twinpictures.de/plugins/print-o-matic/documentation/#cssexamples" target="_blank">', '</a>'); ?></span></label>
+										<br /><span class="description"><?php printf(__('Custom <strong>display page</strong> CSS Style for <em>Ultimate Flexibility</em>. Here are some helpful %scustom CSS samples%s', 'print-o-matic' ), '<a href="http://plugins.twinpictures.de/plugins/print-o-matic/documentation/#cssexamples" target="_blank">', '</a>'); ?></span></label>
 									</td>
 								</tr>
 								<tr>
