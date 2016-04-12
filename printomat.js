@@ -1,5 +1,5 @@
 /*!
- * Print-O-Matic JavaScript v1.7.2
+ * Print-O-Matic JavaScript v1.7.3
  * http://plugins.twinpictures.de/plugins/print-o-matic/
  *
  * Copyright 2016, Twinpictures
@@ -94,7 +94,16 @@ jQuery(document).ready(function() {
 			jQuery( target  + ' input[type=text]').each(function() {
 				var user_val = jQuery(this).val();
 				var elem_id = jQuery(this).attr('id');
-				w.document.getElementById(elem_id).value = user_val;
+				if(elem_id){
+					w.document.getElementById(elem_id).value = user_val;
+				}
+				else{
+					//we really should have a ID, let's try and grab the element by name attr.
+					var elem_name = jQuery(this).attr('name');
+					if(elem_name){
+						w.document.getElementsByName(elem_id).value = user_val;
+					}
+				}
 			});
 		}
 
