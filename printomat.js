@@ -100,8 +100,9 @@ jQuery(document).ready(function() {
 				else{
 					//we really should have a ID, let's try and grab the element by name attr.
 					var elem_name = jQuery(this).attr('name');
-					if(elem_name){
-						w.document.getElementsByName(elem_id).value = user_val;
+					if(elem_name.length){
+						named_elements = w.document.getElementsByName(elem_name);
+						named_elements[0].value = user_val;
 					}
 				}
 			});
