@@ -4,7 +4,7 @@ Plugin Name: Print-O-Matic
 Text Domain: print-o-matic
 Plugin URI: http://plugins.twinpictures.de/plugins/print-o-matic/
 Description: Shortcode that adds a printer icon, allowing the user to print the post or a specified HTML element in the post.
-Version: 1.7.3b
+Version: 1.7.3c
 Author: twinpictures
 Author URI: http://twinpictuers.de
 License: GPL2
@@ -20,7 +20,7 @@ class WP_Print_O_Matic {
 	 * Current version
 	 * @var string
 	 */
-	var $version = '1.7.3b';
+	var $version = '1.7.3c';
 
 	/**
 	 * Used as prefix for options entry
@@ -50,6 +50,7 @@ class WP_Print_O_Matic {
 		'script_check' => '',
 		'fix_clone' => '',
 		'pause_time' => '',
+		'close_after_print' => '1',
 	);
 
 	var $add_print_script = array();
@@ -93,7 +94,7 @@ class WP_Print_O_Matic {
 	 */
 	function printMaticInit() {
 		//script
-		wp_register_script('printomatic-js', plugins_url('/printomat.js', __FILE__), array('jquery'), '1.7.3');
+		wp_register_script('printomatic-js', plugins_url('/printomat.js', __FILE__), array('jquery'), '1.7.4');
 		if( empty($this->options['script_check']) ){
 			wp_enqueue_script('printomatic-js');
 		}
@@ -152,7 +153,8 @@ class WP_Print_O_Matic {
 			'html_bottom' => $options['html_bottom'],
 			'pause_before_print' => $options['pause_time'],
 			'title' => '',
-			'alt' => ''
+			'close_after_print' => $options['close_after_print'],
+
 		), $atts));
 
 		//if no printstyle, force-set to default
@@ -199,7 +201,8 @@ class WP_Print_O_Matic {
 							'pom_html_top' => $pom_html_top,
 							'pom_html_bottom' => $pom_html_bottom,
 							'pom_do_not_print' => $pom_do_not_print,
-							'pom_pause_time' => $pause_before_print
+							'pom_pause_time' => $pause_before_print,
+							'pom_close_after_print' => $close_after_print,
 						);
 
 		//return nothing if usign an external button
@@ -404,6 +407,13 @@ class WP_Print_O_Matic {
 									<th><?php _e( 'Pause Before Print', 'print-o-matic' ) ?></th>
 									<td><label><input type="text" id="<?php echo $this->options_name ?>[pause_time]" name="<?php echo $this->options_name ?>[pause_time]" value="<?php echo $options['pause_time']; ?>" />
 										<br /><span class="description"><?php _e('Amount of time in milliseconds to pause and let the page fully load before triggering the print dialogue box', 'print-o-matic'); ?></span></label>
+									</td>
+								</tr>
+
+								<tr>
+									<th><?php _e( 'Close After Print', 'print-o-matic' ) ?></th>
+									<td><label><input type="checkbox" id="<?php echo $this->options_name ?>[close_after_print]" name="<?php echo $this->options_name ?>[close_after_print]" value="1"  <?php echo checked( $options['close_after_print'], 1 ); ?> /> <?php _e('Close Print Window after Print', 'print-o-matic'); ?>
+										<br /><span class="description"><?php _e('Automaticaly close the print window after the print dialouge box is closed.'); ?></span></label>
 									</td>
 								</tr>
 

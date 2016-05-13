@@ -1,5 +1,5 @@
 /*!
- * Print-O-Matic JavaScript v1.7.3
+ * Print-O-Matic JavaScript v1.7.4
  * http://plugins.twinpictures.de/plugins/print-o-matic/
  *
  * Copyright 2016, Twinpictures
@@ -129,7 +129,9 @@ jQuery(document).ready(function() {
 		function printIt(){
 			w.focus();
 			w.print();
-			//w.close();
+			if('pom_close_after_print' in print_data[id] && print_data[id]['pom_close_after_print'] == '1'){
+				w.close();
+			}
 		}
 
 	});
