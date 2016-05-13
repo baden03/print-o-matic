@@ -3,8 +3,8 @@ Contributors: twinpictures, baden03
 Donate link: http://plugins.twinpictures.de/flying-houseboat/
 Tags: print, print element, print shortcode, send to print, print button, print me, jQuery, print page, javascript, twinpictures, plugin oven
 Requires at least: 4.0
-Tested up to: 4.5
-Stable tag: 1.7.3b
+Tested up to: 4.5.2
+Stable tag: 1.7.3c
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -52,6 +52,7 @@ We like to rock the party.
 = 1.7.3 =
 * top and bottom html will process shortcakes
 * work around to clone IE element values that don’t have ID attributes… ugh
+* added option to close the print window after print dialogue box is closed
 
 = 1.7.2 =
 * added IE hack to fill in missing input text values for IE browsers.
