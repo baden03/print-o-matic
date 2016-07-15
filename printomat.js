@@ -1,5 +1,5 @@
 /*!
- * Print-O-Matic JavaScript v1.7.4
+ * Print-O-Matic JavaScript v1.7.5
  * http://plugins.twinpictures.de/plugins/print-o-matic/
  *
  * Copyright 2016, Twinpictures
@@ -91,7 +91,8 @@ jQuery(document).ready(function() {
 
 		//for IE cycle through and fill in any text input values... rot in hell IE
 		if(ie){
-			jQuery( target  + ' input[type=text]').each(function() {
+			//jQuery( target  + ' input[type=text]').each(function() {
+			target.find('input[type=text]').each(function() {
 				var user_val = jQuery(this).val();
 				var elem_id = jQuery(this).attr('id');
 				if(elem_id){
