@@ -91,7 +91,6 @@ jQuery(document).ready(function() {
 
 		//for IE cycle through and fill in any text input values... rot in hell IE
 		if(ie){
-			//jQuery( target  + ' input[type=text]').each(function() {
 			target.find('input[type=text]').each(function() {
 				var user_val = jQuery(this).val();
 				var elem_id = jQuery(this).attr('id');
@@ -121,7 +120,7 @@ jQuery(document).ready(function() {
 		}
 
         if(typeof print_data != 'undefined' && typeof print_data[id] != 'undefined' && 'pom_pause_time' in print_data[id] && print_data[id]['pom_pause_time'] > 0){
-            pause_time = w.setTimeout(printIt, print_data[id]['pom_pause_time']);
+            pause_time = setTimeout(printIt, print_data[id]['pom_pause_time']);
         }
 		else{
 			printIt();
