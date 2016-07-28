@@ -1,5 +1,5 @@
 /*!
- * Print-O-Matic JavaScript v1.7.5
+ * Print-O-Matic JavaScript v1.8
  * http://plugins.twinpictures.de/plugins/print-o-matic/
  *
  * Copyright 2016, Twinpictures
@@ -38,41 +38,47 @@ jQuery(document).ready(function() {
 			target = jQuery(this).next();
 		}
 
-		var w = window.open( "", "printomatic print page", "scrollbars=yes", "menubar=no", "location=no");
+		var w = window.open(null, 'printomatic print page', 'status=no, toolbar=no, menubar=no, location=no');
+		var print_html = '<!DOCTYPE html><html><head><title>' + document.getElementsByTagName('title')[0].innerHTML + '</title>';
 
-        //deal with print_date variable
 		if ( typeof print_data != 'undefined' && typeof print_data[id] != 'undefined'){
-			if ( 'pom_site_css' in print_data[id] ){
-				jQuery(w.document.body).append('<link rel="stylesheet" type="text/css" href="' + print_data[id]['pom_site_css'] + '" />');
+
+			if ( 'pom_site_css' in print_data[id] && print_data[id]['pom_site_css'] ){
+				print_html += '<link rel="stylesheet" type="text/css" href="' + print_data[id]['pom_site_css'] + '" />';
 			}
 
-			if ( 'pom_custom_css' in print_data[id] ){
-				jQuery(w.document.body).append("<style>"+ print_data[id]['pom_custom_css'] +"</style>");
+			if ( 'pom_custom_css' in print_data[id] && print_data[id]['pom_custom_css']){
+				print_html += '<style>'+ print_data[id]['pom_custom_css'] +'</style>';
 			}
+
+			//build the blank page
+			w.document.write( print_html + '</head><body></body></html>');
 
 			if ( 'pom_do_not_print' in print_data[id] ){
 				jQuery(print_data[id]['pom_do_not_print']).hide();
 			}
 
-			if ( 'pom_html_top' in print_data[id] ){
-				jQuery(w.document.body).append( print_data[id]['pom_html_top'] );
+			if ( 'pom_html_top' in print_data[id] && print_data[id]['pom_html_top']){
+				jQuery(w.document.body).html( print_data[id]['pom_html_top'] );
 			}
+
 		}
 
 		var ua = window.navigator.userAgent;
 		var ie = true;
+
 		//rot in hell IE
 		if ( ua.indexOf("MSIE ") != -1) {
 			//alert('MSIE - Craptastic');
 			jQuery(w.document.body).append( jQuery( target ).clone( true ).html() );
 		}
 		else if ( ua.indexOf("Trident/") != -1) {
-			//alert('IE 11 - Trident');
+			//console.log('IE 11 - Trident');
 			jQuery(w.document.body).append( jQuery( target ).clone( true ).html() );
 		}
 		else if ( ua.indexOf("Edge/") != -1 ){
 			//console.log('IE 12 - Edge');
-			jQuery(w.document.body).append( jQuery( target ).clone( true ).html() );
+			jQuery(w.document.body).append( jQuery.trim( jQuery( target ).clone( true ).html() ) );
 		}
 		else{
 			//console.log('good browser');
@@ -84,25 +90,28 @@ jQuery(document).ready(function() {
             if ( 'pom_do_not_print' in print_data[id] ){
                 jQuery( print_data[id]['pom_do_not_print']).show();
             }
-            if ( 'pom_html_bottom' in print_data[id] ){
-				jQuery(w.document.body).append( print_data[id]['pom_html_bottom'] );
+
+            if ( 'pom_html_bottom' in print_data[id] && print_data[id]['pom_html_bottom']){
+				jQuery(w.document.body).append( jQuery.trim( print_data[id]['pom_html_bottom'] ) );
 			}
 		}
 
 		//for IE cycle through and fill in any text input values... rot in hell IE
 		if(ie){
-			target.find('input[type=text]').each(function() {
+			jQuery( target ).find('input[type=text]').each(function() {
 				var user_val = jQuery(this).val();
-				var elem_id = jQuery(this).attr('id');
-				if(elem_id){
-					w.document.getElementById(elem_id).value = user_val;
-				}
-				else{
-					//we really should have a ID, let's try and grab the element by name attr.
-					var elem_name = jQuery(this).attr('name');
-					if(elem_name.length){
-						named_elements = w.document.getElementsByName(elem_name);
-						named_elements[0].value = user_val;
+				if(user_val){
+					var elem_id = jQuery(this).attr('id');
+					if(elem_id){
+						w.document.getElementById(elem_id).value = user_val;
+					}
+					else{
+						//we really should have a ID, let's try and grab the element by name attr.
+						var elem_name = jQuery(this).attr('name');
+						if(elem_name.length){
+							named_elements = w.document.getElementsByName(elem_name);
+							named_elements[0].value = user_val;
+						}
 					}
 				}
 			});
