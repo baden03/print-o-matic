@@ -1,5 +1,5 @@
 /*!
- * Print-O-Matic JavaScript v1.8
+ * Print-O-Matic JavaScript v1.8.1
  * http://plugins.twinpictures.de/plugins/print-o-matic/
  *
  * Copyright 2016, Twinpictures
@@ -74,11 +74,18 @@ jQuery(document).ready(function() {
 		}
 		else if ( ua.indexOf("Trident/") != -1) {
 			//console.log('IE 11 - Trident');
-			jQuery(w.document.body).append( jQuery( target ).clone( true ).html() );
+			jQuery( target ).each(function(){
+				var s = jQuery.trim( jQuery( this ).clone( true ).html() );
+				jQuery( w.document.body ).append( s );
+			});
 		}
 		else if ( ua.indexOf("Edge/") != -1 ){
 			//console.log('IE 12 - Edge');
-			jQuery(w.document.body).append( jQuery.trim( jQuery( target ).clone( true ).html() ) );
+			//there is a bug in Edge where no nested elements can be appended.
+			jQuery( target ).each(function(){
+				var s = jQuery.trim( jQuery( this ).clone( true ).html() );
+				jQuery( w.document.body ).append( s );
+			});
 		}
 		else{
 			//console.log('good browser');
