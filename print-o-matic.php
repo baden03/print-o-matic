@@ -4,7 +4,7 @@ Plugin Name: Print-O-Matic
 Text Domain: print-o-matic
 Plugin URI: http://plugins.twinpictures.de/plugins/print-o-matic/
 Description: Shortcode that adds a printer icon, allowing the user to print the post or a specified HTML element in the post.
-Version: 1.7.5a
+Version: 1.7.5
 Author: twinpictures
 Author URI: http://twinpictuers.de
 License: GPL2
@@ -20,7 +20,7 @@ class WP_Print_O_Matic {
 	 * Current version
 	 * @var string
 	 */
-	var $version = '1.7.5a';
+	var $version = '1.7.5';
 
 	/**
 	 * Used as prefix for options entry
@@ -399,8 +399,8 @@ class WP_Print_O_Matic {
 
 								<tr>
 									<th><?php _e( 'Activate jQuery fix.clone', 'print-o-matic' ) ?></th>
-									<td><label><input type="checkbox" id="<?php echo $this->options_name ?>[fix_clone]" name="<?php echo $this->options_name ?>[fix_clone]" value="1"  <?php echo checked( $options['fix_clone'], 1 ); ?> /> <?php _e('Activate if textbox content is not printing.', 'print-o-matic'); ?>
-										<br /><span class="description"><?php printf(__('Addresses known bug with textboxes and the jQuery clone function. %sjquery.fix.clone on github.com%s', 'print-o-matic'), '<a href="http://github.com/spencertipping/jquery.fix.clone/" target="_blank">', '</a>'); ?></span></label>
+									<td><label><input type="checkbox" id="<?php echo $this->options_name ?>[fix_clone]" name="<?php echo $this->options_name ?>[fix_clone]" value="1"  <?php echo checked( $options['fix_clone'], 1 ); ?> /> <?php _e('Activate if textbox or select elements are not printing.', 'print-o-matic'); ?>
+										<br /><span class="description"><?php printf(__('Addresses known bug with textbox and sellect ellemnts when using the jQuery clone function. %sjquery.fix.clone on github.com%s', 'print-o-matic'), '<a href="http://github.com/spencertipping/jquery.fix.clone/" target="_blank">', '</a>'); ?></span></label>
 									</td>
 								</tr>
 
