@@ -1,5 +1,5 @@
 /*!
- * Print-O-Matic JavaScript v1.8.1
+ * Print-O-Matic JavaScript v1.8.2
  * http://plugins.twinpictures.de/plugins/print-o-matic/
  *
  * Copyright 2016, Twinpictures
@@ -74,10 +74,7 @@ jQuery(document).ready(function() {
 		}
 		else if ( ua.indexOf("Trident/") != -1) {
 			//console.log('IE 11 - Trident');
-			jQuery( target ).each(function(){
-				var s = jQuery.trim( jQuery( this ).clone( true ).html() );
-				jQuery( w.document.body ).append( s );
-			});
+			jQuery(w.document.body).append( jQuery( target ).clone( true ).html() );
 		}
 		else if ( ua.indexOf("Edge/") != -1 ){
 			//console.log('IE 12 - Edge');
