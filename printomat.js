@@ -1,5 +1,5 @@
 /*!
- * Print-O-Matic JavaScript v1.8.3
+ * Print-O-Matic JavaScript v1.8.4
  * http://plugins.twinpictures.de/plugins/print-o-matic/
  *
  * Copyright 2016, Twinpictures
@@ -38,7 +38,7 @@ jQuery(document).ready(function() {
 			target = jQuery(this).next();
 		}
 
-		var w = window.open(null, 'printomatic print page', 'status=no, toolbar=no, menubar=no, location=no');
+		var w = window.open('', 'printomatic print page', 'status=no, toolbar=no, menubar=no, location=no');
 		var print_html = '<!DOCTYPE html><html><head><title>' + document.getElementsByTagName('title')[0].innerHTML + '</title>';
 
 		if ( typeof print_data != 'undefined' && typeof print_data[id] != 'undefined'){
