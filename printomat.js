@@ -2,7 +2,7 @@
  * Print-O-Matic JavaScript v1.8.4
  * http://plugins.twinpictures.de/plugins/print-o-matic/
  *
- * Copyright 2016, Twinpictures
+ * Copyright 2017, Twinpictures
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
