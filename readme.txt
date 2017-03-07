@@ -1,17 +1,17 @@
 === Print-O-Matic ===
 Contributors: twinpictures, baden03
-Donate link: http://plugins.twinpictures.de/flying-houseboat/
+Donate link: https://plugins.twinpictures.de/flying-houseboat/
 Tags: print, print element, print shortcode, send to print, print button, print me, jQuery, print page, javascript, twinpictures, plugin oven
 Requires at least: 4.0
-Tested up to: 4.6.1
-Stable tag: 1.7.6
+Tested up to: 4.7.3
+Stable tag: 1.7.7
 License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Adds the ability to print any post or post element using a simple [print-me] shortcode. Extra jQuery Jedi love given to filled out forms.
 
 == Description ==
-Print-O-Matic adds the ability to print any post, page or page element by using a simple [print-me] shortcode.  Bonus feature: filled out form elements are also printed using a kind of jQuery Jedi magic.  A <a href='http://plugins.twinpictures.de/plugins/print-o-matic/documentation/'>complete listing of shortcode options</a> are available, as well as <a href='http://wordpress.org/support/plugin/print-o-matic'>free community support</a>.
+Print-O-Matic adds the ability to print any post, page or page element by using a simple [print-me] shortcode.  Bonus feature: filled out form elements are also printed using a kind of jQuery Jedi magic.  A <a href='https://plugins.twinpictures.de/plugins/print-o-matic/documentation/'>complete listing of shortcode options</a> are available, as well as <a href='https://wordpress.org/support/plugin/print-o-matic'>free community support</a>.
 
 == Installation ==
 
@@ -21,7 +21,7 @@ Print-O-Matic adds the ability to print any post, page or page element by using 
 1. Test that the this plug-in meets your demanding needs.
 1. Tweak the CSS to match your flavor.
 1. Rate the plug-in and verify if it works at wordpress.org.
-1. Leave a comment regarding bugs, feature request, cocktail recipes at http://wordpress.org/tags/print-o-matic/
+1. Leave a comment regarding bugs, feature request, cocktail recipes at https://wordpress.org/tags/print-o-matic/
 
 == Frequently Asked Questions ==
 
@@ -29,16 +29,16 @@ Print-O-Matic adds the ability to print any post, page or page element by using 
 <a href='https://github.com/baden03/print-o-matic'>github</a>
 
 = I am a Social Netwookiee, might Twinpictures have a Facebook page? =
-Yes, yes... <a href='http://www.facebook.com/twinpictures'>Twinpictures is on Facebook</a>.
+Yes, yes... <a href='https://www.facebook.com/twinpictures'>Twinpictures is on Facebook</a>.
 
 = Does Twinpictures do the Twitter? =
-Ah yes! <a href='http://twitter.com/#!/twinpictures'>@Twinpictures</a> does the twitter tweeting around here.
+Ah yes! <a href='https://twitter.com/#!/twinpictures'>@Twinpictures</a> does the twitter tweeting around here.
 
 = How does one use the shortcode, exactly? =
-A <a href='http://plugins.twinpictures.de/plugins/print-o-matic/documentation/'>complete listing of shortcode options</a> has been provided to answer this exact question.
+A <a href='https://plugins.twinpictures.de/plugins/print-o-matic/documentation/'>complete listing of shortcode options</a> has been provided to answer this exact question.
 
 = Where can I translate this plugin into my favorite language? =
-<a href='http://translate.twinpictures.de/projects/printomat/'>Community translation for Print-O-Matic</a> has been set up. You are <a href='http://translate.twinpictures.de/wordpress/wp-login.php?action=register'>welcome to join</a>.
+<a href='https://translate.twinpictures.de/projects/printomat/'>Community translation for Print-O-Matic</a> has been set up. You are <a href='https://translate.twinpictures.de/wordpress/wp-login.php?action=register'>welcome to join</a>.
 
 = Who likes to rock the party? =
 We like to rock the party.
@@ -48,6 +48,10 @@ We like to rock the party.
 1. Print-O-Matic Options screen for Ultimate Flexibility
 
 == Changelog ==
+
+= 1.7.7 =
+* tested with WordPress 4.7.3
+* replaced http links with https
 
 = 1.7.6 =
 * top and bottom print page html now use do_shortcode instead of the_content filter to avoid conflicts with social sharing plugins
@@ -168,6 +172,4 @@ We like to rock the party.
 * The plug-in was forked and completely rewritten from Print Button Shortcode by MyWebsiteAdvisor.
 
 == Upgrade Notice ==
-added missing alt tag
-reworked script to build new window more efficiently
-working (not fully resolved) on Edge. Some issues will are related to a bug in Edge.
+tested with WordPress 4.7.3 and changed links to https
