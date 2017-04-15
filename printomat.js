@@ -1,5 +1,5 @@
 /*!
- * Print-O-Matic JavaScript v1.8.4
+ * Print-O-Matic JavaScript v1.8.5
  * http://plugins.twinpictures.de/plugins/print-o-matic/
  *
  * Copyright 2017, Twinpictures
@@ -39,8 +39,8 @@ jQuery(document).ready(function() {
 		}
 
 		var w = window.open('', 'printomatic print page', 'status=no, toolbar=no, menubar=no, location=no');
-		var print_html = '<!DOCTYPE html><html><head><title>' + document.getElementsByTagName('title')[0].innerHTML + '</title>';
 
+		var print_html = '<!DOCTYPE html><html><head><title>' + document.getElementsByTagName('title')[0].innerHTML + '</title>';
 		if ( typeof print_data != 'undefined' && typeof print_data[id] != 'undefined'){
 
 			if ( 'pom_site_css' in print_data[id] && print_data[id]['pom_site_css'] ){
@@ -52,7 +52,9 @@ jQuery(document).ready(function() {
 			}
 
 			//build the blank page
+			w.document.open();
 			w.document.write( print_html + '</head><body></body></html>');
+			w.document.close();
 
 			if ( 'pom_do_not_print' in print_data[id] && print_data[id]['pom_do_not_print'] ){
 				jQuery(print_data[id]['pom_do_not_print']).hide();
@@ -122,6 +124,7 @@ jQuery(document).ready(function() {
 		}
 
 		/* hardcodeed iframe and if so, force a pause... pro version offers more options */
+
 		iframe = jQuery(w.document).find('iframe');
 		if (iframe.length && typeof print_data != 'undefined' && typeof print_data[id] != 'undefined') {
             if('pom_pause_time' in print_data[id] && print_data[id]['pom_pause_time'] < 3000){
@@ -141,9 +144,15 @@ jQuery(document).ready(function() {
 
 		function printIt(){
 			w.focus();
-			w.print();
+		    w.print();
+
 			if('pom_close_after_print' in print_data[id] && print_data[id]['pom_close_after_print'] == '1'){
-				w.close();
+				//need a bit of a pause to let safari on iOS render the print privew properly
+				setTimeout(
+					function() {
+						w.close()
+					}, 1000
+				);
 			}
 		}
 
