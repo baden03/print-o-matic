@@ -4,7 +4,7 @@ Plugin Name: Print-O-Matic
 Text Domain: print-o-matic
 Plugin URI: https://plugins.twinpictures.de/plugins/print-o-matic/
 Description: Shortcode that adds a printer icon, allowing the user to print the post or a specified HTML element in the post.
-Version: 1.7.9
+Version: 1.7.10b
 Author: twinpictures
 Author URI: https://twinpictures.de
 License: GPL2
@@ -20,7 +20,7 @@ class WP_Print_O_Matic {
 	 * Current version
 	 * @var string
 	 */
-	var $version = '1.7.9';
+	var $version = '1.7.10b';
 
 	/**
 	 * Used as prefix for options entry
@@ -39,6 +39,7 @@ class WP_Print_O_Matic {
 	 */
 	var $options = array(
 		'print_target' => 'article',
+		'print_title' => '',
 		'do_not_print' => '',
 		'printicon' => 'true',
 		'printstyle' => 'pom-default',
@@ -94,7 +95,7 @@ class WP_Print_O_Matic {
 	 */
 	function printMaticInit() {
 		//script
-		wp_register_script('printomatic-js', plugins_url('/printomat.js', __FILE__), array('jquery'), '1.8.5');
+		wp_register_script('printomatic-js', plugins_url('/printomat.js', __FILE__), array('jquery'), '1.8.6');
 		if( empty($this->options['script_check']) ){
 			wp_enqueue_script('printomatic-js');
 		}
@@ -153,7 +154,7 @@ class WP_Print_O_Matic {
 			'html_top' => $options['html_top'],
 			'html_bottom' => $options['html_bottom'],
 			'pause_before_print' => $options['pause_time'],
-			'title' => '',
+			'title' => $options['print_title'],
 			'close_after_print' => $options['close_after_print'],
 
 		), $atts));
@@ -223,7 +224,7 @@ class WP_Print_O_Matic {
 				$alt_tag = '';
 			}
 			else{
-				$alt_tag = "alt='".$title."' title='".$title."'";
+				$alt_tag = "alt='".strip_tags($title)."' title='".strip_tags($title)."'";
 			}
 		}
 		else{
@@ -303,6 +304,12 @@ class WP_Print_O_Matic {
 									</td>
 								</tr>
 								<tr>
+									<th><?php _e( 'Default Print Title' , 'print-o-matic'  ) ?></th>
+									<td><label>
+										<textarea id="<?php echo $this->options_name ?>[print_title]" name="<?php echo $this->options_name ?>[print_title]" style="width: 100%;"><?php echo $options['print_title']; ?></textarea>
+									</label></td>
+								</tr>
+								<tr>
 									<th><?php _e( 'Use Print Icon', 'print-o-matic' ) ?></th>
 									<td><label><select id="<?php echo $this->options_name ?>[printicon]" name="<?php echo $this->options_name ?>[printicon]">
 										<?php
@@ -322,6 +329,7 @@ class WP_Print_O_Matic {
 										<br /><span class="description"><?php printf(__('Use printer icon. See %sPrinticon Attribute%s in the documentation for more info.', 'print-o-matic'), '<a href="https://plugins.twinpictures.de/plugins/print-o-matic/documentation/#printicon" target="_blank">', '</a>'); ?></span></label>
 									</td>
 								</tr>
+
 								<tr>
 									<th><?php _e( 'Printer Icon', 'print-o-matic') ?></th>
 									<td>
