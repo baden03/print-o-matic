@@ -3,8 +3,8 @@ Contributors: twinpictures, baden03
 Donate link: https://plugins.twinpictures.de/flying-houseboat/
 Tags: print, print element, print shortcode, send to print, print button, print me, jQuery, print page, javascript, twinpictures, plugin oven
 Requires at least: 4.7
-Tested up to: 4.9.1
-Stable tag: 1.7.10
+Tested up to: 4.9.4
+Stable tag: 1.7.11a
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,6 +48,10 @@ We like to rock the party.
 1. Print-O-Matic Options screen for Ultimate Flexibility
 
 == Changelog ==
+
+= 1.7.11 =
+* Fully tested with WordPress 4.9.4
+* Fixed typos
 
 = 1.7.10 =
 * Fully tested with WordPress 4.9.1
