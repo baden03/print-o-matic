@@ -3,8 +3,8 @@ Contributors: twinpictures, baden03
 Donate link: https://plugins.twinpictures.de/flying-houseboat/
 Tags: print, print element, print shortcode, send to print, print button, print me, jQuery, print page, javascript, twinpictures, plugin oven
 Requires at least: 4.7
-Tested up to: 4.9.4
-Stable tag: 1.7.11a
+Tested up to: 4.9.5
+Stable tag: 1.7.11
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -50,7 +50,7 @@ We like to rock the party.
 == Changelog ==
 
 = 1.7.11 =
-* Fully tested with WordPress 4.9.4
+* Fully tested with WordPress 4.9.5
 * Fixed typos
 
 = 1.7.10 =
@@ -188,6 +188,5 @@ We like to rock the party.
 * The plug-in was forked and completely rewritten from Print Button Shortcode by MyWebsiteAdvisor.
 
 == Upgrade Notice ==
-* Fully tested with WordPress 4.9.1
-* Added default print title
-* IE bug fix: select elements now print selected values
+* Fully tested with WordPress 4.9.5
+* Fixed typos
