@@ -56,7 +56,7 @@ We like to rock the party.
 * added option to include print-me scripts in admin dashboard
 
 = 1.7.11 =
-* Fully tested with WordPress 4.9.5
+* Fully tested with WordPress 5.1
 * Fixed typos
 
 = 1.7.10 =
@@ -163,7 +163,7 @@ We like to rock the party.
 * works again in horrid IE browsers
 
 = 1.5.1 =
-* added the do_not_print attribute 
+* added the do_not_print attribute
 
 = 1.5 =
 * added print page top and bottom HTML section (special thanks to Daniel Kevin Johansen @ 555Haxor.dk & Game-Site.dk haxor5552@hotmail.com)
