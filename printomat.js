@@ -1,8 +1,8 @@
 /*!
- * Print-O-Matic JavaScript v1.8.6
+ * Print-O-Matic JavaScript v1.8.8
  * http://plugins.twinpictures.de/plugins/print-o-matic/
  *
- * Copyright 2017, Twinpictures
+ * Copyright 2019, Twinpictures
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ jQuery(document).ready(function() {
 			target = jQuery(this).next();
 		}
 
-		var w = window.open('', 'printomatic print page', 'status=no, toolbar=no, menubar=no, location=no');
+		var w = window.open('', '_blank');
 
 		var print_html = '<!DOCTYPE html><html><head><title>' + document.getElementsByTagName('title')[0].innerHTML + '</title>';
 		if ( typeof print_data != 'undefined' && typeof print_data[id] != 'undefined'){
