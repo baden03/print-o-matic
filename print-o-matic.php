@@ -4,7 +4,7 @@ Plugin Name: Print-O-Matic
 Text Domain: print-o-matic
 Plugin URI: https://plugins.twinpictures.de/plugins/print-o-matic/
 Description: Shortcode that adds a printer icon, allowing the user to print the post or a specified HTML element in the post.
-Version: 1.7.11
+Version: 1.7.12b
 Author: twinpictures
 Author URI: https://twinpictures.de
 License: GPL2
@@ -20,7 +20,7 @@ class WP_Print_O_Matic {
 	 * Current version
 	 * @var string
 	 */
-	var $version = '1.7.11';
+	var $version = '1.7.12b';
 
 	/**
 	 * Used as prefix for options entry
@@ -52,6 +52,7 @@ class WP_Print_O_Matic {
 		'fix_clone' => '',
 		'pause_time' => '',
 		'close_after_print' => '1',
+		'use_in_admin' => ''
 	);
 
 	var $add_print_script = array();
@@ -69,6 +70,12 @@ class WP_Print_O_Matic {
 
 		//load the script and style if not viewing the dashboard
 		add_action('wp_enqueue_scripts', array( $this, 'printMaticInit' ) );
+
+		//maybe load scripts in admin?
+		if( !empty($this->options['use_in_admin']) ){
+			add_action('admin_enqueue_scripts', array( $this, 'printMaticInit' ) );
+			add_action('admin_footer', array($this, 'printer_scripts') );
+		}
 
 		// add actions
 		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
@@ -95,10 +102,13 @@ class WP_Print_O_Matic {
 	 */
 	function printMaticInit() {
 		//script
-		wp_register_script('printomatic-js', plugins_url('/printomat.js', __FILE__), array('jquery'), '1.8.6');
+		wp_register_script('printomatic-js', plugins_url('/printomat.js', __FILE__), array('jquery'), '1.8.8', true);
+
+		/*
 		if( empty($this->options['script_check']) ){
 			wp_enqueue_script('printomatic-js');
 		}
+		*/
 
 		wp_register_script('jquery-clone-fix', plugins_url('/jquery.fix.clone.js', __FILE__), array('jquery'), '1.1');
 		if( empty($this->options['script_check']) && !empty($this->options['fix_clone']) ){
@@ -136,7 +146,7 @@ class WP_Print_O_Matic {
 		$options = $this->options;
 
 		if( !empty($this->options['script_check']) ){
-			wp_enqueue_script('printomatic-js');
+			//wp_enqueue_script('printomatic-js');
 			if(!empty($this->options['fix_clone'])){
 				wp_enqueue_script('jquery-clone-fix');
 			}
@@ -243,15 +253,10 @@ class WP_Print_O_Matic {
 	}
 
 	function printer_scripts() {
-		if ( empty( $this->add_print_script ) ){
-			return;
+		if ( !empty( $this->add_print_script ) ){
+			wp_localize_script( 'printomatic-js', 'print_data', $this->add_print_script );
 		}
-
-		?>
-		<script language="javascript" type="text/javascript">
-			var print_data = <?php echo json_encode( $this->add_print_script ); ?>;
-		</script>
-		<?php
+		wp_enqueue_script('printomatic-js');
 	}
 
 	/**
@@ -413,6 +418,13 @@ class WP_Print_O_Matic {
 									<th><?php _e( 'Activate jQuery fix.clone', 'print-o-matic' ) ?></th>
 									<td><label><input type="checkbox" id="<?php echo $this->options_name ?>[fix_clone]" name="<?php echo $this->options_name ?>[fix_clone]" value="1"  <?php echo checked( $options['fix_clone'], 1 ); ?> /> <?php _e('Activate if textbox or select elements are not printing.', 'print-o-matic'); ?>
 										<br /><span class="description"><?php printf(__('Addresses known bug with textbox and select elements when using the jQuery clone function. %sjquery.fix.clone on github.com%s', 'print-o-matic'), '<a href="https://github.com/spencertipping/jquery.fix.clone/" target="_blank">', '</a>'); ?></span></label>
+									</td>
+								</tr>
+
+								<tr>
+									<th><?php _e( 'Activate in Dashboard', 'print-o-matic' ) ?></th>
+									<td><label><input type="checkbox" id="<?php echo $this->options_name ?>[use_in_admin]" name="<?php echo $this->options_name ?>[use_in_admin]" value="1"  <?php echo checked( $options['use_in_admin'], 1 ); ?> /> <?php _e('Load scripts for use in Dashbaord.', 'print-o-matic'); ?>
+										<br /><span class="description"><?php _e('Load  Print-O-Matic scripts to be used in the Dashbaord.', 'print-o-matic'); ?></span></label>
 									</td>
 								</tr>
 
