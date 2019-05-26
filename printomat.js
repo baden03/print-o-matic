@@ -1,5 +1,5 @@
 /*!
- * Print-O-Matic JavaScript v1.8.8
+ * Print-O-Matic JavaScript v1.8.9
  * http://plugins.twinpictures.de/plugins/print-o-matic/
  *
  * Copyright 2019, Twinpictures
@@ -83,7 +83,8 @@ jQuery(document).ready(function() {
 			//there is a bug in Edge where no nested elements can be appended.
 			jQuery( target ).each(function(){
 				var s = jQuery.trim( jQuery( this ).clone( true ).html() );
-				jQuery( w.document.body ).append( s );
+				//The follwing solution is brought to you by reviver.lt
+				jQuery( w.document.body ).append( "<div>" + s + "</div>" );
 			});
 		}
 		else{
