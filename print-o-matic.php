@@ -180,7 +180,7 @@ class WP_Print_O_Matic {
 		if( empty( $options['use_theme_css'] ) ){
 			$pom_site_css = '';
 		}else{
-			$pom_site_css = get_stylesheet_uri();
+			$pom_site_css = get_stylesheet_uri() . '?ver=' . wp_get_theme()->get( 'Version' );
 		}
 		if( empty( $options['custom_css'] ) ){
 			$pom_custom_css = '';
