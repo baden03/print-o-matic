@@ -1,5 +1,5 @@
 /*!
- * Print-O-Matic JavaScript v1.8.10
+ * Print-O-Matic JavaScript v1.8.11
  * http://plugins.twinpictures.de/plugins/print-o-matic/
  *
  * Copyright 2019, Twinpictures
@@ -54,7 +54,6 @@ jQuery(document).ready(function() {
 			//build the blank page
 			w.document.open();
 			w.document.write( print_html + '</head><body></body></html>');
-			w.document.close();
 
 			if ( 'pom_do_not_print' in print_data[id] && print_data[id]['pom_do_not_print'] ){
 				jQuery(print_data[id]['pom_do_not_print']).hide();
@@ -158,18 +157,19 @@ jQuery(document).ready(function() {
 		}
 
 		function printIt(){
-			w.focus();
-		  //w.print();
+			w.document.close();
+			console.log('try and print');
 
-			try {
-			  // Print for Safari browser
-			  w.document.execCommand('print', false, null);
-			} catch {
-			  w.print();
-			}
-
-			// Print for Safari browser
-			//setTimeout( w.print, 1000);
+			setTimeout(function () {
+				  console.log('here we go');
+			    w.focus();
+					try {
+					  // Print for Safari browser
+					  w.document.execCommand('print', false, null);
+					} catch {
+					  w.print();
+					}
+			}, 500);
 
 			if('pom_close_after_print' in print_data[id] && print_data[id]['pom_close_after_print'] == '1'){
 				//need a bit of a pause to let safari on iOS render the print privew properly
