@@ -1,5 +1,5 @@
 /*!
- * Print-O-Matic JavaScript v1.8.9
+ * Print-O-Matic JavaScript v1.8.10
  * http://plugins.twinpictures.de/plugins/print-o-matic/
  *
  * Copyright 2019, Twinpictures
@@ -159,7 +159,14 @@ jQuery(document).ready(function() {
 
 		function printIt(){
 			w.focus();
-		    w.print();
+		  //w.print();
+
+			try {
+			  // Print for Safari browser
+			  w.document.execCommand('print', false, null);
+			} catch {
+			  w.print();
+			}
 
 			if('pom_close_after_print' in print_data[id] && print_data[id]['pom_close_after_print'] == '1'){
 				//need a bit of a pause to let safari on iOS render the print privew properly
