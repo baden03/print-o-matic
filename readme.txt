@@ -4,7 +4,7 @@ Donate link: https://plugins.twinpictures.de/flying-houseboat/
 Tags: print, print element, print shortcode, send to print, print button, print me, jQuery, print page, javascript, twinpictures, plugin oven
 Requires at least: 4.7
 Tested up to: 5.5-alpha-47838
-Stable tag: 1.7.13a
+Stable tag: 1.7.13c
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -50,8 +50,8 @@ We like to rock the party.
 
 == Changelog ==
 
-= 1.7.12 =
-* Troubleshooting Safari print issues
+= 1.7.13 =
+* Fixed issue with print in Safari
 
 = 1.7.12 =
 * Fully tested with WordPress 5.2.1

@@ -161,17 +161,15 @@ jQuery(document).ready(function() {
 			w.focus();
 		  //w.print();
 
-			/*
 			try {
 			  // Print for Safari browser
 			  w.document.execCommand('print', false, null);
 			} catch {
 			  w.print();
 			}
-			*/
 
 			// Print for Safari browser
-			setTimeout( w.print, 1000);
+			//setTimeout( w.print, 1000);
 
 			if('pom_close_after_print' in print_data[id] && print_data[id]['pom_close_after_print'] == '1'){
 				//need a bit of a pause to let safari on iOS render the print privew properly
