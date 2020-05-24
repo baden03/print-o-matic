@@ -11,17 +11,22 @@ jQuery(document).ready(function() {
 		}
 
 		jQuery(this).data('print_target');
-		var target = jQuery(this).data('print_target');
-		if (target == '%prev%') {
-			target = jQuery(this).prev();
-		}
-		if (target == '%next%') {
-			target = jQuery(this).next();
-		}
+		var trigger = jQuery(this);
+		var target = trigger.data('print_target');
 		var target_arr = target.split(", ");
 		var targets = [];
+		var targ;
 		jQuery.each( target_arr, function( key, value ) {
-			targets.push(jQuery(value)[0]);
+			if (value == '%prev%') {
+				targ = trigger.prev();
+			}
+			else if (target == '%next%') {
+				targ = trigger.next();
+			}
+			else{
+				targ = jQuery(value);
+			}
+			targets.push(targ[0]);
 		});
 		PrintElements.print(targets);
 	});
