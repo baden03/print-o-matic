@@ -66,10 +66,11 @@ class WP_Print_O_Matic {
 	 */
 	function printMaticInit() {
 		//script
-		wp_register_script('printomatic-js', plugins_url('/printomat.js', __FILE__), array('jquery'), '2.0', true);
+		wp_register_script('printomatic-js', plugins_url('js/printomat.js', __FILE__), array('jquery'), '2.0', true);
+		wp_register_script('pe-js', plugins_url('js/print_elements.js', __FILE__), array('printomatic-js'), '1.0', true);
 
 		//css
-		wp_register_style( 'printomatic-css', plugins_url('/css/style.css', __FILE__) , array (), '1.2' );
+		wp_register_style( 'printomatic-css', plugins_url('/css/style.css', __FILE__) , array (), '2.0' );
 		wp_enqueue_style( 'printomatic-css' );
 	}
 
@@ -186,6 +187,7 @@ class WP_Print_O_Matic {
 			wp_localize_script( 'printomatic-js', 'print_data', $this->add_print_script );
 		}
 		wp_enqueue_script('printomatic-js');
+		wp_enqueue_script('pe-js');
 	}
 
 	/**
