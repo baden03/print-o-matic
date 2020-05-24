@@ -6,6 +6,11 @@
 jQuery(document).ready(function() {
 	jQuery('.printomatic, .printomatictext').click(function() {
 		var id = jQuery(this).attr('id');
+		var pause_time = 0;
+		if('pom_pause_time' in print_data[id] && print_data[id]['pom_pause_time'] > 0){
+        pause_time = print_data[id]['pom_pause_time'];
+    }
+
 		if ( 'pom_do_not_print' in print_data[id] && print_data[id]['pom_do_not_print'] ){
 				jQuery(print_data[id]['pom_do_not_print']).addClass('pe-no-print');
 		}
@@ -28,6 +33,6 @@ jQuery(document).ready(function() {
 			}
 			targets.push(targ[0]);
 		});
-		PrintElements.print(targets);
+		PrintElements.print(targets, pause_time);
 	});
 });
