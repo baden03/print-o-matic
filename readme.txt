@@ -4,12 +4,12 @@ Donate link: https://plugins.twinpictures.de/flying-houseboat/
 Tags: print, print element, print shortcode, send to print, print button, print me, jQuery, print page, javascript, twinpictures, plugin oven
 Requires at least: 4.7
 Tested up to: 5.5-alpha-47838
-Stable tag: 1.7.13d
+Stable tag: 2.0-alpha-0524
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Adds the ability to print any post or post element using a simple [print-me] shortcode. Extra jQuery Jedi love given to filled out forms.
+Adds the ability to target print elements using a simple [print-me] shortcode. Extra jQuery Jedi love given to filled out forms.
 
 == Description ==
 Print-O-Matic adds the ability to print any post, page or page element by using a simple [print-me] shortcode.  Bonus feature: filled out form elements are also printed using a kind of jQuery Jedi magic.  A <a href='https://plugins.twinpictures.de/plugins/print-o-matic/documentation/'>complete listing of shortcode options</a> are available, as well as <a href='https://wordpress.org/support/plugin/print-o-matic'>free community support</a>.
@@ -50,8 +50,8 @@ We like to rock the party.
 
 == Changelog ==
 
-= 1.7.13 =
-* Fixed issue with print in Safari
+= 2.0 =
+* complete re-write using new print-elements method by @szepeshazi https://github.com/szepeshazi/print-elements
 
 = 1.7.12 =
 * Fully tested with WordPress 5.2.1
