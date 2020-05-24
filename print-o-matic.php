@@ -4,7 +4,7 @@ Plugin Name: Print-O-Matic
 Text Domain: print-o-matic
 Plugin URI: https://plugins.twinpictures.de/plugins/print-o-matic/
 Description: Shortcode that adds a printer icon, allowing the user to print the post or a specified HTML element in the post.
-Version: 2.0-alpha-0524
+Version: 2.0-alpha-05242
 Author: twinpictures
 Author URI: https://twinpictures.de
 License: GPL2
@@ -18,18 +18,21 @@ License: GPL2
 class WP_Print_O_Matic {
 
 	var $plugin_name = 'Print-O-Matic';
-	var $version = '2.0-alpha-0524';
+	var $version = '2.0-alpha-05242';
 	var $domain = 'printomat';
 	var $options_name = 'WP_Print_O_Matic_options';
 	var $options = array(
 		'print_target' => 'article',
 		'print_title' => '',
+		'custom_page_css' => '',
+		'custom_css' => '',
 		'do_not_print' => '',
 		'printicon' => 'true',
 		'printstyle' => 'pom-default',
 		'html_top' => '',
 		'html_bottom' => '',
-		'script_check' => ''
+		'script_check' => '',
+		'pause_time' => '',
 	);
 
 	var $add_print_script = array();
@@ -110,6 +113,7 @@ class WP_Print_O_Matic {
 			'printstyle' => $options['printstyle'],
 			'html_top' => $options['html_top'],
 			'html_bottom' => $options['html_bottom'],
+			'pause_before_print' => $options['pause_time'],
 			'title' => $options['print_title'],
 
 		), $atts));
@@ -149,6 +153,7 @@ class WP_Print_O_Matic {
 			'pom_html_top' => $pom_html_top,
 			'pom_html_bottom' => $pom_html_bottom,
 			'pom_do_not_print' => $pom_do_not_print,
+			'pom_pause_time' => $pause_before_print,
 		);
 
 		//return nothing if usign an external button
@@ -302,12 +307,28 @@ class WP_Print_O_Matic {
 										<span class="description"><?php printf(__('If using a printer icon, which printer icon should be used? See %sPrintstyle Attribute%s in the documentation for more info.', 'print-o-matic'), '<a href="https://plugins.twinpictures.de/plugins/print-o-matic/documentation/#printstyle" target="_blank">', '</a>'); ?></span></label>
 									</td>
 								</tr>
+
+								<tr>
+									<th><?php _e( 'Custom Style', 'print-o-matic' ) ?></th>
+									<td><label><textarea id="<?php echo $this->options_name ?>[custom_page_css]" name="<?php echo $this->options_name ?>[custom_page_css]" style="width: 100%; height: 150px;"><?php echo $options['custom_page_css']; ?></textarea>
+										<br /><span class="description"><?php _e('this will be removed in 2.0 - there are better places to add custom css to your theme', 'print-o-matic' ); ?></span></label>
+									</td>
+								</tr>
+
+								<tr>
+									<th><?php _e( 'Custom Print Page Style', 'print-o-matic' ) ?></th>
+									<td><label><textarea id="<?php echo $this->options_name ?>[custom_css]" name="<?php echo $this->options_name ?>[custom_css]" style="width: 100%; height: 150px;"><?php echo $options['custom_css']; ?></textarea>
+										<br /><span class="description"><?php _e( 'this will be removed in 2.0 - there are better places to add custom css to your theme', 'print-o-matic' ) ?></span></label>
+									</td>
+								</tr>
+
 								<tr>
 									<th><?php _e( 'Do Not Print Elements', 'print-o-matic' ) ?></th>
 									<td><label><input type="text" id="<?php echo $this->options_name ?>[do_not_print]" name="<?php echo $this->options_name ?>[do_not_print]" value="<?php echo $options['do_not_print']; ?>" />
 										<br /><span class="description"><?php printf(__('Content elements to exclude from the print page. See %sDo Not Print Attribute%s in the documentation for more info.', 'print-o-matic'), '<a href="https://plugins.twinpictures.de/plugins/print-o-matic/documentation/#do-no-print" target="_blank">', '</a>'); ?></span></label>
 									</td>
 								</tr>
+
 								<tr>
 									<th><?php _e( 'Print Page Top HTML', 'print-o-matic' ) ?></th>
 									<td><label><textarea id="<?php echo $this->options_name ?>[html_top]" name="<?php echo $this->options_name ?>[html_top]" style="width: 100%; height: 150px;"><?php echo $options['html_top']; ?></textarea>
@@ -318,6 +339,12 @@ class WP_Print_O_Matic {
 									<th><?php _e( 'Print Page Bottom HTML', 'print-o-matic' ) ?></th>
 									<td><label><textarea id="<?php echo $this->options_name ?>[html_bottom]" name="<?php echo $this->options_name ?>[html_bottom]" style="width: 100%; height: 150px;"><?php echo $options['html_bottom']; ?></textarea>
 										<br /><span class="description"><?php printf(__('HTML to be inserted at the bottom of the print page. See %sHTML Bottom Attribute%s in the documentation for more info.', 'print-o-matic' ), '<a href="https://plugins.twinpictures.de/plugins/print-o-matic/documentation/#html-bottom" target="_blank">', '</a>'); ?></span></label>
+									</td>
+								</tr>
+								<tr>
+									<th><?php _e( 'Pause Before Print', 'print-o-matic' ) ?></th>
+									<td><label><input type="text" id="<?php echo $this->options_name ?>[pause_time]" name="<?php echo $this->options_name ?>[pause_time]" value="<?php echo $options['pause_time']; ?>" />
+										<br /><span class="description"><?php _e('Amount of time in milliseconds to pause and let the page fully load before triggering the print dialogue box', 'print-o-matic'); ?></span></label>
 									</td>
 								</tr>
 								<tr>
