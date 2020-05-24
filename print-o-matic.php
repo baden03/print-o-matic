@@ -50,7 +50,7 @@ class WP_Print_O_Matic {
 		// add actions
 		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
-		//add_action( 'wp_head', array( $this, 'printomat_style' ) );
+		add_action( 'wp_head', array( $this, 'printomat_style' ) );
 		add_action( 'wp_footer', array($this, 'printer_scripts') );
 		add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
 
@@ -64,6 +64,21 @@ class WP_Print_O_Matic {
 		load_plugin_textdomain( 'print-o-matic' );
 	}
 
+	//style - remove in future release
+	function printomat_style(){
+		if( !empty( $this->options['custom_page_css'] ) ){
+			echo "\n<style>\n";
+			echo $this->options['custom_page_css'];
+			echo "\n</style>\n";
+		}
+		if( !empty( $this->options['custom_css'] ) ){
+			echo "\n<style>\n";
+			echo "@media print {\n";
+			echo $this->options['custom_css'];
+			echo "\n}\n";
+			echo "</style>\n";
+		}
+	}
 	/**
 	 * Callback init
 	 */
@@ -74,7 +89,6 @@ class WP_Print_O_Matic {
 
 		//css
 		wp_register_style( 'printomatic-css', plugins_url('/css/style.css', __FILE__) , array (), '2.0' );
-		wp_enqueue_style( 'printomatic-css' );
 	}
 
 	/**
@@ -101,6 +115,12 @@ class WP_Print_O_Matic {
 	function shortcode($atts, $content = null){
 		$ran = rand(1, 10000);
 		$options = $this->options;
+
+		if( !empty($this->options['script_check']) ){
+			wp_enqueue_style( 'printomatic-css' );
+			wp_enqueue_script('printomatic-js');
+			wp_enqueue_script('pe-js');
+		}
 
 		extract( shortcode_atts(array(
 			'id' => 'id'.$ran,
@@ -187,8 +207,12 @@ class WP_Print_O_Matic {
 		if ( !empty( $this->add_print_script ) ){
 			wp_localize_script( 'printomatic-js', 'print_data', $this->add_print_script );
 		}
-		wp_enqueue_script('printomatic-js');
-		wp_enqueue_script('pe-js');
+
+		if( empty($this->options['script_check']) ){
+			wp_enqueue_style( 'printomatic-css' );
+			wp_enqueue_script('printomatic-js');
+			wp_enqueue_script('pe-js');
+		}
 	}
 
 	/**
@@ -199,12 +223,12 @@ class WP_Print_O_Matic {
 						__('really tied the room together', 'print-o-matic'),
 						__('made you feel all warm and fuzzy on the inside', 'print-o-matic'),
 						__('restored your faith in humanity... even if only for a fleeting second', 'print-o-matic'),
-						__('rocked your world', 'provided a positive vision of future living', 'print-o-matic'),
+						__('provided a positive vision of future living', 'print-o-matic'),
 						__('inspired you to commit a random act of kindness', 'print-o-matic'),
 						__('encouraged more regular flossing of the teeth', 'print-o-matic'),
 						__('helped organize your life in the small ways that matter', 'print-o-matic'),
 						__('saved your minutes--if not tens of minutes--writing your own solution', 'print-o-matic'),
-						__('brightened your day... or darkened if if you are trying to sleep in', 'print-o-matic'),
+						__('brightened your day... or darkened if you are trying to sleep in', 'print-o-matic'),
 						__('caused you to dance a little jig of joy and joyousness', 'print-o-matic'),
 						__('inspired you to tweet a little @twinpictues social love', 'print-o-matic'),
 						__('tasted great, while also being less filling', 'print-o-matic'),
@@ -307,14 +331,14 @@ class WP_Print_O_Matic {
 								<tr>
 									<th><?php _e( 'Custom Style', 'print-o-matic' ) ?></th>
 									<td><label><textarea id="<?php echo $this->options_name ?>[custom_page_css]" name="<?php echo $this->options_name ?>[custom_page_css]" style="width: 100%; height: 150px;"><?php echo $options['custom_page_css']; ?></textarea>
-										<br /><span class="description"><?php _e('this will be removed in 2.0 - there are better places to add custom css to your theme', 'print-o-matic' ); ?></span></label>
+										<br /><span class="description"><?php _e('this will be removed in 2.0 - move this to the custom css secion of the active child-theme', 'print-o-matic' ); ?></span></label>
 									</td>
 								</tr>
 
 								<tr>
 									<th><?php _e( 'Custom Print Page Style', 'print-o-matic' ) ?></th>
 									<td><label><textarea id="<?php echo $this->options_name ?>[custom_css]" name="<?php echo $this->options_name ?>[custom_css]" style="width: 100%; height: 150px;"><?php echo $options['custom_css']; ?></textarea>
-										<br /><span class="description"><?php _e( 'this will be removed in 2.0 - there are better places to add custom css to your theme', 'print-o-matic' ) ?></span></label>
+										<br /><span class="description"><?php _e( 'this will be removed in 2.0 - move this to the custom css section of the active child-theme under @media print', 'print-o-matic' ) ?></span></label>
 									</td>
 								</tr>
 
@@ -344,9 +368,9 @@ class WP_Print_O_Matic {
 									</td>
 								</tr>
 								<tr>
-									<th><?php _e( 'Shortcode Loads Scripts', 'print-o-matic' ) ?></th>
+									<th><?php _e( 'Shortcode Loads Scripts & CSS', 'print-o-matic' ) ?></th>
 									<td><label><input type="checkbox" id="<?php echo $this->options_name ?>[script_check]" name="<?php echo $this->options_name ?>[script_check]" value="1"  <?php echo checked( $options['script_check'], 1 ); ?> /> <?php _e('Only load scripts with shortcode.', 'print-o-matic'); ?>
-										<br /><span class="description"><?php _e('Only load  Print-O-Matic scripts if [print-me] shortcode is used.', 'print-o-matic'); ?></span></label>
+										<br /><span class="description"><?php _e('Only load Print-O-Matic JS and CSS files if [print-me] shortcode is used.', 'print-o-matic'); ?></span></label>
 									</td>
 								</tr>
 
@@ -369,7 +393,7 @@ class WP_Print_O_Matic {
 					<h3 class="handle"><?php _e( 'About' ) ?></h3>
 					<div class="inside">
 						<h4><img src="<?php echo plugins_url( 'css/print-icon-small.png', __FILE__ ) ?>" /> <?php echo $this->plugin_name; ?> <?php echo $this->version; ?></h4>
-						<p><?php _e( 'Shortcode that adds a printer icon, allowing the user to print the post or a specified HTML element in the post.', 'print-o-matic') ?></p>
+						<p><?php _e( 'Print-O-Matic adds a shortcode to target-print specific elements in a post or page.', 'print-o-matic') ?></p>
 						<ul>
 							<li><?php printf( __( '%sDetailed documentation%s, complete with working demonstrations of all shortcode attributes, is available for your instructional enjoyment.', 'print-o-matic'), '<a href="https://plugins.twinpictures.de/plugins/print-o-matic/documentation/" target="_blank">', '</a>'); ?></li>
 							<li><?php printf( __( 'Free, Open Source %sSupport%s', 'print-o-matic'), '<a href="https://wordpress.org/support/plugin/print-o-matic/" target="_blank">', '</a>'); ?></li>
