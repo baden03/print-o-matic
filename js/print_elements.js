@@ -59,20 +59,11 @@ var PrintElements = (function () {
         }
     };
 
-    var _print = function (elements, pause_time) {
+    var _print = function (elements) {
         for (var i = 0; i < elements.length; i++) {
             _walkTree(elements[i], _attachPrintClasses);
         }
-        if(pause_time > 0){
-          //console.log('waiting');
-          setTimeout(function () {
-              //console.log('printing');
-              window.print();
-  			  }, pause_time);
-        }
-        else{
-          window.print();
-        }
+        window.print();
         for (i = 0; i < elements.length; i++) {
             _walkTree(elements[i], _cleanup);
         }
