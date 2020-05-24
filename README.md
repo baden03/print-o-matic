@@ -22,7 +22,7 @@ Installation
 1. Test that the this plug-in meets your demanding needs.
 1. Tweak the CSS to match your flavor.
 1. Rate the plug-in and verify if it works at wordpress.org.
-1. Leave a comment regarding bugs, feature request, cocktail recipes at https://wordpress.org/tags/print-o-matic/
+1. Leave a comment regarding bugs, feature request, cocktail recipes at https://wordpress.org/support/topic-tag/print-o-matic/
 
 Frequently Asked Questions
 --------------------------
@@ -30,13 +30,13 @@ Frequently Asked Questions
 * Yes, yes... <a href='https://www.facebook.com/twinpictures'>Twinpictures is on Facebook</a>.
 
 <b>Does Twinpictures do the Twitter?</b>
-* Ah yes! <a href='https://twitter.com/#!/twinpictures'>@Twinpictures</a> does the twitter tweeting around here.
+* Ah yes! <a href='https://twitter.com/twinpictures'>@Twinpictures</a> does the twitter tweeting around here.
 
 <b>How does one use the shortcode, exactly?</b>
 * A <a href='https://plugins.twinpictures.de/plugins/print-o-matic/documentation/'>complete listing of shortcode options</a> has been provided to answer this exact question.
 
 <b>Where can I translate this plugin into my favorite language?</b>
-* <a href='https://translate.twinpictures.de/projects/printomat/'>Community translation for Print-O-Matic</a> has been set up. You are <a href='https://translate.twinpictures.de/wordpress/wp-login.php?action=register'>welcome to join</a>.
+* Use the <a href='https://translate.wordpress.org/projects/wp-plugins/print-o-matic/'>Community translation for Print-O-Matic</a> at WordPress
 
 <b>Who likes to rock the party?</b>
 * We like to rock the party.
