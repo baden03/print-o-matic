@@ -130,16 +130,12 @@ class WP_Print_O_Matic {
 			$pom_html_top = '';
 		}
 		else{
-			//$pom_html_top = apply_filters('the_content', $html_top);
-			//switching to do_shortcode to avoid conflicts with social sharing plugins
 			$pom_html_top = do_shortcode($html_top);
 		}
 		if( empty( $html_bottom ) ){
 			$pom_html_bottom = '';
 		}
 		else{
-			//$pom_html_bottom = apply_filters('the_content', $html_bottom);
-			//switching to do_shortcode to avoid conflicts with social sharing plugins
 			$pom_html_bottom = do_shortcode($html_bottom);
 		}
 		if( empty( $do_not_print ) ){
