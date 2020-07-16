@@ -50,6 +50,7 @@ class WP_Print_O_Matic {
 		// add actions
 		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
+		//remove in future version
 		add_action( 'wp_head', array( $this, 'printomat_style' ) );
 		add_action( 'wp_footer', array($this, 'printer_scripts') );
 		add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
