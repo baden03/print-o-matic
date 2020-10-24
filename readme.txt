@@ -3,7 +3,7 @@ Contributors: twinpictures, baden03
 Donate link: https://plugins.twinpictures.de/flying-houseboat/
 Tags: print, print element, print shortcode, send to print, print button, print me, jQuery, print page, javascript, twinpictures, plugin oven
 Requires at least: 4.7
-Tested up to: 5.5-alpha-47851
+Tested up to: 5.5.1
 Stable tag: 2.0-alpha-05242
 Requires PHP: 7.0
 License: GPLv2 or later
