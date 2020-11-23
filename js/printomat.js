@@ -4,26 +4,26 @@
 */
 
 jQuery(document).ready(function() {
-	jQuery('.printomatic, .printomatictext').click(function() {
+	jQuery(document).on( 'click', '.printomatic, .printomatictext', function() {
 		var id = jQuery(this).attr('id');
 
 		var pause_time = 0;
-		if('pom_pause_time' in print_data[id] && print_data[id]['pom_pause_time'] > 0){
-        pause_time = print_data[id]['pom_pause_time'];
-    }
+		if(typeof print_data !== 'undefined' && 'pom_pause_time' in print_data[id] && print_data[id]['pom_pause_time'] > 0){
+			pause_time = print_data[id]['pom_pause_time'];
+		}
 
-		if ( 'pom_do_not_print' in print_data[id] && print_data[id]['pom_do_not_print'] ){
+		if (typeof print_data !== 'undefined' && 'pom_do_not_print' in print_data[id] && print_data[id]['pom_do_not_print'] ){
 				jQuery(print_data[id]['pom_do_not_print']).addClass('pe-no-print');
 		}
 
 		//add any html top or bottom
 		var has_top_html = false;
-		if ( 'pom_html_top' in print_data[id] && print_data[id]['pom_html_top']){
+		if (typeof print_data !== 'undefined' && 'pom_html_top' in print_data[id] && print_data[id]['pom_html_top']){
 			  jQuery( 'body' ).prepend( '<div id="pom_top_html" class="pe-preserve-ancestor">' + print_data[id]['pom_html_top'] + '</div>' );
 				has_top_html = true;
 		}
 		var has_bot_html = false;
-		if ( 'pom_html_bottom' in print_data[id] && print_data[id]['pom_html_bottom']){
+		if (typeof print_data !== 'undefined' && 'pom_html_bottom' in print_data[id] && print_data[id]['pom_html_bottom']){
 			  jQuery( 'body' ).append( '<div id="pom_bot_html" class="pe-preserve-ancestor">' + print_data[id]['pom_html_bottom'] + '</div>' );
 				has_bot_html = true;
 		}
