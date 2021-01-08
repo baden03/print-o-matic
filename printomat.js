@@ -158,10 +158,10 @@ jQuery(document).ready(function() {
 
 		function printIt(){
 			w.document.close();
-			console.log('try and print');
+			//console.log('try and print');
 
 			setTimeout(function () {
-				  console.log('here we go');
+				  //console.log('here we go');
 			    w.focus();
 					try {
 					  // Print for Safari browser
