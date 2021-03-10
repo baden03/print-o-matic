@@ -4,8 +4,8 @@ Print-O-Matic
 * Donate link: https://plugins.twinpictures.de/flying-houseboat/
 * Tags: print, print element, print shortcode, send to print, print button, print me, jQuery, print page, javascript, twinpictures, plugin oven
 * Requires at least: 4.7
-* Tested up to: 5.6.0
-* Stable tag: 1.7.13
+* Tested up to: 5.7.0
+* Stable tag: 1.7.14a
 * License: GPLv2 or later
 * License URI: https://www.gnu.org/licenses/gpl-2.0.html
 

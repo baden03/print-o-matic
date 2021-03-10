@@ -4,7 +4,7 @@ Plugin Name: Print-O-Matic
 Text Domain: print-o-matic
 Plugin URI: https://plugins.twinpictures.de/plugins/print-o-matic/
 Description: Shortcode that adds a printer icon, allowing the user to print the post or a specified HTML element in the post.
-Version: 1.7.13
+Version: 1.7.14a
 Author: twinpictures
 Author URI: https://twinpictures.de
 License: GPL2
@@ -20,7 +20,7 @@ class WP_Print_O_Matic {
 	 * Current version
 	 * @var string
 	 */
-	var $version = '1.7.13';
+	var $version = '1.7.14a';
 
 	/**
 	 * Used as prefix for options entry
@@ -152,22 +152,24 @@ class WP_Print_O_Matic {
 			}
 		}
 
-		extract( shortcode_atts(array(
-			'id' => 'id'.$ran,
-			'class' => '',
-			'tag' => 'div',
-			'alt' => '',
-			'target' => $options['print_target'],
-			'do_not_print' => $options['do_not_print'],
-			'printicon' => $options['printicon'],
-			'printstyle' => $options['printstyle'],
-			'html_top' => $options['html_top'],
-			'html_bottom' => $options['html_bottom'],
-			'pause_before_print' => $options['pause_time'],
-			'title' => $options['print_title'],
-			'close_after_print' => $options['close_after_print'],
-
-		), $atts));
+		$atts = shortcode_atts(
+			array(
+				'id' => 'id'.$ran,
+				'class' => '',
+				'tag' => 'div',
+				'alt' => '',
+				'target' => $options['print_target'],
+				'do_not_print' => $options['do_not_print'],
+				'printicon' => $options['printicon'],
+				'printstyle' => $options['printstyle'],
+				'html_top' => $options['html_top'],
+				'html_bottom' => $options['html_bottom'],
+				'pause_before_print' => $options['pause_time'],
+				'title' => $options['print_title'],
+				'close_after_print' => $options['close_after_print']
+			), 
+			$atts
+		);
 
 		//if no printstyle, force-set to default
 		if( empty( $printstyle ) ){
