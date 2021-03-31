@@ -1,5 +1,5 @@
 /*!
- * Print-O-Matic JavaScript v1.8.11
+ * Print-O-Matic JavaScript v1.8.12
  * http://plugins.twinpictures.de/plugins/print-o-matic/
  *
  * Copyright 2019, Twinpictures
@@ -157,18 +157,16 @@ jQuery(document).ready(function() {
 		}
 
 		function printIt(){
-			w.document.close();
+			//w.document.close();
 			//console.log('try and print');
-
+			w.focus();
 			setTimeout(function () {
-				  //console.log('here we go');
-			    w.focus();
-					try {
-					  // Print for Safari browser
-					  w.document.execCommand('print', false, null);
-					} catch {
-					  w.print();
-					}
+				try {
+					w.document.execCommand('print', false, null);
+				} finally {
+					w.print();
+				}
+				
 			}, 500);
 
 			if('pom_close_after_print' in print_data[id] && print_data[id]['pom_close_after_print'] == '1'){
