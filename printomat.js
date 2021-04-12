@@ -29,6 +29,14 @@ jQuery(document).ready(function() {
 		var id = jQuery(this).attr('id');
 		var target = jQuery(this).data('print_target');
 		if(!target){
+			classes = jQuery(this).attr("class").split(/\s+/);
+			for(i=0; i<classes.length; i++){
+				if(classes[i].substring(0, 12) == "printtarget-"){
+					target = classes[i].substring(12, classes[i].length)
+				}
+			}
+		}
+		if(!target){
 			target = jQuery('#target-' + id).val();
 		}
 		if (target == '%prev%') {
