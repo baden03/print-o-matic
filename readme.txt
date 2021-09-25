@@ -3,16 +3,16 @@ Contributors: twinpictures, baden03
 Donate link: https://plugins.twinpictures.de/flying-houseboat/
 Tags: print, print element, print shortcode, send to print, print button, print me, jQuery, print page, javascript, twinpictures, plugin oven
 Requires at least: 4.7
-Tested up to: 5.9-alpha-51820
-Stable tag: 2.0-RC-20210401
-Requires PHP: 7.0
+Tested up to: 5.9-alpha-51868
+Stable tag: 2.0
+Requires PHP: 7.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Adds the ability to target print elements using a simple [print-me] shortcode. Extra jQuery Jedi love given to filled out forms.
 
 == Description ==
-Print-O-Matic adds the ability to print any post, page or page element by using a simple [print-me] shortcode.  Bonus feature: filled out form elements are also printed using a kind of jQuery Jedi magic.  A <a href='https://plugins.twinpictures.de/plugins/print-o-matic/documentation/'>complete listing of shortcode options</a> are available, as well as <a href='https://wordpress.org/support/plugin/print-o-matic'>free community support</a>.
+Print-O-Matic adds the ability to print any post, page or page element by using a simple [print-me] shortcode. A <a href='https://pluginoven.com/plugins/print-o-matic/documentation/shortcode/'>complete listing of shortcode options</a> are available, as well as <a href='https://wordpress.org/support/plugin/print-o-matic/'>free community support</a>.
 
 == Installation ==
 
@@ -51,7 +51,8 @@ We like to rock the party.
 == Changelog ==
 
 = 2.0 =
-* complete re-write using new print-elements method by @szepeshazi https://github.com/szepeshazi/print-elements
+* complete re-write using new print-elements method by [@szepeshazi](https://github.com/szepeshazi/print-elements)
+* fully tested with WordPress 5.8.2
 
 = 1.7.12 =
 * Fully tested with WordPress 5.2.1
@@ -199,8 +200,5 @@ We like to rock the party.
 * The plug-in was forked and completely rewritten from Print Button Shortcode by MyWebsiteAdvisor.
 
 == Upgrade Notice ==
-* Fully tested with WordPress 5.2.1
-* print window opens in new tab
-* uses wp_localize to pass variables to script
-* added option to include print-me scripts in admin dashboard
-* added reviver.lt's Edge fix
+* complete re-write using new print-elements method by [@szepeshazi](https://github.com/szepeshazi/print-elements)
+* Fully tested with WordPress 5.8.2
