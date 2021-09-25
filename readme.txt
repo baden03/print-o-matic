@@ -3,16 +3,16 @@ Contributors: twinpictures, baden03
 Donate link: https://plugins.twinpictures.de/flying-houseboat/
 Tags: print, print element, print shortcode, send to print, print button, print me, jQuery, print page, javascript, twinpictures, plugin oven
 Requires at least: 4.7
-Tested up to: 5.7.0
-Stable tag: 1.7.14
+Tested up to: 5.9-alpha-51868
+Stable tag: 2.0
 Requires PHP: 7.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Adds the ability to print any post or post element using a simple [print-me] shortcode. Extra jQuery Jedi love given to filled out forms.
+Adds the ability to target print elements using a simple [print-me] shortcode. Extra jQuery Jedi love given to filled out forms.
 
 == Description ==
-Print-O-Matic adds the ability to print any post, page or page element by using a simple [print-me] shortcode.  Bonus feature: filled out form elements are also printed using a kind of jQuery Jedi magic.  A <a href='https://plugins.twinpictures.de/plugins/print-o-matic/documentation/'>complete listing of shortcode options</a> are available, as well as <a href='https://wordpress.org/support/plugin/print-o-matic'>free community support</a>.
+Print-O-Matic adds the ability to print any post, page or page element by using a simple [print-me] shortcode. A <a href='https://pluginoven.com/plugins/print-o-matic/documentation/shortcode/'>complete listing of shortcode options</a> are available, as well as <a href='https://wordpress.org/support/plugin/print-o-matic/'>free community support</a>.
 
 == Installation ==
 
@@ -22,7 +22,7 @@ Print-O-Matic adds the ability to print any post, page or page element by using 
 1. Test that the this plug-in meets your demanding needs.
 1. Tweak the CSS to match your flavor.
 1. Rate the plug-in and verify if it works at wordpress.org.
-1. Leave a comment regarding bugs, feature request, cocktail recipes at https://wordpress.org/tags/print-o-matic/
+1. Leave a comment regarding bugs, feature request, cocktail recipes at https://wordpress.org/support/topic-tag/print-o-matic/
 
 == Frequently Asked Questions ==
 
@@ -33,13 +33,13 @@ Print-O-Matic adds the ability to print any post, page or page element by using 
 Yes, yes... <a href='https://www.facebook.com/twinpictures'>Twinpictures is on Facebook</a>.
 
 = Does Twinpictures do the Twitter? =
-Ah yes! <a href='https://twitter.com/#!/twinpictures'>@Twinpictures</a> does the twitter tweeting around here.
+Ah yes! <a href='https://twitter.com/twinpictures'>@Twinpictures</a> does the twitter tweeting around here.
 
 = How does one use the shortcode, exactly? =
 A <a href='https://plugins.twinpictures.de/plugins/print-o-matic/documentation/'>complete listing of shortcode options</a> has been provided to answer this exact question.
 
 = Where can I translate this plugin into my favorite language? =
-<a href='https://translate.twinpictures.de/projects/printomat/'>Community translation for Print-O-Matic</a> has been set up. You are <a href='https://translate.twinpictures.de/wordpress/wp-login.php?action=register'>welcome to join</a>.
+Use the <a href='https://translate.wordpress.org/projects/wp-plugins/print-o-matic/'>Community translation for Print-O-Matic</a> at WordPress
 
 = Who likes to rock the party? =
 We like to rock the party.
@@ -50,13 +50,9 @@ We like to rock the party.
 
 == Changelog ==
 
-= 1.7.14 =
-* Fixed issue with print in Firefox
-* Fully tested with WordPress 5.7.0
-
-= 1.7.13 =
-* Fixed issue with print in Safari
-* Fully tested with WordPress 5.6.0
+= 2.0 =
+* complete re-write using new print-elements method by [@szepeshazi](https://github.com/szepeshazi/print-elements)
+* fully tested with WordPress 5.8.2
 
 = 1.7.12 =
 * Fully tested with WordPress 5.2.1
@@ -204,4 +200,5 @@ We like to rock the party.
 * The plug-in was forked and completely rewritten from Print Button Shortcode by MyWebsiteAdvisor.
 
 == Upgrade Notice ==
-* removed outdated extract method for shortcode atts
+* complete re-write using new print-elements method by [@szepeshazi](https://github.com/szepeshazi/print-elements)
+* Fully tested with WordPress 5.8.2
