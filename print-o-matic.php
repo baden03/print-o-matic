@@ -160,10 +160,10 @@ class WP_Print_O_Matic {
 			'target' => $options['print_target'],
 			'do_not_print' => $options['do_not_print'],
 			'printicon' => $options['printicon'],
-			'printstyle' => $options['printstyle'],
+			'printstyle' => esc_html($options['printstyle']),
 			'html_top' => $options['html_top'],
 			'html_bottom' => $options['html_bottom'],
-			'pause_before_print' => $options['pause_time'],
+			'pause_before_print' => esc_html($options['pause_time']),
 			'title' => $options['print_title'],
 			'close_after_print' => $options['close_after_print'],
 
