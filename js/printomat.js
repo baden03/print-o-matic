@@ -33,12 +33,15 @@ jQuery(document).ready(function() {
 		var target = trigger.data('print_target');
 		// testing the ability to target by class (as requested by Jonaswinz)
 		if(!target){
-			classes = jQuery(this).attr("class").split(/\s+/);
+			classes = trigger.attr("class").split(/\s+/);
 			for(i=0; i<classes.length; i++){
 				if(classes[i].substring(0, 12) == "printtarget-"){
-					target = classes[i].substring(12, classes[i].length);
+					target = '#'+classes[i].substring(12, classes[i].length);
 				}
 			}
+		}
+		if(!target){
+			return;
 		}
 		var target_arr = target.split(", ");
 		var targets = [];
