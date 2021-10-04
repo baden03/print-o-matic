@@ -4,7 +4,7 @@ Plugin Name: Print-O-Matic
 Text Domain: print-o-matic
 Plugin URI: https://pluginoven.com/plugins/print-o-matic/
 Description: Shortcode that adds a printer icon, allowing the user to print the post or a specified HTML element in the post.
-Version: 2.0.1-20211001
+Version: 2.0.1
 Author: twinpictures
 Author URI: https://twinpictures.de
 License: GPL2
@@ -18,7 +18,7 @@ License: GPL2
 class WP_Print_O_Matic {
 
 	var $plugin_name = 'Print-O-Matic';
-	var $version = '2.0.1-20211001';
+	var $version = '2.0.1';
 	var $domain = 'printomat';
 	var $options_name = 'WP_Print_O_Matic_options';
 	var $options = array(
@@ -261,14 +261,14 @@ class WP_Print_O_Matic {
 								<table class="form-table">
 								<tr>
 									<th><?php _e( 'Default Target Attribute' , 'print-o-matic'  ) ?></th>
-									<td><label><input type="text" id="<?php echo $this->options_name ?>[print_target]" name="<?php echo $this->options_name ?>[print_target]" value="<?php echo $options['print_target']; ?>" />
+									<td><label><input type="text" id="<?php echo $this->options_name ?>[print_target]" name="<?php echo $this->options_name ?>[print_target]" value="<?php echo sanitize_text_field($options['print_target']); ?>" />
 										<br /><span class="description"><?php printf(__('Print target. See %sTarget Attribute%s in the documentation for more info.', 'print-o-matic'), '<a href="https://pluginoven.com/plugins/print-o-matic/documentation/shortcode/#target-attribute" target="_blank">', '</a>'); ?></span></label>
 									</td>
 								</tr>
 								<tr>
 									<th><?php _e( 'Default Print Title' , 'print-o-matic'  ) ?></th>
 									<td><label>
-										<textarea id="<?php echo $this->options_name ?>[print_title]" name="<?php echo $this->options_name ?>[print_title]" style="width: 100%;"><?php echo $options['print_title']; ?></textarea>
+										<textarea id="<?php echo $this->options_name ?>[print_title]" name="<?php echo $this->options_name ?>[print_title]" style="width: 100%;"><?php echo sanitize_textarea_field($options['print_title']); ?></textarea>
 									</label></td>
 								</tr>
 								<tr>
@@ -331,40 +331,40 @@ class WP_Print_O_Matic {
 
 								<tr>
 									<th><?php _e( 'Custom Style', 'print-o-matic' ) ?></th>
-									<td><label><textarea id="<?php echo $this->options_name ?>[custom_page_css]" name="<?php echo $this->options_name ?>[custom_page_css]" style="width: 100%; height: 150px;"><?php echo $options['custom_page_css']; ?></textarea>
+									<td><label><textarea id="<?php echo $this->options_name ?>[custom_page_css]" name="<?php echo $this->options_name ?>[custom_page_css]" style="width: 100%; height: 150px;"><?php echo sanitize_textarea_field($options['custom_page_css']); ?></textarea>
 										<br /><span class="description"><?php _e('this will be removed in 2.0 - move this to the custom css secion of the active child-theme', 'print-o-matic' ); ?></span></label>
 									</td>
 								</tr>
 
 								<tr>
 									<th><?php _e( 'Custom Print Page Style', 'print-o-matic' ) ?></th>
-									<td><label><textarea id="<?php echo $this->options_name ?>[custom_css]" name="<?php echo $this->options_name ?>[custom_css]" style="width: 100%; height: 150px;"><?php echo $options['custom_css']; ?></textarea>
+									<td><label><textarea id="<?php echo $this->options_name ?>[custom_css]" name="<?php echo $this->options_name ?>[custom_css]" style="width: 100%; height: 150px;"><?php echo sanitize_textarea_field($options['custom_css']); ?></textarea>
 										<br /><span class="description"><?php _e( 'this will be removed in 2.0 - move this to the custom css section of the active child-theme under @media print', 'print-o-matic' ) ?></span></label>
 									</td>
 								</tr>
 
 								<tr>
 									<th><?php _e( 'Do Not Print Elements', 'print-o-matic' ) ?></th>
-									<td><label><input type="text" id="<?php echo $this->options_name ?>[do_not_print]" name="<?php echo $this->options_name ?>[do_not_print]" value="<?php echo $options['do_not_print']; ?>" />
+									<td><label><input type="text" id="<?php echo $this->options_name ?>[do_not_print]" name="<?php echo $this->options_name ?>[do_not_print]" value="<?php echo sanitize_text_field($options['do_not_print']); ?>" />
 										<br /><span class="description"><?php printf(__('Content elements to exclude from the print page. See %sDo Not Print Attribute%s in the documentation for more info.', 'print-o-matic'), '<a href="https://pluginoven.com/plugins/print-o-matic/documentation/shortcode/#do-not-print-attribute" target="_blank">', '</a>'); ?></span></label>
 									</td>
 								</tr>
 
 								<tr>
 									<th><?php _e( 'Print Page Top HTML', 'print-o-matic' ) ?></th>
-									<td><label><textarea id="<?php echo $this->options_name ?>[html_top]" name="<?php echo $this->options_name ?>[html_top]" style="width: 100%; height: 150px;"><?php echo $options['html_top']; ?></textarea>
+									<td><label><textarea id="<?php echo $this->options_name ?>[html_top]" name="<?php echo $this->options_name ?>[html_top]" style="width: 100%; height: 150px;"><?php echo sanitize_textarea_field($options['html_top']); ?></textarea>
 										<br /><span class="description"><?php printf(__('HTML to be inserted at the top of the print page. See %sHTML Top Attribute%s in the documentation for more info.', 'print-o-matic' ), '<a href="https://pluginoven.com/plugins/print-o-matic/documentation/shortcode/#html_top-attribute" target="_blank">', '</a>'); ?></span></label>
 									</td>
 								</tr>
 								<tr>
 									<th><?php _e( 'Print Page Bottom HTML', 'print-o-matic' ) ?></th>
-									<td><label><textarea id="<?php echo $this->options_name ?>[html_bottom]" name="<?php echo $this->options_name ?>[html_bottom]" style="width: 100%; height: 150px;"><?php echo $options['html_bottom']; ?></textarea>
+									<td><label><textarea id="<?php echo $this->options_name ?>[html_bottom]" name="<?php echo $this->options_name ?>[html_bottom]" style="width: 100%; height: 150px;"><?php echo sanitize_textarea_field($options['html_bottom']); ?></textarea>
 										<br /><span class="description"><?php printf(__('HTML to be inserted at the bottom of the print page. See %sHTML Bottom Attribute%s in the documentation for more info.', 'print-o-matic' ), '<a href="https://pluginoven.com/plugins/print-o-matic/documentation/shortcode/#html_bottom-attribute" target="_blank">', '</a>'); ?></span></label>
 									</td>
 								</tr>
 								<tr>
 									<th><?php _e( 'Pause Before Print', 'print-o-matic' ) ?></th>
-									<td><label><input type="text" id="<?php echo $this->options_name ?>[pause_time]" name="<?php echo $this->options_name ?>[pause_time]" value="<?php echo $options['pause_time']; ?>" />
+									<td><label><input type="text" id="<?php echo $this->options_name ?>[pause_time]" name="<?php echo $this->options_name ?>[pause_time]" value="<?php echo sanitize_text_field($options['pause_time']); ?>" />
 										<br /><span class="description"><?php _e('Amount of time in milliseconds to pause and let the page fully load before triggering the print dialogue box', 'print-o-matic'); ?></span></label>
 									</td>
 								</tr>
