@@ -3,8 +3,8 @@ Contributors: twinpictures, baden03
 Donate link: https://plugins.twinpictures.de/flying-houseboat/
 Tags: print, print element, print shortcode, send to print, print button, print me, jQuery, print page, javascript, twinpictures, plugin oven
 Requires at least: 4.7
-Tested up to: 5.9-alpha-51883
-Stable tag: 2.0.1
+Tested up to: 5.9-alpha-51891
+Stable tag: 2.0.2
 Requires PHP: 7.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -49,6 +49,10 @@ We like to rock the party.
 1. Print-O-Matic Options screen for Ultimate Flexibility
 
 == Changelog ==
+
+= 2.0.2 =
+* targets are validated before print
+* field values in the plugin options page are now escaped using esc_attr()  
 
 = 2.0.1 =
 * added ability to define [print target by class](https://spacedonkey.de/4188/print-o-matic-external-print-trigger-target-by-class/)
@@ -204,5 +208,5 @@ We like to rock the party.
 * The plug-in was forked and completely rewritten from Print Button Shortcode by MyWebsiteAdvisor.
 
 == Upgrade Notice ==
-* added ability to define [print target by class](https://spacedonkey.de/4188/print-o-matic-external-print-trigger-target-by-class/)
-* patched xss security issue
+* targets are validated before print
+* field values in the plugin options page are now escaped using esc_attr()  
