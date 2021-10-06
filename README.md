@@ -5,13 +5,13 @@ Print-O-Matic
 * Tags: print, print element, print shortcode, send to print, print button, print me, jQuery, print page, javascript, twinpictures, plugin oven
 * Requires at least: 4.7
 * Tested up to: 5.9-alpha-51891
-* Stable tag: 2.0.2
+* Stable tag: 2.0.3
 * License: GPLv2 or later
 * License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Description
 -----------
-Print-O-Matic adds the ability to print any post, page or page element by using a simple [print-me] shortcode.  Bonus feature: filled out form elements are also printed using a kind of jQuery Jedi magic.  A <a href='https://plugins.twinpictures.de/plugins/print-o-matic/documentation/'>complete listing of shortcode options</a> are available, as well as <a href='https://wordpress.org/support/plugin/print-o-matic'>free community support</a>.
+Print-O-Matic adds the ability to print any post, page or page element by using a simple [print-me] shortcode.  Bonus feature: filled out form elements are also printed using a kind of jQuery Jedi magic.  A <a href='https://pluginoven.com/plugins/print-o-matic/documentation/'>complete listing of shortcode options</a> are available, as well as <a href='https://wordpress.org/support/plugin/print-o-matic'>free community support</a>.
 
 Installation
 -----------
@@ -33,7 +33,7 @@ Frequently Asked Questions
 * Ah yes! <a href='https://twitter.com/twinpictures'>@Twinpictures</a> does the twitter tweeting around here.
 
 <b>How does one use the shortcode, exactly?</b>
-* A <a href='https://plugins.twinpictures.de/plugins/print-o-matic/documentation/'>complete listing of shortcode options</a> has been provided to answer this exact question.
+* A <a href='https://pluginoven.com/plugins/print-o-matic/documentation/'>complete listing of shortcode options</a> has been provided to answer this exact question.
 
 <b>Where can I translate this plugin into my favorite language?</b>
 * Use the <a href='https://translate.wordpress.org/projects/wp-plugins/print-o-matic/'>Community translation for Print-O-Matic</a> at WordPress

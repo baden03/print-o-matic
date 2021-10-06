@@ -4,7 +4,7 @@ Donate link: https://plugins.twinpictures.de/flying-houseboat/
 Tags: print, print element, print shortcode, send to print, print button, print me, jQuery, print page, javascript, twinpictures, plugin oven
 Requires at least: 4.7
 Tested up to: 5.9-alpha-51891
-Stable tag: 2.0.2
+Stable tag: 2.0.3
 Requires PHP: 7.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -36,7 +36,7 @@ Yes, yes... <a href='https://www.facebook.com/twinpictures'>Twinpictures is on F
 Ah yes! <a href='https://twitter.com/twinpictures'>@Twinpictures</a> does the twitter tweeting around here.
 
 = How does one use the shortcode, exactly? =
-A <a href='https://plugins.twinpictures.de/plugins/print-o-matic/documentation/'>complete listing of shortcode options</a> has been provided to answer this exact question.
+A <a href='https://pluginoven.com/plugins/print-o-matic/documentation/'>complete listing of shortcode options</a> has been provided to answer this exact question.
 
 = Where can I translate this plugin into my favorite language? =
 Use the <a href='https://translate.wordpress.org/projects/wp-plugins/print-o-matic/'>Community translation for Print-O-Matic</a> at WordPress
@@ -49,6 +49,10 @@ We like to rock the party.
 1. Print-O-Matic Options screen for Ultimate Flexibility
 
 == Changelog ==
+
+= 2.0.3 =
+* updated link to documentation
+* textarea input fields now escaped using esc_textarea() on plugin options page
 
 = 2.0.2 =
 * targets are validated before print
@@ -208,5 +212,5 @@ We like to rock the party.
 * The plug-in was forked and completely rewritten from Print Button Shortcode by MyWebsiteAdvisor.
 
 == Upgrade Notice ==
-* targets are validated before print
-* field values in the plugin options page are now escaped using esc_attr()  
+* updated link to documentation
+* textarea input fields now escaped using esc_textarea() on plugin options page
