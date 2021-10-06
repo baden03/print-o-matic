@@ -1,5 +1,5 @@
 /*!
- * Print-O-Matic JavaScript v2.0.1
+ * Print-O-Matic JavaScript v2.0.2
  * http://plugins.twinpictures.de/plugins/print-o-matic/
 */
 
@@ -30,7 +30,7 @@ jQuery(document).ready(function() {
 
 		var trigger = jQuery(this);
 		var target = trigger.data('print_target');
-		// testing the ability to target by class (as requested by Jonaswinz)
+	
 		if(!target){
 			classes = trigger.attr("class").split(/\s+/);
 			for(i=0; i<classes.length; i++){
@@ -55,7 +55,11 @@ jQuery(document).ready(function() {
 			else{
 				targ = jQuery(value);
 			}
-			targets.push(targ[0]);
+			//only add target if found on page
+			if(targ.length){
+				targets.push(targ[0]);
+			}
+			
 		});
 
 
