@@ -1,5 +1,5 @@
 /*!
- * Print-O-Matic JavaScript v2.0.2
+ * Print-O-Matic JavaScript v2.0.3
  * http://plugins.twinpictures.de/plugins/print-o-matic/
 */
 
@@ -42,6 +42,7 @@ jQuery(document).ready(function() {
 		if(!target || !jQuery(target).length ){
 			return;
 		}
+
 		var target_arr = target.split(", ");
 		var targets = [];
 		var targ;
@@ -49,7 +50,7 @@ jQuery(document).ready(function() {
 			if (value == '%prev%') {
 				targ = trigger.prev();
 			}
-			else if (target == '%next%') {
+			else if (value == '%next%') {
 				targ = trigger.next();
 			}
 			else{
@@ -63,15 +64,18 @@ jQuery(document).ready(function() {
 		});
 
 
-    setTimeout(function () {
-        PrintElements.print(targets);
-				if ( has_top_html ){
-					  jQuery( '#pom_top_html' ).remove();
-				}
-				if ( has_bot_html ){
-					  jQuery( '#pom_bot_html' ).remove();
-				}
-	  }, pause_time);
+    	setTimeout(function () {
+			if(targets){
+				PrintElements.print(targets);
+			}
+			
+			if ( has_top_html ){
+					jQuery( '#pom_top_html' ).remove();
+			}
+			if ( has_bot_html ){
+					jQuery( '#pom_bot_html' ).remove();
+			}
+		}, pause_time);
 
 	});
 });
