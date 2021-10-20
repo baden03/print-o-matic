@@ -4,7 +4,8 @@
 */
 
 jQuery(document).ready(function() {
-	jQuery(document).on( 'click', '.printomatic, .printomatictext', function() {
+	jQuery(document).on( 'click', '.printomatic, .printomatictext', function(e) {
+		e.preventDefault();
 		var id = jQuery(this).attr('id');
 
 		var pause_time = 0;
