@@ -1,6 +1,6 @@
 /*!
  * Print-O-Matic JavaScript v2.0.4
- * http://plugins.twinpictures.de/plugins/print-o-matic/
+ * https://pluginoven.com/plugins/print-o-matic/
 */
 
 jQuery(document).ready(function() {
