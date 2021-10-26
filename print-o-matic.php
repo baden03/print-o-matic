@@ -77,7 +77,7 @@ class WP_Print_O_Matic {
 			wp_add_inline_style( 'printomatic-css', $this->options['custom_page_css'] );
 		}
 		if( !empty( $this->options['custom_css'] ) ){
-			$print_css = "@media print {\n".esc_textarea($this->options['custom_css'])."\n}\n";
+			$print_css = "@media print {\n".$this->options['custom_css']."\n}\n";
 			wp_add_inline_style( 'printomatic-css', $print_css );
 		}
 		
@@ -112,7 +112,7 @@ class WP_Print_O_Matic {
 			wp_enqueue_script( 'wp-theme-plugin-editor' );
 			wp_enqueue_style( 'wp-codemirror' );
 		}
-	  }
+	}
 
 	/**
 	 * Callback shortcode
@@ -343,7 +343,7 @@ class WP_Print_O_Matic {
 								<tr>
 									<th><?php _e( 'Custom Print Page Style', 'print-o-matic' ) ?></th>
 									<td><label><textarea id="custom_css" name="WP_Print_O_Matic_options[custom_css]" style="width: 100%; height: 150px;"><?php echo esc_textarea($options['custom_css']); ?></textarea>
-										<br /><span class="description"><?php _e( 'Custom CSS to be used only for the print.', 'print-o-matic' ) ?></span></label>
+										<br /><span class="description"><?php printf(__('Custom CSS for the display page. Here are some helpful %scustom CSS samples%s', 'print-o-matic' ), '<a href="https://pluginoven.com/premium-plugins/print-pro-matic/documentation/plugin-settings/#custom-css" target="_blank">', '</a>'); ?></span></label>
 									</td>
 								</tr>
 
