@@ -2,9 +2,9 @@
 Contributors: twinpictures, baden03
 Donate link: https://plugins.twinpictures.de/flying-houseboat/
 Tags: print, print element, print shortcode, send to print, print button, print me, jQuery, print page, javascript, twinpictures, plugin oven
-Requires at least: 4.7
-Tested up to: 5.9-alpha-51891
-Stable tag: 2.0.3a
+Requires at least: 4.9
+Tested up to: 5.8.1
+Stable tag: 2.1.0
 Requires PHP: 7.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -50,8 +50,13 @@ We like to rock the party.
 
 == Changelog ==
 
-= 2.0.4 =
+= 2.1.0 =
 * prevent default on print triggers
+* rolled back tested tag to 5.8.1 as only RC1 versions are apparently accepted
+* more escaping for security
+* tightened up the code a bit
+* custom css sections of plugin options page now use CodeMirror
+* improved method of adding custom css using wp_add_inline_style
 
 = 2.0.3 =
 * updated link to documentation
@@ -215,5 +220,9 @@ We like to rock the party.
 * The plug-in was forked and completely rewritten from Print Button Shortcode by MyWebsiteAdvisor.
 
 == Upgrade Notice ==
-* updated link to documentation
-* textarea input fields now escaped using esc_textarea() on plugin options page
+* prevent default on print triggers
+* rolled back tested tag to 5.8.1 as only RC1 versions are apparently accepted
+* more escaping for security
+* tightened up the code a bit
+* custom css sections of plugin options page now use CodeMirror
+* improved method of adding custom css using wp_add_inline_style
