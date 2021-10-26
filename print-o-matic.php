@@ -4,7 +4,7 @@ Plugin Name: Print-O-Matic
 Text Domain: print-o-matic
 Plugin URI: https://pluginoven.com/plugins/print-o-matic/
 Description: Shortcode that adds a printer icon, allowing the user to print the post or a specified HTML element in the post.
-Version: 2.1.1
+Version: 2.1.2
 Author: twinpictures
 Author URI: https://twinpictures.de
 License: GPL2
@@ -17,7 +17,7 @@ License: GPL2
  */
 class WP_Print_O_Matic {
 
-	var $version = '2.1.1';
+	var $version = '2.1.2';
 	var $domain = 'printomat';
 	var $options_name = 'WP_Print_O_Matic_options';
 	var $options = array(
@@ -104,11 +104,14 @@ class WP_Print_O_Matic {
 	// enque codemirror
 	function codemirror_enqueue_scripts($hook) {
 		if($hook == 'settings_page_print-o-matic-options'){
-			wp_register_script('cm_settings', plugins_url('js/admin_codemirror.js', __FILE__), array('jquery'), '0.1.0', true);
-			
-			$cm_settings['codeEditor'] = wp_enqueue_code_editor(array('type' => 'text/css'));
-			wp_localize_script('jquery', 'cm_settings', $cm_settings);
-			wp_enqueue_script( 'cm_settings' );
+			wp_register_script('cm_js', plugins_url('js/admin_codemirror.js', __FILE__), array('jquery'), '0.2.0', true);
+			$cm_settings = array(
+				'ce_css' => wp_enqueue_code_editor(array('type' => 'text/css')),
+				'ce_html' => wp_enqueue_code_editor(array('type' => 'text/html'))
+			);
+
+			wp_localize_script('cm_js', 'cm_settings', $cm_settings);
+			wp_enqueue_script( 'cm_js' );
 			wp_enqueue_script( 'wp-theme-plugin-editor' );
 			wp_enqueue_style( 'wp-codemirror' );
 		}
