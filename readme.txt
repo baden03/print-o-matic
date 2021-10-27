@@ -53,6 +53,7 @@ We like to rock the party.
 = 2.1.2 =
 * custom html settings in the plugin options also use CodeMirror
 * no longer escaping print css before being passed to wp_add_inline_style
+* removed line numbers from CodeMirror elements
 * fixed issue with only first element being printed
 
 = 2.1.1 =
@@ -228,10 +229,7 @@ We like to rock the party.
 * The plug-in was forked and completely rewritten from Print Button Shortcode by MyWebsiteAdvisor.
 
 == Upgrade Notice ==
-* prevent default on print triggers
-* rolled back tested tag to 5.8.1 as only RC1 versions are apparently accepted
-* more escaping for security
-* tightened up the code a bit
-* custom css sections of plugin options page now use CodeMirror
-* improved method of adding custom css using wp_add_inline_style
-* added back code to printomat.js
+* custom html settings in the plugin options also use CodeMirror
+* no longer escaping print css before being passed to wp_add_inline_style
+* removed line numbers from CodeMirror elements
+* fixed issue with only first element being printed
