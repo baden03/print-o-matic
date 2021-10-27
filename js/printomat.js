@@ -74,9 +74,9 @@ jQuery(document).ready(function() {
 			
 		});
 
-		var print_time = print_data.pom_pause_time;
+		var pause_time = print_data.pom_pause_time;
 		if( eval('print_data_' + id ).pom_pause_time ){
-			print_time = eval('print_data_' + id ).pom_pause_time;
+			pause_time = eval('print_data_' + id ).pom_pause_time;
 		}
 
     	setTimeout(function () {
@@ -90,7 +90,7 @@ jQuery(document).ready(function() {
 			if ( has_bot_html ){
 					jQuery( '#pom_bot_html' ).remove();
 			}
-		}, print_time);
+		}, pause_time);
 
 	});
 });
