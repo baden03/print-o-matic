@@ -53,6 +53,7 @@ We like to rock the party.
 = 2.1.2 =
 * custom html settings in the plugin options also use CodeMirror
 * no longer escaping print css before being passed to wp_add_inline_style
+* fixed issue with only first element being printed
 
 = 2.1.1 =
 * added back code to printomat.js
