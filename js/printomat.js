@@ -1,5 +1,5 @@
 /*!
- * Print-O-Matic JavaScript v2.0.5
+ * Print-O-Matic JavaScript v2.0.6
  * https://pluginoven.com/plugins/print-o-matic/
 */
 
@@ -8,25 +8,32 @@ jQuery(document).ready(function() {
 		e.preventDefault();
 		var id = jQuery(this).attr('id');
 
-		var pause_time = 0;
-		if(typeof print_data !== 'undefined' && 'pom_pause_time' in print_data[id] && print_data[id]['pom_pause_time'] > 0){
-			pause_time = print_data[id]['pom_pause_time'];
+		if(eval('print_data_' + id ).pom_do_not_print && jQuery(eval('print_data_' + id ).pom_do_not_print).length){
+			jQuery( eval('print_data_' + id ).pom_do_not_print).addClass('pe-no-print');
 		}
-
-		if (typeof print_data !== 'undefined' && 'pom_do_not_print' in print_data[id] && print_data[id]['pom_do_not_print'] ){
-				jQuery(print_data[id]['pom_do_not_print']).addClass('pe-no-print');
+		else if (jQuery(print_data.pom_do_not_print).length){
+			jQuery(print_data.pom_do_not_print).addClass('pe-no-print');
 		}
 
 		//add any html top or bottom
 		var has_top_html = false;
-		if (typeof print_data !== 'undefined' && 'pom_html_top' in print_data[id] && print_data[id]['pom_html_top']){
-			  jQuery( 'body' ).prepend( '<div id="pom_top_html" class="pe-preserve-ancestor">' + print_data[id]['pom_html_top'] + '</div>' );
-				has_top_html = true;
+		if(eval('print_data_' + id ).pom_html_top){
+			jQuery( 'body' ).prepend( '<div id="pom_top_html" class="pe-preserve-ancestor">' + eval('print_data_' + id ).pom_html_top + '</div>' );
+			has_top_html = true;
 		}
+		else if (print_data.pom_html_top){
+			jQuery( 'body' ).prepend( '<div id="pom_top_html" class="pe-preserve-ancestor">' + print_data.pom_html_top + '</div>' );
+			has_top_html = true;
+		}
+
 		var has_bot_html = false;
-		if (typeof print_data !== 'undefined' && 'pom_html_bottom' in print_data[id] && print_data[id]['pom_html_bottom']){
-			  jQuery( 'body' ).append( '<div id="pom_bot_html" class="pe-preserve-ancestor">' + print_data[id]['pom_html_bottom'] + '</div>' );
-				has_bot_html = true;
+		if (eval('print_data_' + id ).pom_html_bottom){
+			jQuery( 'body' ).append( '<div id="pom_bot_html" class="pe-preserve-ancestor">' + eval('print_data_' + id ).pom_html_bottom + '</div>' );
+			has_bot_html = true;
+		}
+		else if (print_data.pom_html_bottom){
+			jQuery( 'body' ).append( '<div id="pom_bot_html" class="pe-preserve-ancestor">' + print_data.pom_html_bottom + '</div>' );
+			has_bot_html = true;
 		}
 
 		var trigger = jQuery(this);
@@ -67,6 +74,10 @@ jQuery(document).ready(function() {
 			
 		});
 
+		var print_time = print_data.pom_pause_time;
+		if( eval('print_data_' + id ).pom_pause_time ){
+			print_time = eval('print_data_' + id ).pom_pause_time;
+		}
 
     	setTimeout(function () {
 			if(targets){
@@ -79,7 +90,7 @@ jQuery(document).ready(function() {
 			if ( has_bot_html ){
 					jQuery( '#pom_bot_html' ).remove();
 			}
-		}, pause_time);
+		}, print_time);
 
 	});
 });

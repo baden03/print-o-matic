@@ -4,7 +4,7 @@ Plugin Name: Print-O-Matic
 Text Domain: print-o-matic
 Plugin URI: https://pluginoven.com/plugins/print-o-matic/
 Description: Shortcode that adds a printer icon, allowing the user to print the post or a specified HTML element in the post.
-Version: 2.1.2
+Version: 2.1.3-alpha-211027
 Author: twinpictures
 Author URI: https://twinpictures.de
 License: GPL2
@@ -17,7 +17,7 @@ License: GPL2
  */
 class WP_Print_O_Matic {
 
-	var $version = '2.1.2';
+	var $version = '2.1.3-alpha-211027';
 	var $domain = 'printomat';
 	var $options_name = 'WP_Print_O_Matic_options';
 	var $options = array(
@@ -34,8 +34,6 @@ class WP_Print_O_Matic {
 		'pause_time' => '',
 	);
 
-	var $add_print_script = array();
-
 	/**
 	 * PHP5 constructor
 	 */
@@ -50,7 +48,6 @@ class WP_Print_O_Matic {
 		// add actions
 		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
-		add_action( 'wp_footer', array($this, 'printer_scripts') );
 		add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
 
 		add_shortcode( 'print-me', array($this, 'shortcode') );
@@ -68,8 +65,17 @@ class WP_Print_O_Matic {
 	 */
 	function printMaticInit() {
 		//script
-		wp_register_script('printomatic-js', plugins_url('js/printomat.js', __FILE__), array('jquery'), '2.0.5', true);
+		wp_register_script('printomatic-js', plugins_url('js/printomat.js', __FILE__), array('jquery'), '2.0.6', true);
 		wp_register_script('pe-js', plugins_url('js/print_elements.js', __FILE__), array('printomatic-js'), '1.0', true);
+
+		//prep options for injection
+		$print_data = [
+			'pom_html_top' => do_shortcode($this->options['html_top']),
+			'pom_html_bottom' => do_shortcode($this->options['html_bottom']),
+			'pom_do_not_print' => $this->options['do_not_print'],
+			'pom_pause_time' => $this->options['pause_time'],
+		];
+		wp_add_inline_script( 'printomatic-js', 'const print_data = ' . json_encode( $print_data ), 'before' );
 
 		//css
 		wp_register_style( 'printomatic-css', plugins_url('/css/style.css', __FILE__) , array (), '2.0' );
@@ -80,7 +86,13 @@ class WP_Print_O_Matic {
 			$print_css = "@media print {\n".$this->options['custom_css']."\n}\n";
 			wp_add_inline_style( 'printomatic-css', $print_css );
 		}
-		
+
+		//load always or only when shortcode is present
+		if( empty($this->options['script_check']) ){
+			wp_enqueue_style( 'printomatic-css' );
+			wp_enqueue_script('printomatic-js');
+			wp_enqueue_script('pe-js');
+		}
 	}
 
 	/**
@@ -141,7 +153,7 @@ class WP_Print_O_Matic {
 		$options = $this->options;
 
 		if( !empty($this->options['script_check']) ){
-			wp_enqueue_style( 'printomatic-css' );
+			wp_enqueue_style('printomatic-css');
 			wp_enqueue_script('printomatic-js');
 			wp_enqueue_script('pe-js');
 		}
@@ -152,12 +164,12 @@ class WP_Print_O_Matic {
 			'tag' => 'div',
 			'alt' => '',
 			'target' => $options['print_target'],
-			'do_not_print' => $options['do_not_print'],
+			'do_not_print' => '',
 			'printicon' => $options['printicon'],
 			'printstyle' => $options['printstyle'],
-			'html_top' => $options['html_top'],
-			'html_bottom' => $options['html_bottom'],
-			'pause_before_print' => $options['pause_time'],
+			'html_top' => '',
+			'html_bottom' => '',
+			'pause_before_print' => '',
 			'title' => $options['print_title'],
 
 		), $atts));
@@ -170,31 +182,23 @@ class WP_Print_O_Matic {
 		//swap target placeholders out for the real deal
 		$target = str_replace('%ID%', get_the_ID(), $target);
 
-		if( empty( $html_top ) ){
-			$pom_html_top = '';
+		//pass on any shortcode attributes that override default options
+		$print_data = [];
+		if( !empty( $html_top ) ){
+			$print_data['pom_html_top'] = do_shortcode($html_top);
 		}
-		else{
-			$pom_html_top = do_shortcode($html_top);
+		if( !empty( $html_bottom ) ){
+			$print_data['pom_html_bottom'] = do_shortcode($html_bottom);
+		}		
+		if( !empty( $do_not_print ) ){
+			$print_data['pom_do_not_print'] = $do_not_print;
 		}
-		if( empty( $html_bottom ) ){
-			$pom_html_bottom = '';
+		if( !empty( $pause_before_print ) ){
+			$print_data['pom_pause_time'] = $pause_before_print;
 		}
-		else{
-			$pom_html_bottom = do_shortcode($html_bottom);
+		if(!empty($print_data)){
+			wp_add_inline_script( 'printomatic-js', 'const print_data_'.$id.' = ' . json_encode( $print_data ) );
 		}
-		if( empty( $do_not_print ) ){
-			$pom_do_not_print = '';
-		}
-		else{
-			$pom_do_not_print = $do_not_print;
-		}
-
-		$this->add_print_script[$id] = array(
-			'pom_html_top' => $pom_html_top,
-			'pom_html_bottom' => $pom_html_bottom,
-			'pom_do_not_print' => $pom_do_not_print,
-			'pom_pause_time' => $pause_before_print,
-		);
 
 		//return nothing if usign an external button
 		if($printstyle == "external"){
@@ -225,18 +229,6 @@ class WP_Print_O_Matic {
 			$output = "<".$tag." class='printomatictext ".$class."' id='".$id."' ".$alt_tag." data-print_target='".$target."'>".$title."</".$tag.">";
 		}
 		return  $output;
-	}
-
-	function printer_scripts() {
-		if ( !empty( $this->add_print_script ) ){
-			wp_localize_script( 'printomatic-js', 'print_data', $this->add_print_script );
-		}
-
-		if( empty($this->options['script_check']) ){
-			wp_enqueue_style( 'printomatic-css' );
-			wp_enqueue_script('printomatic-js');
-			wp_enqueue_script('pe-js');
-		}
 	}
 
 	/**
