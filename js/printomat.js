@@ -1,5 +1,5 @@
 /*!
- * Print-O-Matic JavaScript v2.0.4
+ * Print-O-Matic JavaScript v2.0.5
  * https://pluginoven.com/plugins/print-o-matic/
 */
 
@@ -40,6 +40,7 @@ jQuery(document).ready(function() {
 				}
 			}
 		}
+
 		if(!target || !jQuery(target).length ){
 			return;
 		}
@@ -59,7 +60,9 @@ jQuery(document).ready(function() {
 			}
 			//only add target if found on page
 			if(targ.length){
-				targets.push(targ[0]);
+				jQuery.each( targ, function( ) {
+					targets.push(this);
+				});
 			}
 			
 		});
