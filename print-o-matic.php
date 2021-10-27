@@ -105,10 +105,26 @@ class WP_Print_O_Matic {
 	function codemirror_enqueue_scripts($hook) {
 		if($hook == 'settings_page_print-o-matic-options'){
 			wp_register_script('cm_js', plugins_url('js/admin_codemirror.js', __FILE__), array('jquery'), '0.2.0', true);
-			$cm_settings = array(
-				'ce_css' => wp_enqueue_code_editor(array('type' => 'text/css')),
-				'ce_html' => wp_enqueue_code_editor(array('type' => 'text/html'))
-			);
+			$cm_settings = [
+				'ce_css' => wp_enqueue_code_editor(
+					[
+						'type' => 'text/css',
+						'codemirror' => [
+							'lineNumbers' => false,
+							'autoRefresh' => true
+						]
+					]
+				),
+				'ce_html' => wp_enqueue_code_editor(
+					[
+						'type' => 'text/html',
+						'codemirror' => [
+							'lineNumbers' => false,
+							'autoRefresh' => true
+						]
+					]
+				)
+			];
 
 			wp_localize_script('cm_js', 'cm_settings', $cm_settings);
 			wp_enqueue_script( 'cm_js' );
