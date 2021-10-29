@@ -4,7 +4,7 @@ Donate link: https://plugins.twinpictures.de/flying-houseboat/
 Tags: print, print element, print shortcode, send to print, print button, print me, jQuery, print page, javascript, twinpictures, plugin oven
 Requires at least: 4.9
 Tested up to: 5.8.1
-Stable tag: 2.1.3-alpha-211027
+Stable tag: 2.1.3-alpha-211029
 Requires PHP: 7.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -51,7 +51,8 @@ We like to rock the party.
 == Changelog ==
 
 = 2.1.3 =
-* improved method of passing data to js script using wp_add_inline_script
+* improved method of passing default and print-trigger specific data to js script using wp_add_inline_script
+* added line numbers back to CodeMirror, with admin css
 
 = 2.1.2 =
 * custom html settings in the plugin options also use CodeMirror
@@ -232,7 +233,5 @@ We like to rock the party.
 * The plug-in was forked and completely rewritten from Print Button Shortcode by MyWebsiteAdvisor.
 
 == Upgrade Notice ==
-* custom html settings in the plugin options also use CodeMirror
-* no longer escaping print css before being passed to wp_add_inline_style
-* removed line numbers from CodeMirror elements
-* fixed issue with only first element being printed
+* improved method of passing default and print-trigger specific data to js script using wp_add_inline_script
+* added line numbers back to CodeMirror, with admin css
