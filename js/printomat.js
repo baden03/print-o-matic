@@ -7,9 +7,13 @@ jQuery(document).ready(function() {
 	jQuery(document).on( 'click', '.printomatic, .printomatictext', function(e) {
 		e.preventDefault();
 		var id = jQuery(this).attr('id');
+		var this_print_data;
+		if(eval('typeof print_data_' + id) !== "undefined"){
+			this_print_data = eval('print_data_' + id );
+		}
 
-		if(eval('print_data_' + id ).pom_do_not_print && jQuery(eval('print_data_' + id ).pom_do_not_print).length){
-			jQuery( eval('print_data_' + id ).pom_do_not_print).addClass('pe-no-print');
+		if(this_print_data && 'pom_do_not_print' in this_print_data && jQuery(this_print_data.pom_do_not_print).length){
+			jQuery(this_print_data.pom_do_not_print).addClass('pe-no-print');
 		}
 		else if (jQuery(print_data.pom_do_not_print).length){
 			jQuery(print_data.pom_do_not_print).addClass('pe-no-print');
@@ -17,8 +21,8 @@ jQuery(document).ready(function() {
 
 		//add any html top or bottom
 		var has_top_html = false;
-		if(eval('print_data_' + id ).pom_html_top){
-			jQuery( 'body' ).prepend( '<div id="pom_top_html" class="pe-preserve-ancestor">' + eval('print_data_' + id ).pom_html_top + '</div>' );
+		if(this_print_data && 'pom_html_top' in this_print_data){
+			jQuery( 'body' ).prepend( '<div id="pom_top_html" class="pe-preserve-ancestor">' + this_print_data.pom_html_top + '</div>' );
 			has_top_html = true;
 		}
 		else if (print_data.pom_html_top){
@@ -27,8 +31,8 @@ jQuery(document).ready(function() {
 		}
 
 		var has_bot_html = false;
-		if (eval('print_data_' + id ).pom_html_bottom){
-			jQuery( 'body' ).append( '<div id="pom_bot_html" class="pe-preserve-ancestor">' + eval('print_data_' + id ).pom_html_bottom + '</div>' );
+		if(this_print_data && 'pom_html_bottom' in this_print_data){
+			jQuery( 'body' ).append( '<div id="pom_bot_html" class="pe-preserve-ancestor">' + this_print_data.pom_html_bottom + '</div>' );
 			has_bot_html = true;
 		}
 		else if (print_data.pom_html_bottom){
@@ -75,8 +79,8 @@ jQuery(document).ready(function() {
 		});
 
 		var pause_time = print_data.pom_pause_time;
-		if( eval('print_data_' + id ).pom_pause_time ){
-			pause_time = eval('print_data_' + id ).pom_pause_time;
+		if(this_print_data && 'pom_pause_time' in this_print_data){
+			pause_time = this_print_data.pom_pause_time;
 		}
 
     	setTimeout(function () {
