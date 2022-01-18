@@ -1,10 +1,10 @@
 === Print-O-Matic ===
 Contributors: twinpictures, baden03
-Donate link: https://plugins.twinpictures.de/flying-houseboat/
+Donate link: https://pluginoven.com/panares-fund/
 Tags: print, print element, print shortcode, send to print, print button, print me, jQuery, print page, javascript, twinpictures, plugin oven
 Requires at least: 4.9
-Tested up to: 5.8.1
-Stable tag: 2.1.3
+Tested up to: 5.9
+Stable tag: 2.1.4
 Requires PHP: 7.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -49,6 +49,9 @@ We like to rock the party.
 1. Print-O-Matic Options screen for Ultimate Flexibility
 
 == Changelog ==
+
+= 2.1.4 =
+* try and force lazy load images to load before print
 
 = 2.1.3 =
 * improved method of passing default and print-trigger specific data to js script using wp_add_inline_script
