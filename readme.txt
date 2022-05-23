@@ -3,8 +3,8 @@ Contributors: twinpictures, baden03
 Donate link: https://pluginoven.com/panares-fund/
 Tags: print, print element, print shortcode, send to print, print button, print me, jQuery, print page, javascript, twinpictures, plugin oven
 Requires at least: 4.9
-Tested up to: 5.9.2
-Stable tag: 2.1.5a
+Tested up to: 5.9.3
+Stable tag: 2.1.4
 Requires PHP: 7.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -52,6 +52,7 @@ We like to rock the party.
 
 = 2.1.5 =
 * reverted back to wp_localize_script to pass print data to js script
+* moved pause before print to the print-elements script
 
 = 2.1.4 =
 * try and force lazy load images to load before print
@@ -240,3 +241,4 @@ We like to rock the party.
 
 == Upgrade Notice ==
 * reverted back to wp_localize_script to pass print data to js script
+* moved pause before print to the print-elements script

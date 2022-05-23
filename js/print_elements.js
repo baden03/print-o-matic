@@ -59,14 +59,17 @@ var PrintElements = (function () {
         }
     };
 
-    var _print = function (elements) {
+    var _print = function (elements, pause_time) {
         for (var i = 0; i < elements.length; i++) {
             _walkTree(elements[i], _attachPrintClasses);
         }
-        window.print();
-        for (i = 0; i < elements.length; i++) {
-            _walkTree(elements[i], _cleanup);
-        }
+        setTimeout(function () {
+            window.print();
+            for (i = 0; i < elements.length; i++) {
+                _walkTree(elements[i], _cleanup);
+            }
+		}, pause_time);
+        
     };
 
     return {
