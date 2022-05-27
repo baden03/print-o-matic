@@ -44,7 +44,7 @@ var PrintElements = (function () {
         _walkSiblings(element, _hide);
     };
 
-    var _cleanup = function (element, isStartingElement) {
+    var _cleanup = function (element) {
         _clean(element);
         _walkSiblings(element, _clean);
     };
@@ -63,8 +63,8 @@ var PrintElements = (function () {
         for (var i = 0; i < elements.length; i++) {
             _walkTree(elements[i], _attachPrintClasses);
         }
+        window.print();
         setTimeout(function () {
-            window.print();
             for (i = 0; i < elements.length; i++) {
                 _walkTree(elements[i], _cleanup);
             }

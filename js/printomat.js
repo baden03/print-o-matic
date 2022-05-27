@@ -1,5 +1,5 @@
 /*!
- * Print-O-Matic JavaScript v2.0.8
+ * Print-O-Matic JavaScript v2.0.9
  * https://pluginoven.com/plugins/print-o-matic/
 */
 
@@ -88,18 +88,18 @@ jQuery(document).ready(function() {
 			pause_time = this_print_data.pom_pause_time;
 		}
 
-    	//setTimeout(function () {
-			if(targets){
-				PrintElements.print(targets, pause_time);
-			}
-			
+		if(targets){
+			PrintElements.print(targets, pause_time);
+		}
+		
+		setTimeout(function () {
 			if ( has_top_html ){
 					jQuery( '#pom_top_html' ).remove();
 			}
 			if ( has_bot_html ){
 					jQuery( '#pom_bot_html' ).remove();
 			}
-		//}, pause_time);
+		}, pause_time);
 		
 
 	});
