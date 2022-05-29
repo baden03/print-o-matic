@@ -1,5 +1,5 @@
 /*!
- * Print-O-Matic JavaScript v2.0.9
+ * Print-O-Matic JavaScript v2.0.10
  * https://pluginoven.com/plugins/print-o-matic/
 */
 
@@ -87,6 +87,10 @@ jQuery(document).ready(function() {
 		if(this_print_data && 'pom_pause_time' in this_print_data){
 			pause_time = this_print_data.pom_pause_time;
 		}
+
+		//pause_time is now pause to allow the browser to render the print preview before resetting back to display
+		//force at least 2 seconds 
+		pause_time = pause_time + 2000;
 
 		if(targets){
 			PrintElements.print(targets, pause_time);
