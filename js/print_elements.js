@@ -59,15 +59,19 @@ var PrintElements = (function () {
         }
     };
 
-    var _print = function (elements, pause_time) {
+    var _print = function (elements, pause_time, has_top_html, has_bot_html) {
         for (var i = 0; i < elements.length; i++) {
             _walkTree(elements[i], _attachPrintClasses);
         }
-        window.print();
+        setTimeout(function () {
+            window.print();
+		}, 500);
+
         setTimeout(function () {
             for (i = 0; i < elements.length; i++) {
                 _walkTree(elements[i], _cleanup);
             }
+            pom_cleanup(has_top_html, has_bot_html);
 		}, pause_time);
         
     };
