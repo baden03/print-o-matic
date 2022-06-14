@@ -1,5 +1,5 @@
 /*!
- * Print-O-Matic JavaScript v2.0.10
+ * Print-O-Matic JavaScript v2.0.11
  * https://pluginoven.com/plugins/print-o-matic/
 */
 
@@ -8,6 +8,7 @@ jQuery(document).ready(function() {
 		e.preventDefault();
 		var id = jQuery(this).attr('id');
 		var this_print_data;
+
 		if(eval('typeof print_data_' + id) !== "undefined"){
 			this_print_data = eval('print_data_' + id );
 		}
@@ -84,27 +85,25 @@ jQuery(document).ready(function() {
 		});
 		
 		var pause_time = print_data.pom_pause_time;
+		if(!pause_time){
+			pause_time = 2000;
+		}
 		if(this_print_data && 'pom_pause_time' in this_print_data){
 			pause_time = this_print_data.pom_pause_time;
 		}
 
-		//pause_time is now pause to allow the browser to render the print preview before resetting back to display
-		//force at least 2 seconds 
-		pause_time = pause_time + 2000;
-
 		if(targets){
-			PrintElements.print(targets, pause_time);
-		}
+			PrintElements.print(targets, pause_time, has_top_html, has_bot_html);
+		}		
 		
-		setTimeout(function () {
-			if ( has_top_html ){
-					jQuery( '#pom_top_html' ).remove();
-			}
-			if ( has_bot_html ){
-					jQuery( '#pom_bot_html' ).remove();
-			}
-		}, pause_time);
-		
-
 	});
 });
+
+function pom_cleanup(has_top_html, has_bot_html){
+	if ( has_top_html ){
+		jQuery( '#pom_top_html' ).remove();
+	}
+	if ( has_bot_html ){
+			jQuery( '#pom_bot_html' ).remove();
+	}
+}
