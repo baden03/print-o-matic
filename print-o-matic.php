@@ -4,7 +4,7 @@ Plugin Name: Print-O-Matic
 Text Domain: print-o-matic
 Plugin URI: https://pluginoven.com/plugins/print-o-matic/
 Description: Shortcode that adds a printer icon, allowing the user to print the post or a specified HTML element in the post.
-Version: 2.1.7a
+Version: 2.1.7c
 Author: twinpictures
 Author URI: https://twinpictures.de
 License: GPL2
@@ -17,7 +17,7 @@ License: GPL2
  */
 class WP_Print_O_Matic {
 
-	var $version = '2.1.7a';
+	var $version = '2.1.7c';
 	var $domain = 'printomat';
 	var $options_name = 'WP_Print_O_Matic_options';
 	var $options = array(
@@ -65,7 +65,7 @@ class WP_Print_O_Matic {
 	 */
 	function printMaticInit() {
 		//script
-		wp_register_script('printomatic-js', plugins_url('js/printomat.js', __FILE__), array('jquery'), '2.0.10', true);
+		wp_register_script('printomatic-js', plugins_url('js/printomat.js', __FILE__), array('jquery'), '2.0.11', true);
 		wp_register_script('pe-js', plugins_url('js/print_elements.js', __FILE__), array('printomatic-js'), '1.1', true);
 
 		//prep options for injection
@@ -76,7 +76,6 @@ class WP_Print_O_Matic {
 			'pom_pause_time' => $this->options['pause_time'],
 		];
 		wp_add_inline_script( 'printomatic-js', 'const print_data = ' . json_encode( $print_data ), 'before' );
-		//wp_localize_script( 'printomatic-js', 'print_data', $print_data);
 
 		//css
 		wp_register_style( 'printomatic-css', plugins_url('/css/style.css', __FILE__) , array (), '2.0' );
@@ -199,10 +198,7 @@ class WP_Print_O_Matic {
 		if( !empty( $pause_before_print ) ){
 			$print_data['pom_pause_time'] = $pause_before_print;
 		}
-		if(!empty($print_data)){
-			wp_add_inline_script( 'printomatic-js', 'const print_data_'.$id.' = ' . json_encode( $print_data ) );
-			//wp_localize_script( 'printomatic-js', 'print_data', $print_data);
-		}
+		wp_add_inline_script( 'printomatic-js', 'const print_data_'.$id.' = ' . json_encode( $print_data ) );
 
 		//return nothing if usign an external button
 		if($printstyle == "external"){
@@ -384,9 +380,10 @@ class WP_Print_O_Matic {
 								<tr>
 									<th><?php _e( 'Pause Before Print', 'print-o-matic' ) ?></th>
 									<td><label><input type="text" id="pause_time" name="WP_Print_O_Matic_options[pause_time]" value="<?php esc_attr_e($options['pause_time']); ?>" />
-										<br /><span class="description"><?php _e('Amount of time in milliseconds to pause and let the page fully load before triggering the print dialogue box', 'print-o-matic'); ?></span></label>
+										<br /><span class="description"><?php _e('Amount of time in milliseconds to pause, allowing the print preview to render correclty.', 'print-o-matic'); ?></span></label>
 									</td>
 								</tr>
+								
 								<tr>
 									<th><?php _e( 'Shortcode Loads Scripts & CSS', 'print-o-matic' ) ?></th>
 									<td><label><input type="checkbox" id="script_check" name="WP_Print_O_Matic_options[script_check]" value="1"  <?php echo checked( $options['script_check'], 1 ); ?> /> <?php _e('Only load scripts with shortcode.', 'print-o-matic'); ?>
