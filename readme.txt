@@ -3,8 +3,8 @@ Contributors: twinpictures, baden03
 Donate link: https://pluginoven.com/panares-fund/
 Tags: print, print element, print shortcode, send to print, print button, print me, jQuery, print page, javascript, twinpictures, plugin oven
 Requires at least: 4.9
-Tested up to: 6.0
-Stable tag: 2.1.7
+Tested up to: 6.1.1
+Stable tag: 2.1.8
 Requires PHP: 7.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -49,6 +49,9 @@ We like to rock the party.
 1. Print-O-Matic Options screen for Ultimate Flexibility
 
 == Changelog ==
+
+= 2.1.8 =
+* security update. Now the plugin is escaping all shortcode attributes before output.
 
 = 2.1.7 =
 * re-added method of passing default and print-trigger specific data to js script using wp_add_inline_script
@@ -249,7 +252,5 @@ We like to rock the party.
 * The plug-in was forked and completely rewritten from Print Button Shortcode by MyWebsiteAdvisor.
 
 == Upgrade Notice ==
-* re-added method of passing default and print-trigger specific data to js script using wp_add_inline_script
-* added a bit of pause to allow for top and bot html to fully load
-* pause before print now is for adjustingg the amount of time to let the print preview render before reverting back to display layout
+* security update. Now the plugin is escaping all shortcode attributes before output.
 

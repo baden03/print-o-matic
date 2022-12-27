@@ -4,8 +4,8 @@ Print-O-Matic
 * Donate link: https://pluginoven.com/panares-fund/
 * Tags: print, print element, print shortcode, send to print, print button, print me, jQuery, print page, javascript, twinpictures, plugin oven
 * Requires at least: 4.9
-* Tested up to: 6.0
-* Stable tag: 2.1.7
+* Tested up to: 6.1.1
+* Stable tag: 2.1.8
 * License: GPLv2 or later
 * License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
