@@ -4,7 +4,7 @@ Plugin Name: Print-O-Matic
 Text Domain: print-o-matic
 Plugin URI: https://pluginoven.com/plugins/print-o-matic/
 Description: Shortcode that adds a printer icon, allowing the user to print the post or a specified HTML element in the post.
-Version: 2.1.7
+Version: 2.1.8
 Author: twinpictures
 Author URI: https://twinpictures.de
 License: GPL2
@@ -17,7 +17,7 @@ License: GPL2
  */
 class WP_Print_O_Matic {
 
-	var $version = '2.1.7';
+	var $version = '2.1.8';
 	var $domain = 'printomat';
 	var $options_name = 'WP_Print_O_Matic_options';
 	var $options = array(
@@ -220,13 +220,13 @@ class WP_Print_O_Matic {
 			$alt_tag = "alt='".$alt."' title='".$alt."'";
 		}
 		if($printicon && $title){
-			$output = "<div class='printomatic ".$printstyle." ".$class."' id='".$id."' ".$alt_tag." data-print_target='".$target."'></div> <div class='printomatictext' id='".$id."' ".$alt_tag." data-print_target='".$target."'>".$title."</div><div style='clear: both;'></div>";
+			$output = "<div class='printomatic ".esc_attr($printstyle)." ".esc_attr($class)."' id='".esc_attr($id)."' ".esc_attr($alt_tag)." data-print_target='".esc_attr($target)."'></div> <div class='printomatictext' id='".esc_attr($id)."' ".esc_attr($alt_tag)." data-print_target='".esc_attr($target)."'>".$title."</div><div style='clear: both;'></div>";
 		}
 		else if($printicon){
-			$output = "<".$tag." class='printomatic ".$printstyle." ".$class."' id='".$id."' ".$alt_tag." data-print_target='".$target."'></".$tag.">";
+			$output = "<".$tag." class='printomatic ".esc_attr($printstyle)." ".esc_attr($class)."' id='".esc_attr($id)."' ".esc_attr($alt_tag)." data-print_target='".esc_attr($target)."'></".$tag.">";
 		}
 		else if($title){
-			$output = "<".$tag." class='printomatictext ".$class."' id='".$id."' ".$alt_tag." data-print_target='".$target."'>".$title."</".$tag.">";
+			$output = "<".$tag." class='printomatictext ".esc_attr($class)."' id='".esc_attr($id)."' ".esc_attr($alt_tag)." data-print_target='".esc_attr($target)."'>".$title."</".$tag.">";
 		}
 		return  $output;
 	}
