@@ -4,7 +4,7 @@ Donate link: https://pluginoven.com/panares-fund/
 Tags: print, print element, print shortcode, send to print, print button, print me, jQuery, print page, javascript, twinpictures, plugin oven
 Requires at least: 4.9
 Tested up to: 6.1.1
-Stable tag: 2.1.8
+Stable tag: 2.1.10
 Requires PHP: 7.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -49,6 +49,13 @@ We like to rock the party.
 1. Print-O-Matic Options screen for Ultimate Flexibility
 
 == Changelog ==
+
+= 2.1.10 =
+* removed pause before print
+* fixed issue of not printing correctly in safari
+
+= 2.1.9 =
+* now escapes only the title attribute value, not the entire attribute string
 
 = 2.1.8 =
 * security update. Now the plugin is escaping all shortcode attributes before output.
@@ -252,5 +259,5 @@ We like to rock the party.
 * The plug-in was forked and completely rewritten from Print Button Shortcode by MyWebsiteAdvisor.
 
 == Upgrade Notice ==
-* security update. Now the plugin is escaping all shortcode attributes before output.
+* now escapes only the title attribute value, not the entire attribute string
 

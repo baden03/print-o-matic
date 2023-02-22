@@ -4,7 +4,7 @@ Plugin Name: Print-O-Matic
 Text Domain: print-o-matic
 Plugin URI: https://pluginoven.com/plugins/print-o-matic/
 Description: Shortcode that adds a printer icon, allowing the user to print the post or a specified HTML element in the post.
-Version: 2.1.8
+Version: 2.1.10
 Author: twinpictures
 Author URI: https://twinpictures.de
 License: GPL2
@@ -17,7 +17,7 @@ License: GPL2
  */
 class WP_Print_O_Matic {
 
-	var $version = '2.1.8';
+	var $version = '2.1.10';
 	var $domain = 'printomat';
 	var $options_name = 'WP_Print_O_Matic_options';
 	var $options = array(
@@ -67,7 +67,7 @@ class WP_Print_O_Matic {
 		//script
 		wp_register_script('printomatic-js', plugins_url('js/printomat.js', __FILE__), array('jquery'), '2.0.11', true);
 		wp_register_script('pe-js', plugins_url('js/print_elements.js', __FILE__), array('printomatic-js'), '1.1', true);
-
+		
 		//prep options for injection
 		$print_data = [
 			'pom_html_top' => do_shortcode($this->options['html_top']),
@@ -75,7 +75,7 @@ class WP_Print_O_Matic {
 			'pom_do_not_print' => $this->options['do_not_print'],
 			'pom_pause_time' => $this->options['pause_time'],
 		];
-		wp_add_inline_script( 'printomatic-js', 'const print_data = ' . json_encode( $print_data ), 'before' );
+		wp_add_inline_script( 'printomatic-js', 'var print_data = ' . json_encode( $print_data ), 'before' );
 
 		//css
 		wp_register_style( 'printomatic-css', plugins_url('/css/style.css', __FILE__) , array (), '2.0' );
@@ -198,7 +198,7 @@ class WP_Print_O_Matic {
 		if( !empty( $pause_before_print ) ){
 			$print_data['pom_pause_time'] = $pause_before_print;
 		}
-		wp_add_inline_script( 'printomatic-js', 'const print_data_'.$id.' = ' . json_encode( $print_data ) );
+		wp_add_inline_script( 'printomatic-js', 'var print_data_'.$id.' = ' . json_encode( $print_data ) );
 
 		//return nothing if usign an external button
 		if($printstyle == "external"){
@@ -217,16 +217,16 @@ class WP_Print_O_Matic {
 			}
 		}
 		else{
-			$alt_tag = "alt='".$alt."' title='".$alt."'";
+			$alt_tag = "alt='".esc_attr($alt)."' title='".esc_attr($alt)."'";
 		}
 		if($printicon && $title){
-			$output = "<div class='printomatic ".esc_attr($printstyle)." ".esc_attr($class)."' id='".esc_attr($id)."' ".esc_attr($alt_tag)." data-print_target='".esc_attr($target)."'></div> <div class='printomatictext' id='".esc_attr($id)."' ".esc_attr($alt_tag)." data-print_target='".esc_attr($target)."'>".$title."</div><div style='clear: both;'></div>";
+			$output = "<div class='printomatic ".esc_attr($printstyle)." ".esc_attr($class)."' id='".esc_attr($id)."' ".$alt_tag." data-print_target='".esc_attr($target)."'></div> <div class='printomatictext' id='".esc_attr($id)."' ".$alt_tag." data-print_target='".esc_attr($target)."'>".$title."</div><div style='clear: both;'></div>";
 		}
 		else if($printicon){
-			$output = "<".$tag." class='printomatic ".esc_attr($printstyle)." ".esc_attr($class)."' id='".esc_attr($id)."' ".esc_attr($alt_tag)." data-print_target='".esc_attr($target)."'></".$tag.">";
+			$output = "<".$tag." class='printomatic ".esc_attr($printstyle)." ".esc_attr($class)."' id='".esc_attr($id)."' ".$alt_tag." data-print_target='".esc_attr($target)."'></".$tag.">";
 		}
 		else if($title){
-			$output = "<".$tag." class='printomatictext ".esc_attr($class)."' id='".esc_attr($id)."' ".esc_attr($alt_tag)." data-print_target='".esc_attr($target)."'>".$title."</".$tag.">";
+			$output = "<".$tag." class='printomatictext ".esc_attr($class)."' id='".esc_attr($id)."' ".$alt_tag." data-print_target='".esc_attr($target)."'>".$title."</".$tag.">";
 		}
 		return  $output;
 	}

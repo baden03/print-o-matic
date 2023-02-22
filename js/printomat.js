@@ -1,5 +1,5 @@
 /*!
- * Print-O-Matic JavaScript v2.0.11
+ * Print-O-Matic JavaScript v2.0.13
  * https://pluginoven.com/plugins/print-o-matic/
 */
 
@@ -9,6 +9,7 @@ jQuery(document).ready(function() {
 		var id = jQuery(this).attr('id');
 		var this_print_data;
 
+		// TODO: must be a better way of assigning this dynamic print_data variable
 		if(eval('typeof print_data_' + id) !== "undefined"){
 			this_print_data = eval('print_data_' + id );
 		}
@@ -43,7 +44,7 @@ jQuery(document).ready(function() {
 
 		var trigger = jQuery(this);
 		var target = trigger.data('print_target');
-	
+		
 		if(!target){
 			classes = trigger.attr("class").split(/\s+/);
 			for(i=0; i<classes.length; i++){
@@ -76,7 +77,6 @@ jQuery(document).ready(function() {
 					targets.push(this);
 				});
 			}
-			
 		});
 
 		// remove loading attribute
@@ -85,14 +85,14 @@ jQuery(document).ready(function() {
 		});
 		
 		var pause_time = print_data.pom_pause_time;
-		if(!pause_time){
-			pause_time = 2000;
-		}
 		if(this_print_data && 'pom_pause_time' in this_print_data){
 			pause_time = this_print_data.pom_pause_time;
 		}
 
 		if(targets){
+			if(pause_time){
+				console.log('pause_time hase been removed for now');
+			}
 			PrintElements.print(targets, pause_time, has_top_html, has_bot_html);
 		}		
 		

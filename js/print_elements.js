@@ -59,20 +59,22 @@ var PrintElements = (function () {
         }
     };
 
-    var _print = function (elements, pause_time, has_top_html, has_bot_html) {
+    var _print = function (elements, has_top_html, has_bot_html) {
         for (var i = 0; i < elements.length; i++) {
             _walkTree(elements[i], _attachPrintClasses);
         }
   
-        setTimeout(function () {
-            window.print();
-            for (i = 0; i < elements.length; i++) {
-                _walkTree(elements[i], _cleanup);
-            }
-            pom_cleanup(has_top_html, has_bot_html);
-		}, pause_time);
-        
+        window.addEventListener('afterprint', e => after_print_clean_up(elements, has_top_html, has_bot_html) );
+        window.print();
     };
+
+    function after_print_clean_up(elements, has_top_html, has_bot_html){
+        //console.log('clean up on isle 5');
+        for (var i = 0; i < elements.length; i++) {
+            _walkTree(elements[i], _cleanup);
+        }
+        pom_cleanup(has_top_html, has_bot_html);
+    }
 
     return {
         print: _print
