@@ -70,20 +70,20 @@ class WP_Print_O_Matic {
 		
 		//prep options for injection
 		$print_data = [
-			'pom_html_top' => do_shortcode($this->options['html_top']),
-			'pom_html_bottom' => do_shortcode($this->options['html_bottom']),
-			'pom_do_not_print' => $this->options['do_not_print'],
-			'pom_pause_time' => $this->options['pause_time'],
+			'pom_html_top' => do_shortcode(wp_kses_post($this->options['html_top'])),
+			'pom_html_bottom' => do_shortcode(wp_kses_post($this->options['html_bottom'])),
+			'pom_do_not_print' => sanitize_text_field($this->options['do_not_print']),
+			'pom_pause_time' => absint($this->options['pause_time']),
 		];
-		wp_add_inline_script( 'printomatic-js', 'var print_data = ' . json_encode( $print_data ), 'before' );
+		wp_add_inline_script( 'printomatic-js', 'var print_data = ' . wp_json_encode( $print_data ), 'before' );
 
 		//css
 		wp_register_style( 'printomatic-css', plugins_url('/css/style.css', __FILE__) , array (), '2.0' );
 		if( !empty( $this->options['custom_page_css'] ) ){
-			wp_add_inline_style( 'printomatic-css', $this->options['custom_page_css'] );
+			wp_add_inline_style( 'printomatic-css', wp_strip_all_tags($this->options['custom_page_css']) );
 		}
 		if( !empty( $this->options['custom_css'] ) ){
-			$print_css = "@media print {\n".$this->options['custom_css']."\n}\n";
+			$print_css = "@media print {\n".wp_strip_all_tags($this->options['custom_css'])."\n}\n";
 			wp_add_inline_style( 'printomatic-css', $print_css );
 		}
 
@@ -160,7 +160,7 @@ class WP_Print_O_Matic {
 			wp_enqueue_script('pe-js');
 		}
 
-		extract( shortcode_atts(array(
+		$atts = shortcode_atts(array(
 			'id' => 'id'.$ran,
 			'class' => '',
 			'tag' => 'div',
@@ -173,8 +173,21 @@ class WP_Print_O_Matic {
 			'html_bottom' => '',
 			'pause_before_print' => '',
 			'title' => $options['print_title'],
+		), $atts);
 
-		), $atts));
+		// Sanitize the shortcode attributes
+		$id = sanitize_html_class($atts['id']);
+		$class = sanitize_html_class($atts['class']);
+		$tag = tag_escape($atts['tag']);
+		$alt = esc_attr($atts['alt']);
+		$target = esc_attr($atts['target']);
+		$do_not_print = esc_attr($atts['do_not_print']);
+		$printicon = esc_attr($atts['printicon']);
+		$printstyle = esc_attr($atts['printstyle']);
+		$html_top = wp_kses_post($atts['html_top']);
+		$html_bottom = wp_kses_post($atts['html_bottom']);
+		$pause_before_print = absint($atts['pause_before_print']);
+		$title = esc_html($atts['title']);
 
 		//if no printstyle, force-set to default
 		if( empty( $printstyle ) ){
@@ -198,9 +211,9 @@ class WP_Print_O_Matic {
 		if( !empty( $pause_before_print ) ){
 			$print_data['pom_pause_time'] = $pause_before_print;
 		}
-		wp_add_inline_script( 'printomatic-js', 'var print_data_'.$id.' = ' . json_encode( $print_data ) );
+		wp_add_inline_script( 'printomatic-js', 'var print_data_'.$id.' = ' . wp_json_encode( $print_data ) );
 
-		//return nothing if usign an external button
+		//return nothing if using an external button
 		if($printstyle == "external"){
 			return;
 		}
@@ -213,7 +226,7 @@ class WP_Print_O_Matic {
 				$alt_tag = '';
 			}
 			else{
-				$alt_tag = "alt='".strip_tags($title)."' title='".strip_tags($title)."'";
+				$alt_tag = "alt='".esc_attr(strip_tags($title))."' title='".esc_attr(strip_tags($title))."'";
 			}
 		}
 		else{
