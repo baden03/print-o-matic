@@ -25,14 +25,14 @@ jobs:
       - name: Validate version matches plugin files
         run: |
           VERSION="${{ steps.version.outputs.version }}"
-          PLUGIN_VERSION=$(grep -m1 '^Version:' print-o-matic.php | awk '{print $2}')
-          STABLE_TAG=$(grep -m1 '^Stable tag:' readme.txt | awk '{print $3}')
+          PLUGIN_VERSION=$(grep -m1 '^Version:' print-o-matic.php | awk '{print $2}' | xargs)
+          STABLE_TAG=$(grep -m1 '^Stable tag:' readme.txt | awk '{print $3}' | xargs)
 
           if [ "$VERSION" != "$PLUGIN_VERSION" ] || [ "$VERSION" != "$STABLE_TAG" ]; then
             echo "Version mismatch:"
-            echo "  tag:         $VERSION"
-            echo "  plugin file: $PLUGIN_VERSION"
-            echo "  readme.txt:  $STABLE_TAG"
+            echo "  tag:         '$VERSION'"
+            echo "  plugin file: '$PLUGIN_VERSION'"
+            echo "  readme.txt:  '$STABLE_TAG'"
             exit 1
           fi
 
