@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Resolve version from tag
         id: version
@@ -55,7 +55,7 @@ jobs:
           zip -r "../print-o-matic-${VERSION}.zip" print-o-matic
 
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           name: "${{ steps.version.outputs.version }}"
           files: print-o-matic-${{ steps.version.outputs.version }}.zip
