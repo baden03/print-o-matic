@@ -2,13 +2,21 @@
 /*
 Plugin Name: Print-O-Matic
 Text Domain: print-o-matic
+Domain Path: /languages
 Plugin URI: https://pluginoven.com/plugins/print-o-matic/
 Description: Shortcode that adds a printer icon, allowing the user to print the post or a specified HTML element in the post.
-Version: 2.1.10
+Version: 2.1.11
 Author: twinpictures
 Author URI: https://twinpictures.de
 License: GPL2
+Requires at least: 5.0
+Requires PHP: 7.4
 */
+
+// no direct file access
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Class WP_Print_O_Matic
@@ -17,7 +25,7 @@ License: GPL2
  */
 class WP_Print_O_Matic {
 
-	var $version = '2.1.10';
+	var $version = '2.1.11';
 	var $domain = 'printomat';
 	var $options_name = 'WP_Print_O_Matic_options';
 	var $options = array(
@@ -48,16 +56,22 @@ class WP_Print_O_Matic {
 		// add actions
 		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
-		add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
+		add_action( 'init', array( $this, 'load_textdomain' ) );
 
 		add_shortcode( 'print-me', array($this, 'shortcode') );
 		// Add shortcode support for widgets
 		add_filter('widget_text', 'do_shortcode');
 	}
 
-	// load text domain for translations
+	/**
+	 * Register the bundled languages directory.
+	 *
+	 * Translations installed site-wide (wp-content/languages/plugins) always win;
+	 * this registers ./languages as the fallback so the .l10n.php / .mo files
+	 * shipped with the plugin are used when nothing else provides the locale.
+	 */
 	function load_textdomain() {
-		load_plugin_textdomain( 'print-o-matic' );
+		load_plugin_textdomain( 'print-o-matic', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 	}
 
 	/**
@@ -65,7 +79,7 @@ class WP_Print_O_Matic {
 	 */
 	function printMaticInit() {
 		//script
-		wp_register_script('printomatic-js', plugins_url('js/printomat.js', __FILE__), array('jquery'), '2.0.11', true);
+		wp_register_script('printomatic-js', plugins_url('js/printomat.js', __FILE__), array('jquery'), '2.0.14', true);
 		wp_register_script('pe-js', plugins_url('js/print_elements.js', __FILE__), array('printomatic-js'), '1.1', true);
 		
 		//prep options for injection
@@ -75,7 +89,7 @@ class WP_Print_O_Matic {
 			'pom_do_not_print' => sanitize_text_field($this->options['do_not_print']),
 			'pom_pause_time' => absint($this->options['pause_time']),
 		];
-		wp_add_inline_script( 'printomatic-js', 'var print_data = ' . wp_json_encode( $print_data ), 'before' );
+		wp_add_inline_script( 'printomatic-js', 'var print_data = ' . wp_json_encode( $print_data ) . ';', 'before' );
 
 		//css
 		wp_register_style( 'printomatic-css', plugins_url('/css/style.css', __FILE__) , array (), '2.0' );
@@ -101,7 +115,13 @@ class WP_Print_O_Matic {
 	function admin_menu() {
 		if ( function_exists( 'add_options_page' ) AND current_user_can( 'manage_options' ) ) {
 			// add options page
-			$page = add_options_page('Print-O-Matic Options', 'Print-O-Matic', 'manage_options', 'print-o-matic-options', array( $this, 'options_page' ));
+			$page = add_options_page(
+				__( 'Print-O-Matic Options', 'print-o-matic' ),
+				__( 'Print-O-Matic', 'print-o-matic' ),
+				'manage_options',
+				'print-o-matic-options',
+				array( $this, 'options_page' )
+			);
 		}
 	}
 
@@ -176,9 +196,20 @@ class WP_Print_O_Matic {
 		), $atts);
 
 		// Sanitize the shortcode attributes
-		$id = sanitize_html_class($atts['id']);
+		// the id doubles as a JS object key in the inline script below, so restrict
+		// it to safe identifier characters and fall back to a generated id
+		$id = preg_replace( '/[^A-Za-z0-9_-]/', '', $atts['id'] );
+		if( empty($id) ){
+			$id = 'id'.$ran;
+		}
 		$class = sanitize_html_class($atts['class']);
-		$tag = tag_escape($atts['tag']);
+
+		// only allow a safe, known set of wrapper tags
+		$tag = strtolower( tag_escape($atts['tag']) );
+		$allowed_tags = array( 'div', 'span', 'p', 'a', 'button', 'i', 'em', 'strong', 'li' );
+		if( !in_array( $tag, $allowed_tags, true ) ){
+			$tag = 'div';
+		}
 		$alt = esc_attr($atts['alt']);
 		$target = esc_attr($atts['target']);
 		$do_not_print = esc_attr($atts['do_not_print']);
@@ -195,7 +226,9 @@ class WP_Print_O_Matic {
 		}
 
 		//swap target placeholders out for the real deal
-		$target = str_replace('%ID%', get_the_ID(), $target);
+		if( get_the_ID() ){
+			$target = str_replace('%ID%', get_the_ID(), $target);
+		}
 
 		//pass on any shortcode attributes that override default options
 		$print_data = [];
@@ -211,7 +244,9 @@ class WP_Print_O_Matic {
 		if( !empty( $pause_before_print ) ){
 			$print_data['pom_pause_time'] = $pause_before_print;
 		}
-		wp_add_inline_script( 'printomatic-js', 'var print_data_'.$id.' = ' . wp_json_encode( $print_data ) );
+		if( !empty($print_data) ){
+			wp_add_inline_script( 'printomatic-js', 'window["print_data_'.$id.'"] = ' . wp_json_encode( $print_data ) . ';' );
+		}
 
 		//return nothing if using an external button
 		if($printstyle == "external"){
@@ -241,6 +276,9 @@ class WP_Print_O_Matic {
 		else if($title){
 			$output = "<".$tag." class='printomatictext ".esc_attr($class)."' id='".esc_attr($id)."' ".$alt_tag." data-print_target='".esc_attr($target)."'>".$title."</".$tag.">";
 		}
+		else{
+			$output = esc_html__('Please update the Print-O-Matic options', 'print-o-matic');
+		}
 		return  $output;
 	}
 
@@ -248,26 +286,6 @@ class WP_Print_O_Matic {
 	 * Admin options page
 	 */
 	function options_page() {
-		$like_it_arr = array(
-						__('really tied the room together', 'print-o-matic'),
-						__('made you feel all warm and fuzzy on the inside', 'print-o-matic'),
-						__('restored your faith in humanity... even if only for a fleeting second', 'print-o-matic'),
-						__('provided a positive vision of future living', 'print-o-matic'),
-						__('inspired you to commit a random act of kindness', 'print-o-matic'),
-						__('encouraged more regular flossing of the teeth', 'print-o-matic'),
-						__('helped organize your life in the small ways that matter', 'print-o-matic'),
-						__('saved your minutes--if not tens of minutes--writing your own solution', 'print-o-matic'),
-						__('brightened your day... or darkened if you are trying to sleep in', 'print-o-matic'),
-						__('caused you to dance a little jig of joy and joyousness', 'print-o-matic'),
-						__('inspired you to tweet a little @twinpictues social love', 'print-o-matic'),
-						__('tasted great, while also being less filling', 'print-o-matic'),
-						__('caused you to shout: "everybody spread love, give me some mo!"', 'print-o-matic'),
-						__('helped you keep the funk alive', 'print-o-matic'),
-						__('<a href="https://www.youtube.com/watch?v=dvQ28F5fOdU" target="_blank">soften hands while you do dishes</a>', 'print-o-matic'),
-						__('helped that little old lady <a href="https://www.youtube.com/watch?v=Ug75diEyiA0" target="_blank">find the beef</a>', 'print-o-matic')
-					);
-		$rand_key = array_rand($like_it_arr);
-		$like_it = $like_it_arr[$rand_key];
 	?>
 
 		<div class="wrap">
@@ -277,7 +295,7 @@ class WP_Print_O_Matic {
 		<div class="postbox-container metabox-holder meta-box-sortables" style="width: 69%">
 			<div style="margin:0 5px;">
 				<div class="postbox">
-					<div class="handlediv" title="<?php _e( 'Click to toggle' ) ?>"><br/></div>
+					<div class="handlediv" title="<?php _e( 'Click to toggle', 'print-o-matic' ) ?>"><br/></div>
 					<h3 class="handle"><?php _e( 'Print-O-Matic Settings', 'print-o-matic' ) ?></h3>
 					<div class="inside">
 						<form method="post" action="options.php">
@@ -289,14 +307,15 @@ class WP_Print_O_Matic {
 								<table class="form-table">
 								<tr>
 									<th><?php _e( 'Default Target Attribute' , 'print-o-matic'  ) ?></th>
-									<td><label><input type="text" id="WP_Print_O_Matic_options[print_target]" name="WP_Print_O_Matic_options[print_target]" value="<?php esc_attr_e($options['print_target']); ?>" />
-										<br /><span class="description"><?php printf(__('Print target. See %sTarget Attribute%s in the documentation for more info.', 'print-o-matic'), '<a href="https://pluginoven.com/plugins/print-o-matic/documentation/shortcode/#target-attribute" target="_blank">', '</a>'); ?></span></label>
+									<td><label><input type="text" id="WP_Print_O_Matic_options[print_target]" name="WP_Print_O_Matic_options[print_target]" value="<?php echo esc_attr($options['print_target']); ?>" />
+										<br /><span class="description"><?php /* translators: %1$s: opening link tag, %2$s: closing link tag */
+										printf(__('Print target. See %1$sTarget Attribute%2$s in the documentation for more info.', 'print-o-matic'), '<a href="https://pluginoven.com/plugins/print-o-matic/documentation/shortcode/#target-attribute" target="_blank">', '</a>'); ?></span></label>
 									</td>
 								</tr>
 								<tr>
 									<th><?php _e( 'Default Print Title' , 'print-o-matic'  ) ?></th>
 									<td><label>
-										<textarea id="print_title" name="WP_Print_O_Matic_options[print_title]" style="width: 100%;"><?php esc_attr_e($options['print_title']); ?></textarea>
+										<textarea id="print_title" name="WP_Print_O_Matic_options[print_title]" style="width: 100%;"><?php echo esc_textarea($options['print_title']); ?></textarea>
 									</label></td>
 								</tr>
 								<tr>
@@ -316,7 +335,8 @@ class WP_Print_O_Matic {
 											}
 										?>
 										</select>
-										<br /><span class="description"><?php printf(__('Use printer icon. See %sPrinticon Attribute%s in the documentation for more info.', 'print-o-matic'), '<a href="https://pluginoven.com/plugins/print-o-matic/documentation/shortcode/#printicon-attribute" target="_blank">', '</a>'); ?></span></label>
+										<br /><span class="description"><?php /* translators: %1$s: opening link tag, %2$s: closing link tag */
+										printf(__('Use printer icon. See %1$sPrinticon Attribute%2$s in the documentation for more info.', 'print-o-matic'), '<a href="https://pluginoven.com/plugins/print-o-matic/documentation/shortcode/#printicon-attribute" target="_blank">', '</a>'); ?></span></label>
 									</td>
 								</tr>
 
@@ -347,13 +367,14 @@ class WP_Print_O_Matic {
 													$selected = 'checked';
 												}
 												?>
-												<label><input type="radio" name="WP_Print_O_Matic_options[printstyle]" value="<?php esc_attr_e($value); ?>" <?php esc_attr_e($selected); ?>> &nbsp;<?php esc_attr_e($key); ?>
+												<label><input type="radio" name="WP_Print_O_Matic_options[printstyle]" value="<?php echo esc_attr($value); ?>" <?php echo esc_attr($selected); ?>> &nbsp;<?php echo esc_html($key); ?>
 												<img src="<?php echo plugins_url( 'css/'.$icon_array[$value], __FILE__ ) ?>"/>
 												</label><br/>
 												<?php
 											}
 										?>
-										<span class="description"><?php printf(__('If using a printer icon, which printer icon should be used? See %sPrintstyle Attribute%s in the documentation for more info.', 'print-o-matic'), '<a href="https://pluginoven.com/plugins/print-o-matic/documentation/shortcode/#printstyle-attribute" target="_blank">', '</a>'); ?></span></label>
+										<span class="description"><?php /* translators: %1$s: opening link tag, %2$s: closing link tag */
+										printf(__('If using a printer icon, which printer icon should be used? See %1$sPrintstyle Attribute%2$s in the documentation for more info.', 'print-o-matic'), '<a href="https://pluginoven.com/plugins/print-o-matic/documentation/shortcode/#printstyle-attribute" target="_blank">', '</a>'); ?></span></label>
 									</td>
 								</tr>
 
@@ -367,39 +388,43 @@ class WP_Print_O_Matic {
 								<tr>
 									<th><?php _e( 'Custom Print Page Style', 'print-o-matic' ) ?></th>
 									<td><label><textarea id="custom_css" name="WP_Print_O_Matic_options[custom_css]" style="width: 100%; height: 150px;"><?php echo esc_textarea($options['custom_css']); ?></textarea>
-										<br /><span class="description"><?php printf(__('Custom CSS for the display page. Here are some helpful %scustom CSS samples%s', 'print-o-matic' ), '<a href="https://pluginoven.com/premium-plugins/print-pro-matic/documentation/plugin-settings/#custom-css" target="_blank">', '</a>'); ?></span></label>
+										<br /><span class="description"><?php /* translators: %1$s: opening link tag, %2$s: closing link tag */
+										printf(__('Custom CSS for the display page. Here are some helpful %1$scustom CSS samples%2$s', 'print-o-matic' ), '<a href="https://pluginoven.com/premium-plugins/print-pro-matic/documentation/plugin-settings/#custom-css" target="_blank">', '</a>'); ?></span></label>
 									</td>
 								</tr>
 
 								<tr>
 									<th><?php _e( 'Do Not Print Elements', 'print-o-matic' ) ?></th>
-									<td><label><input type="text" id="do_not_print" name="WP_Print_O_Matic_options[do_not_print]" value="<?php esc_attr_e($options['do_not_print']); ?>" />
-										<br /><span class="description"><?php printf(__('Content elements to exclude from the print page. See %sDo Not Print Attribute%s in the documentation for more info.', 'print-o-matic'), '<a href="https://pluginoven.com/plugins/print-o-matic/documentation/shortcode/#do-not-print-attribute" target="_blank">', '</a>'); ?></span></label>
+									<td><label><input type="text" id="do_not_print" name="WP_Print_O_Matic_options[do_not_print]" value="<?php echo esc_attr($options['do_not_print']); ?>" />
+										<br /><span class="description"><?php /* translators: %1$s: opening link tag, %2$s: closing link tag */
+										printf(__('Content elements to exclude from the print page. See %1$sDo Not Print Attribute%2$s in the documentation for more info.', 'print-o-matic'), '<a href="https://pluginoven.com/plugins/print-o-matic/documentation/shortcode/#do-not-print-attribute" target="_blank">', '</a>'); ?></span></label>
 									</td>
 								</tr>
 
 								<tr>
 									<th><?php _e( 'Print Page Top HTML', 'print-o-matic' ) ?></th>
 									<td><label><textarea id="html_top" name="WP_Print_O_Matic_options[html_top]" style="width: 100%; height: 150px;"><?php echo esc_textarea($options['html_top']); ?></textarea>
-										<br /><span class="description"><?php printf(__('HTML to be inserted at the top of the print page. See %sHTML Top Attribute%s in the documentation for more info.', 'print-o-matic' ), '<a href="https://pluginoven.com/plugins/print-o-matic/documentation/shortcode/#html_top-attribute" target="_blank">', '</a>'); ?></span></label>
+										<br /><span class="description"><?php /* translators: %1$s: opening link tag, %2$s: closing link tag */
+										printf(__('HTML to be inserted at the top of the print page. See %1$sHTML Top Attribute%2$s in the documentation for more info.', 'print-o-matic' ), '<a href="https://pluginoven.com/plugins/print-o-matic/documentation/shortcode/#html_top-attribute" target="_blank">', '</a>'); ?></span></label>
 									</td>
 								</tr>
 								<tr>
 									<th><?php _e( 'Print Page Bottom HTML', 'print-o-matic' ) ?></th>
 									<td><label><textarea id="html_bottom" name="WP_Print_O_Matic_options[html_bottom]" style="width: 100%; height: 150px;"><?php echo esc_textarea($options['html_bottom']); ?></textarea>
-										<br /><span class="description"><?php printf(__('HTML to be inserted at the bottom of the print page. See %sHTML Bottom Attribute%s in the documentation for more info.', 'print-o-matic' ), '<a href="https://pluginoven.com/plugins/print-o-matic/documentation/shortcode/#html_bottom-attribute" target="_blank">', '</a>'); ?></span></label>
+										<br /><span class="description"><?php /* translators: %1$s: opening link tag, %2$s: closing link tag */
+										printf(__('HTML to be inserted at the bottom of the print page. See %1$sHTML Bottom Attribute%2$s in the documentation for more info.', 'print-o-matic' ), '<a href="https://pluginoven.com/plugins/print-o-matic/documentation/shortcode/#html_bottom-attribute" target="_blank">', '</a>'); ?></span></label>
 									</td>
 								</tr>
 								<tr>
 									<th><?php _e( 'Pause Before Print', 'print-o-matic' ) ?></th>
-									<td><label><input type="text" id="pause_time" name="WP_Print_O_Matic_options[pause_time]" value="<?php esc_attr_e($options['pause_time']); ?>" />
+									<td><label><input type="text" id="pause_time" name="WP_Print_O_Matic_options[pause_time]" value="<?php echo esc_attr($options['pause_time']); ?>" />
 										<br /><span class="description"><?php _e('Amount of time in milliseconds to pause, allowing the print preview to render correclty.', 'print-o-matic'); ?></span></label>
 									</td>
 								</tr>
 								
 								<tr>
 									<th><?php _e( 'Shortcode Loads Scripts & CSS', 'print-o-matic' ) ?></th>
-									<td><label><input type="checkbox" id="script_check" name="WP_Print_O_Matic_options[script_check]" value="1"  <?php echo checked( $options['script_check'], 1 ); ?> /> <?php _e('Only load scripts with shortcode.', 'print-o-matic'); ?>
+									<td><label><input type="checkbox" id="script_check" name="WP_Print_O_Matic_options[script_check]" value="1"  <?php checked( $options['script_check'], 1 ); ?> /> <?php _e('Only load scripts with shortcode.', 'print-o-matic'); ?>
 										<br /><span class="description"><?php _e('Only load Print-O-Matic JS and CSS files if [print-me] shortcode is used.', 'print-o-matic'); ?></span></label>
 									</td>
 								</tr>
@@ -408,7 +433,7 @@ class WP_Print_O_Matic {
 							</fieldset>
 
 							<p class="submit">
-								<input class="button-primary" type="submit" style="float:right" value="<?php _e( 'Save Changes' ) ?>" />
+								<input class="button-primary" type="submit" style="float:right" value="<?php esc_attr_e( 'Save Changes', 'print-o-matic' ) ?>" />
 							</p>
 						</form>
 					</div>
@@ -419,16 +444,17 @@ class WP_Print_O_Matic {
 		<div class="postbox-container side metabox-holder meta-box-sortables" style="width:29%;">
 			<div style="margin:0 5px;">
 				<div class="postbox">
-					<div class="handlediv" title="<?php _e( 'Click to toggle' ) ?>"><br/></div>
-					<h3 class="handle"><?php _e( 'About' ) ?></h3>
+					<div class="handlediv" title="<?php _e( 'Click to toggle', 'print-o-matic' ) ?>"><br/></div>
+					<h3 class="handle"><?php _e( 'About', 'print-o-matic' ) ?></h3>
 					<div class="inside">
-						<h4><img src="<?php echo plugins_url( 'css/print-icon-small.png', __FILE__ ) ?>" /> Print-O-Matic <?php esc_attr_e($this->version); ?></h4>
+						<h4><img src="<?php echo plugins_url( 'css/print-icon-small.png', __FILE__ ) ?>" /> Print-O-Matic <?php echo esc_attr($this->version); ?></h4>
 						<p><?php _e( 'Print-O-Matic adds a shortcode to target-print specific elements in a post or page.', 'print-o-matic') ?></p>
 						<ul>
-							<li><?php printf( __( '%sDetailed documentation%s, complete with working demonstrations of all shortcode attributes, is available for your instructional enjoyment.', 'print-o-matic'), '<a href="https://pluginoven.com/plugins/print-o-matic/documentation/shortcode/" target="_blank">', '</a>'); ?></li>
-							<li><?php printf( __( 'Free, Open Source %sSupport%s', 'print-o-matic'), '<a href="https://wordpress.org/support/plugin/print-o-matic/" target="_blank">', '</a>'); ?></li>
-							<li><?php printf( __('If Print-O-Matic %s, please consider %sreviewing it at WordPress.org%s to better help others make informed plugin choices.', 'print-o-matic'), $like_it, '<a href="https://wordpress.org/support/plugin/print-o-matic/reviews/" target="_blank">', '</a>' ) ?></li>
-							<li><a href="https://wordpress.org/plugins/print-o-matic/" target="_blank">WordPress.org</a> | <a href="https://pluginoven.com/plugins/print-o-matic/" target="_blank">Twinpictues Plugin Oven</a></li>
+							<li><?php /* translators: %1$s: opening link tag, %2$s: closing link tag */
+							printf( __( '%1$sDetailed documentation%2$s, complete with working demonstrations of all shortcode attributes, is available for your instructional enjoyment.', 'print-o-matic'), '<a href="https://pluginoven.com/plugins/print-o-matic/documentation/shortcode/" target="_blank">', '</a>'); ?></li>
+							<li><?php /* translators: %1$s: opening link tag, %2$s: closing link tag */
+							printf( __( 'Free, Open Source %1$sSupport%2$s', 'print-o-matic'), '<a href="https://github.com/baden03/print-o-matic/issues" target="_blank">', '</a>'); ?></li>
+							<li><a href="https://github.com/baden03/print-o-matic" target="_blank">GitHub</a> | <a href="https://pluginoven.com/plugins/print-o-matic/" target="_blank">Twinpictures Plugin Oven</a></li>
 						</ul>
 					</div>
 				</div>
@@ -439,10 +465,11 @@ class WP_Print_O_Matic {
 		<div class="postbox-container side metabox-holder meta-box-sortables" style="width:29%;">
 			<div style="margin:0 5px;">
 				<div class="postbox">
-					<div class="handlediv" title="<?php _e( 'Click to toggle' ) ?>"><br/></div>
-					<h3 class="handle"><?php _e( 'Level Up!' ) ?></h3>
+					<div class="handlediv" title="<?php _e( 'Click to toggle', 'print-o-matic' ) ?>"><br/></div>
+					<h3 class="handle"><?php _e( 'Level Up!', 'print-o-matic' ) ?></h3>
 					<div class="inside">
-						<p><?php printf(__( '%sPrint-Pro-Matic%s is our premium plugin that offers a few additional attributes and features for <i>ultimate</i> flexibility.', 'print-o-mat' ), '<a href="https://pluginoven.com/premium-plugins/print-pro-matic/?utm_source=print-o-matic&utm_medium=plugin-settings-page&utm_content=print-pro-matic&utm_campaign=print-pro-level-up">', '</a>'); ?></p>
+						<p><?php /* translators: %1$s: opening link tag, %2$s: closing link tag */
+						printf(__( '%1$sPrint-Pro-Matic%2$s is our premium plugin that offers a few additional attributes and features for <i>ultimate</i> flexibility.', 'print-o-matic' ), '<a href="https://pluginoven.com/premium-plugins/print-pro-matic/?utm_source=print-o-matic&utm_medium=plugin-settings-page&utm_content=print-pro-matic&utm_campaign=print-pro-level-up">', '</a>'); ?></p>
 						<h4><?php _e('Reasons To Go Pro', 'print-o-matic'); ?></h4>
 						<ol>
 							<li><?php _e("You are an advanced user with advanced needs and want some tasty advanced features", "print-o-matic"); ?></li>

@@ -2,44 +2,43 @@
 Contributors: twinpictures, baden03
 Donate link: https://pluginoven.com/panares-fund/
 Tags: print, print element, print shortcode, send to print, print button, print me, jQuery, print page, javascript, twinpictures, plugin oven
-Requires at least: 4.9
-Tested up to: 6.1.1
-Stable tag: 2.1.10
-Requires PHP: 7.2
+Requires at least: 5.0
+Tested up to: 7.1
+Stable tag: 2.1.11
+Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Adds the ability to target print elements using a simple [print-me] shortcode. Extra jQuery Jedi love given to filled out forms.
 
 == Description ==
-Print-O-Matic adds the ability to print any post, page or page element by using a simple [print-me] shortcode. A <a href='https://pluginoven.com/plugins/print-o-matic/documentation/shortcode/'>complete listing of shortcode options</a> are available, as well as <a href='https://wordpress.org/support/plugin/print-o-matic/'>free community support</a>.
+Print-O-Matic adds the ability to print any post, page or page element by using a simple [print-me] shortcode. A <a href='https://pluginoven.com/plugins/print-o-matic/documentation/shortcode/'>complete listing of shortcode options</a> are available. Bugs and feature requests are tracked in <a href='https://github.com/baden03/print-o-matic/issues'>GitHub issues</a>.
 
 == Installation ==
 
-1. Old-school: upload the `print-o-matic` folder to the `/wp-content/plug-ins/` directory via FTP.  Hipster: Ironically add Print-O-Matic via the WordPress Plug-ins menu.
+1. Download the latest `print-o-matic-x.x.x.zip` from <a href="https://github.com/baden03/print-o-matic/releases">GitHub Releases</a> and upload it via Plugins → Add New → Upload Plugin. Old-school: unzip and drop the `print-o-matic` folder into `/wp-content/plugins/` via FTP.
 1. Activate the Plug-in
 1. Add a the shortcode to your post like so: `[print-me target="div#id_of_element_to_print" title="Print Form"]`
 1. Test that the this plug-in meets your demanding needs.
 1. Tweak the CSS to match your flavor.
-1. Rate the plug-in and verify if it works at wordpress.org.
-1. Leave a comment regarding bugs, feature request, cocktail recipes at https://wordpress.org/support/topic-tag/print-o-matic/
+1. Report bugs, feature requests, and cocktail recipes at https://github.com/baden03/print-o-matic/issues
 
 == Frequently Asked Questions ==
 
-= Where can I fork this plugin and contribute changes? =
-<a href='https://github.com/baden03/print-o-matic'>github</a>
+= Where can I fork this plugin, report a bug, or contribute changes? =
+<a href='https://github.com/baden03/print-o-matic'>github</a>, and bugs or feature requests belong in <a href='https://github.com/baden03/print-o-matic/issues'>github issues</a>.
 
 = I am a Social Netwookiee, might Twinpictures have a Facebook page? =
-Yes, yes... <a href='https://www.facebook.com/twinpictures'>Twinpictures is on Facebook</a>.
+Nope.
 
 = Does Twinpictures do the Twitter? =
-Ah yes! <a href='https://twitter.com/twinpictures'>@Twinpictures</a> does the twitter tweeting around here.
+Nope.
 
 = How does one use the shortcode, exactly? =
 A <a href='https://pluginoven.com/plugins/print-o-matic/documentation/'>complete listing of shortcode options</a> has been provided to answer this exact question.
 
 = Where can I translate this plugin into my favorite language? =
-Use the <a href='https://translate.wordpress.org/projects/wp-plugins/print-o-matic/'>Community translation for Print-O-Matic</a> at WordPress
+A .pot file has been included in the languages folder, along with a German (de_DE) translation. Pull requests with new translations are welcome.
 
 = Who likes to rock the party? =
 We like to rock the party.
@@ -49,6 +48,29 @@ We like to rock the party.
 1. Print-O-Matic Options screen for Ultimate Flexibility
 
 == Changelog ==
+
+= 2.1.11 =
+* security: restricted the shortcode's `tag` attribute to a safe allow-list of HTML tags
+* security: sanitized the shortcode `id` used as an inline JS variable name, to prevent script breakout via a crafted `id` attribute
+* security: removed `eval()` use in printomat.js in favor of a direct property lookup
+* security: escaped the printer icon, print target, print title, do-not-print and pause-time values on the options page (they were being passed through the translation functions instead of being escaped)
+* security: added a direct-file-access guard
+* fix: "Only load scripts with shortcode" checkbox rendered a duplicate `checked` attribute
+* fix: per-shortcode print data is now keyed on `window`, so shortcode ids containing a hyphen no longer emit invalid JavaScript
+* fix: no longer emits an empty per-shortcode print data object when no overrides are set
+* fix: `%ID%` target replacement and the shortcode return value no longer warn when used outside the loop (PHP 8)
+* fix: corrected the `print-o-mat` text domain typo in the "Level Up!" box
+* i18n: removed hard-coded links from translatable strings; link markup is now passed as printf arguments
+* i18n: added translator comments and numbered placeholders (%1$s/%2$s) to every string containing dynamic markup
+* i18n: added the missing 'print-o-matic' text domain to the options page and menu titles, "Save Changes", "About" and "Click to toggle"
+* i18n: added a `languages` directory with a generated `print-o-matic.pot` template, and a `Domain Path` header
+* i18n: added a complete German (de_DE) translation, shipped as both .mo and the faster .l10n.php format WordPress 6.5+ prefers
+* i18n: text domain is now registered on `init` rather than `plugins_loaded`, per the WordPress 6.7+ translation loading guidance
+* support has moved to GitHub issues; removed all wordpress.org references from the plugin and documentation
+* removed the "please review this plugin" line from the options page, along with the random compliment list that fed it
+* distribution: pushing a version tag now publishes a GitHub Release with a clean `print-o-matic-x.x.x.zip`
+* distribution: blueprint.json installs from the GitHub repository
+* tested up to WordPress 7.1
 
 = 2.1.10 =
 * removed pause before print
@@ -259,5 +281,6 @@ We like to rock the party.
 * The plug-in was forked and completely rewritten from Print Button Shortcode by MyWebsiteAdvisor.
 
 == Upgrade Notice ==
-* now escapes only the title attribute value, not the entire attribute string
+* security hardening: tag allow-list, sanitized inline JS variable ids, removed eval(), escaped options-page output
+* tested up to WordPress 7.1
 

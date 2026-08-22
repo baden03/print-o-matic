@@ -1,0 +1,270 @@
+# German translation for Print-O-Matic.
+# Copyright (C) 2026 twinpictures
+# This file is distributed under the GPL2 license.
+msgid ""
+msgstr ""
+"Project-Id-Version: Print-O-Matic 2.1.11\n"
+"Report-Msgid-Bugs-To: https://github.com/baden03/print-o-matic/issues\n"
+"POT-Creation-Date: 2026-08-22 23:56+0200\n"
+"PO-Revision-Date: 2026-08-22 23:55+0200\n"
+"Last-Translator: twinpictures\n"
+"Language-Team: German\n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Domain: print-o-matic\n"
+
+#: print-o-matic.php:119
+msgid "Print-O-Matic Options"
+msgstr "Print-O-Matic Optionen"
+
+#: print-o-matic.php:120
+msgid "Print-O-Matic"
+msgstr "Print-O-Matic"
+
+#: print-o-matic.php:280
+msgid "Please update the Print-O-Matic options"
+msgstr "Bitte aktualisiere die Print-O-Matic Optionen"
+
+#: print-o-matic.php:298 print-o-matic.php:447 print-o-matic.php:468
+msgid "Click to toggle"
+msgstr "Klicken zum aufklappen"
+
+#: print-o-matic.php:299
+msgid "Print-O-Matic Settings"
+msgstr "Print-O-Matic Einstellungen"
+
+#: print-o-matic.php:309
+msgid "Default Target Attribute"
+msgstr "Standard Zielattribut"
+
+#. translators: %1$s: opening link tag, %2$s: closing link tag
+#: print-o-matic.php:312
+#, php-format
+msgid ""
+"Print target. See %1$sTarget Attribute%2$s in the documentation for more "
+"info."
+msgstr ""
+"Druckziel. Siehe %1$sTarget Attribute%2$s in der Dokumentation für weitere "
+"Informationen."
+
+#: print-o-matic.php:316
+msgid "Default Print Title"
+msgstr "Standard-Drucktitel"
+
+#: print-o-matic.php:322
+msgid "Use Print Icon"
+msgstr "Druck-Icon verwenden"
+
+#: print-o-matic.php:326
+msgid "Yes"
+msgstr "Ja"
+
+#: print-o-matic.php:327
+msgid "No"
+msgstr "Nein"
+
+#. translators: %1$s: opening link tag, %2$s: closing link tag
+#: print-o-matic.php:339
+#, php-format
+msgid ""
+"Use printer icon. See %1$sPrinticon Attribute%2$s in the documentation for "
+"more info."
+msgstr ""
+"Druck-Icon verwenden. Siehe %1$sPrinticon Attribute%2$s in der Dokumentation "
+"für weitere Informationen."
+
+#: print-o-matic.php:344
+msgid "Printer Icon"
+msgstr "Druck-Icon"
+
+#: print-o-matic.php:351
+msgid "Default"
+msgstr "Standard"
+
+#: print-o-matic.php:352
+msgid "Small"
+msgstr "Klein"
+
+#: print-o-matic.php:353
+msgid "Small Black"
+msgstr "Klein und schwarz"
+
+#: print-o-matic.php:354
+msgid "Small Grey"
+msgstr "Klein und grau"
+
+#: print-o-matic.php:355
+msgid "Small White"
+msgstr "klein und weiß"
+
+#. translators: %1$s: opening link tag, %2$s: closing link tag
+#: print-o-matic.php:377
+#, php-format
+msgid ""
+"If using a printer icon, which printer icon should be used? See "
+"%1$sPrintstyle Attribute%2$s in the documentation for more info."
+msgstr ""
+"Wenn du ein Drucker-Icon verwendest, welches soll es sein? Siehe "
+"%1$sPrintstyle Attribute%2$s in der Dokumentation für weitere Informationen."
+
+#: print-o-matic.php:382
+msgid "Custom Style"
+msgstr "Eigener Style"
+
+#: print-o-matic.php:384
+msgid "Custom CSS for the display page."
+msgstr "Individuelles CSS für die Anzeigeseite."
+
+#: print-o-matic.php:389
+msgid "Custom Print Page Style"
+msgstr "Eigener Druckseitenstil"
+
+#. translators: %1$s: opening link tag, %2$s: closing link tag
+#: print-o-matic.php:392
+#, php-format
+msgid ""
+"Custom CSS for the display page. Here are some helpful %1$scustom CSS "
+"samples%2$s"
+msgstr ""
+"Individuelles CSS für die Anzeigeseite. Hier sind einige hilfreiche "
+"%1$sBeispiele für individuelles CSS%2$s"
+
+#: print-o-matic.php:397
+msgid "Do Not Print Elements"
+msgstr "Diese Elemente nicht drucken"
+
+#. translators: %1$s: opening link tag, %2$s: closing link tag
+#: print-o-matic.php:400
+#, php-format
+msgid ""
+"Content elements to exclude from the print page. See %1$sDo Not Print "
+"Attribute%2$s in the documentation for more info."
+msgstr ""
+"Inhaltselemente, die vom Druck ausgeschlossen werden sollen. Siehe %1$sDo "
+"Not Print Attribute%2$s in der Dokumentation für mehr Informationen."
+
+#: print-o-matic.php:405
+msgid "Print Page Top HTML"
+msgstr "Druckseite HTML (oben)"
+
+#. translators: %1$s: opening link tag, %2$s: closing link tag
+#: print-o-matic.php:408
+#, php-format
+msgid ""
+"HTML to be inserted at the top of the print page. See %1$sHTML Top "
+"Attribute%2$s in the documentation for more info."
+msgstr ""
+"HTML, das oben auf der Druckseite eingefügt werden soll. Weitere "
+"Informationen finden Sie in der Dokumentation unter %1$sHTML Top "
+"Attribute%2$s."
+
+#: print-o-matic.php:412
+msgid "Print Page Bottom HTML"
+msgstr "Druckseite HTML (unten)"
+
+#. translators: %1$s: opening link tag, %2$s: closing link tag
+#: print-o-matic.php:415
+#, php-format
+msgid ""
+"HTML to be inserted at the bottom of the print page. See %1$sHTML Bottom "
+"Attribute%2$s in the documentation for more info."
+msgstr ""
+"HTML, das am unteren Rand der Druckseite eingefügt werden soll. Weitere "
+"Informationen finden Sie in der Dokumentation unter %1$sHTML Bottom "
+"Attribute%2$s."
+
+#: print-o-matic.php:419
+msgid "Pause Before Print"
+msgstr "Pause vor dem Drucken"
+
+#: print-o-matic.php:421
+msgid ""
+"Amount of time in milliseconds to pause, allowing the print preview to "
+"render correclty."
+msgstr ""
+"Zeit in Millisekunden, um zu pausieren, damit die Druckvorschau korrekt "
+"geladen wird."
+
+#: print-o-matic.php:426
+msgid "Shortcode Loads Scripts & CSS"
+msgstr "Shortcode lädt Skripte & CSS"
+
+#: print-o-matic.php:427
+msgid "Only load scripts with shortcode."
+msgstr "Skripte laden nur mit Shortcode."
+
+#: print-o-matic.php:428
+msgid ""
+"Only load Print-O-Matic JS and CSS files if [print-me] shortcode is used."
+msgstr ""
+"Print-O-Matic JS- und CSS-Dateien nur laden, wenn der Shortcode [print-me] "
+"verwendet wird."
+
+#: print-o-matic.php:436
+msgid "Save Changes"
+msgstr "Änderungen speichern"
+
+#: print-o-matic.php:448
+msgid "About"
+msgstr "Über"
+
+#: print-o-matic.php:451
+msgid ""
+"Print-O-Matic adds a shortcode to target-print specific elements in a post "
+"or page."
+msgstr ""
+"Print-O-Matic fügt einen Shortcode hinzu, mit dem sich einzelne Elemente "
+"eines Beitrags oder einer Seite gezielt drucken lassen."
+
+#. translators: %1$s: opening link tag, %2$s: closing link tag
+#: print-o-matic.php:454
+#, php-format
+msgid ""
+"%1$sDetailed documentation%2$s, complete with working demonstrations of all "
+"shortcode attributes, is available for your instructional enjoyment."
+msgstr ""
+"%1$sAusführliche Dokumentation%2$s, mit funktionierenden Demonstrationen "
+"aller Shortcode-Attribute, steht für dein Vergnügen bereit."
+
+#. translators: %1$s: opening link tag, %2$s: closing link tag
+#: print-o-matic.php:456
+#, php-format
+msgid "Free, Open Source %1$sSupport%2$s"
+msgstr "Kostenloser Open-Source-%1$sSupport%2$s"
+
+#: print-o-matic.php:469
+msgid "Level Up!"
+msgstr "Level Up!"
+
+#. translators: %1$s: opening link tag, %2$s: closing link tag
+#: print-o-matic.php:472
+#, php-format
+msgid ""
+"%1$sPrint-Pro-Matic%2$s is our premium plugin that offers a few additional "
+"attributes and features for <i>ultimate</i> flexibility."
+msgstr ""
+"%1$sPrint-Pro-Matic%2$s ist unser Premium-Plugin mit einigen zusätzlichen "
+"Attributen und Funktionen für <i>ultimative</i> Flexibilität."
+
+#: print-o-matic.php:473
+msgid "Reasons To Go Pro"
+msgstr "Gründe für Pro"
+
+#: print-o-matic.php:475
+msgid ""
+"You are an advanced user with advanced needs and want some tasty advanced "
+"features"
+msgstr ""
+"Du bist fortgeschritten, hast anspruchsvolle Anforderungen und möchtest ein "
+"paar schmackhafte Extra-Funktionen"
+
+#: print-o-matic.php:476
+msgid ""
+"Print-Pro-Matic was just what you needed and you'd like to drop some coins "
+"in our jar"
+msgstr ""
+"Print-Pro-Matic war genau das, was du gebraucht hast, und du möchtest ein "
+"paar Münzen in unser Sparschwein werfen"

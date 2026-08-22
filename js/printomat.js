@@ -1,5 +1,5 @@
 /*!
- * Print-O-Matic JavaScript v2.0.13
+ * Print-O-Matic JavaScript v2.0.14
  * https://pluginoven.com/plugins/print-o-matic/
 */
 
@@ -9,9 +9,8 @@ jQuery(document).ready(function() {
 		var id = jQuery(this).attr('id');
 		var this_print_data;
 
-		// TODO: must be a better way of assigning this dynamic print_data variable
-		if(eval('typeof print_data_' + id) !== "undefined"){
-			this_print_data = eval('print_data_' + id );
+		if(id && typeof window['print_data_' + id] !== "undefined"){
+			this_print_data = window['print_data_' + id];
 		}
 
 		if(this_print_data && 'pom_do_not_print' in this_print_data && jQuery(this_print_data.pom_do_not_print).length){
