@@ -4,7 +4,7 @@ Donate link: https://pluginoven.com/panares-fund/
 Tags: print, print element, print shortcode, send to print, print button, print me, jQuery, print page, javascript, twinpictures, plugin oven
 Requires at least: 5.0
 Tested up to: 7.1
-Stable tag: 2.1.12
+Stable tag: 2.1.13
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -48,6 +48,10 @@ We like to rock the party.
 1. Print-O-Matic Options screen for Ultimate Flexibility
 
 == Changelog ==
+
+= 2.1.13 =
+* distribution: the 2.1.12 GitHub Release failed version validation because `print-o-matic.php` uses CRLF line endings, so the extracted plugin version was `2.1.12\r` and did not match the tag
+* distribution: the release workflow now strips the Version/Stable tag labels with sed and removes carriage returns before comparing versions
 
 = 2.1.12 =
 * distribution: GitHub Actions now deprecates Node.js 20; the 2.1.11 release used `actions/checkout@v4` and could not be re-run with a newer script, because tag builds use the workflow file from that tag

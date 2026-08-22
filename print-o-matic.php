@@ -5,7 +5,7 @@ Text Domain: print-o-matic
 Domain Path: /languages
 Plugin URI: https://pluginoven.com/plugins/print-o-matic/
 Description: Shortcode that adds a printer icon, allowing the user to print the post or a specified HTML element in the post.
-Version: 2.1.12
+Version: 2.1.13
 Author: twinpictures
 Author URI: https://twinpictures.de
 License: GPL2
@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class WP_Print_O_Matic {
 
-	var $version = '2.1.12';
+	var $version = '2.1.13';
 	var $domain = 'printomat';
 	var $options_name = 'WP_Print_O_Matic_options';
 	var $options = array(
