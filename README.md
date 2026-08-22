@@ -5,7 +5,7 @@ Print-O-Matic
 * Tags: print, print element, print shortcode, send to print, print button, print me, jQuery, print page, javascript, twinpictures, plugin oven
 * Requires at least: 5.0
 * Tested up to: 7.1
-* Stable tag: 2.1.11
+* Stable tag: 2.1.12
 * Requires PHP: 7.4
 * License: GPLv2 or later
 * License URI: https://www.gnu.org/licenses/gpl-2.0.html

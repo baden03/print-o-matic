@@ -4,7 +4,7 @@
  * WordPress 6.5+ loads this in preference to the .mo file.
  */
 return array(
-	'project-id-version' => 'Print-O-Matic 2.1.11',
+	'project-id-version' => 'Print-O-Matic 2.1.12',
 	'plural-forms' => 'nplurals=2; plural=(n != 1);',
 	'language' => 'de_DE',
 	'x-domain' => 'print-o-matic',
